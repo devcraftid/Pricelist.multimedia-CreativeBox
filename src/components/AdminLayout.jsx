@@ -57,7 +57,7 @@ export default function AdminLayout() {
     <div className="min-h-screen bg-slate-50 flex">
       {/* Mobile Top Bar */}
       <div className="md:hidden fixed top-0 left-0 w-full bg-slate-900 text-white z-50 flex justify-between items-center px-4 py-3 shadow-md">
-        <h1 className="text-xl font-bold tracking-tight">Multicam<span className="text-primary">.Admin</span></h1>
+        <h1 className="text-xl font-bold tracking-tight">CreativeBox<span className="text-primary">.Admin</span></h1>
         <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="p-2 bg-slate-800 rounded">
           {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
@@ -74,7 +74,7 @@ export default function AdminLayout() {
       {/* Sidebar */}
       <aside className={`w-64 bg-slate-900 text-slate-300 flex flex-col fixed h-full z-50 transition-transform duration-300 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
         <div className="p-6 hidden md:block">
-          <h1 className="text-xl font-bold text-white tracking-tight">Multicam<span className="text-primary">.Admin</span></h1>
+          <h1 className="text-xl font-bold text-white tracking-tight">CreativeBox<span className="text-primary">.Admin</span></h1>
         </div>
         <div className="p-6 md:hidden flex justify-end">
            <button onClick={() => setIsSidebarOpen(false)}><X size={24} className="text-white"/></button>

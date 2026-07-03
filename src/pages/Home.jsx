@@ -81,7 +81,7 @@ const Home = () => {
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-10 md:mt-0">
           <h2 className="text-[#f5a623] font-bold text-sm md:text-lg mb-2 uppercase tracking-wider">
-            {settings?.hero_title ? settings.hero_title : 'MULTICAM.ID'}
+            {settings?.hero_title ? settings.hero_title : 'MULTIMEDIA CREATIVE BOX'}
           </h2>
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] mb-6 max-w-4xl tracking-tight uppercase">
             {settings?.hero_subtitle ? settings.hero_subtitle : 'MULTIMEDIA & LIVE CAMERA PRODUCTION'}

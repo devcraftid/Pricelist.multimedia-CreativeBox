@@ -53,7 +53,7 @@ const Navbar = () => {
             {/* Logo */}
             <Link to="/" className="flex-shrink-0 flex items-center">
               {settings?.logo_url ? (
-                <img src={settings.logo_url} alt="Logo Multicam" className="h-10 md:h-12 object-contain" />
+                <img src={settings.logo_url} alt="Logo multimedia Creative Box" className="h-10 md:h-12 object-contain" />
               ) : (
                 <div className="h-10 md:h-12 w-32 bg-slate-800 rounded border border-slate-600 flex items-center justify-center text-xs text-slate-400">
                   Logo Kosong
@@ -63,7 +63,7 @@ const Navbar = () => {
             
             {/* Tagline */}
             <div className="block text-white">
-              <h1 className="font-bold text-xs sm:text-sm leading-tight text-[#f5a623] truncate max-w-[140px] sm:max-w-none">Multicam Indonesia</h1>
+              <h1 className="font-bold text-xs sm:text-sm leading-tight text-[#f5a623] truncate max-w-[140px] sm:max-w-none">multimedia Creative Box</h1>
               <p className="text-[10px] sm:text-xs text-gray-300 leading-tight max-w-[140px] sm:max-w-none truncate sm:whitespace-normal">Jasa Multimedia dan Live Camera Production</p>
             </div>
           </div>
