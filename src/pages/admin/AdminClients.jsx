@@ -105,44 +105,46 @@ export default function AdminClients() {
         {loading ? (
           <div className="p-10 flex justify-center"><Loader2 className="animate-spin text-primary w-8 h-8" /></div>
         ) : (
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 font-medium text-sm">
-                <th className="py-4 px-6 w-32">Logo Klien</th>
-                <th className="py-4 px-6">Nama Klien / Instansi</th>
-                <th className="py-4 px-6 w-24">Urutan</th>
-                <th className="py-4 px-6 text-right w-32">Aksi</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100">
-              {items.map((item) => (
-                <tr key={item.id} className="hover:bg-slate-50/50 transition-colors">
-                  <td className="py-4 px-6">
-                    <img src={item.logo_url || 'https://placehold.co/100'} alt="Logo" className="w-20 h-12 object-contain bg-slate-50 border border-slate-200 p-1 rounded" />
-                  </td>
-                  <td className="py-4 px-6">
-                    <p className="font-bold text-slate-800 text-base">{item.name}</p>
-                  </td>
-                  <td className="py-4 px-6 text-slate-600 font-medium">{item.order_index}</td>
-                  <td className="py-4 px-6 text-right">
-                    <div className="flex justify-end gap-3">
-                      <button onClick={() => handleOpenModal(item)} className="text-slate-400 hover:text-primary transition-colors bg-blue-50 p-2 rounded-lg">
-                        <Edit2 size={18} />
-                      </button>
-                      <button onClick={() => handleDelete(item.id)} className="text-slate-400 hover:text-red-500 transition-colors bg-red-50 p-2 rounded-lg">
-                        <Trash2 size={18} />
-                      </button>
-                    </div>
-                  </td>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse min-w-[500px]">
+              <thead>
+                <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 font-medium text-sm">
+                  <th className="py-4 px-6 w-32">Logo</th>
+                  <th className="py-4 px-6">Nama Klien</th>
+                  <th className="py-4 px-6 w-24">Urutan</th>
+                  <th className="py-4 px-6 text-right w-32">Aksi</th>
                 </tr>
-              ))}
-              {items.length === 0 && (
-                <tr>
-                  <td colSpan="4" className="py-12 text-center text-slate-500 font-medium">Belum ada logo klien yang diupload.</td>
-                </tr>
-              )}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {items.map((item) => (
+                  <tr key={item.id} className="hover:bg-slate-50/50 transition-colors">
+                    <td className="py-4 px-6">
+                      <img src={item.logo_url || 'https://placehold.co/100'} alt="Logo" className="w-20 h-12 object-contain bg-slate-50 border border-slate-200 p-1 rounded" />
+                    </td>
+                    <td className="py-4 px-6">
+                      <p className="font-semibold text-slate-800">{item.name}</p>
+                    </td>
+                    <td className="py-4 px-6 text-slate-600 font-medium">{item.order_index}</td>
+                    <td className="py-4 px-6 text-right">
+                      <div className="flex justify-end gap-3">
+                        <button onClick={() => handleOpenModal(item)} className="text-slate-400 hover:text-primary transition-colors">
+                          <Edit2 size={18} />
+                        </button>
+                        <button onClick={() => handleDelete(item.id)} className="text-slate-400 hover:text-red-500 transition-colors">
+                          <Trash2 size={18} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+                {items.length === 0 && (
+                  <tr>
+                    <td colSpan="4" className="py-8 text-center text-slate-500">Belum ada data klien.</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
 

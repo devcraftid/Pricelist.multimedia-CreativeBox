@@ -85,43 +85,43 @@ export default function AdminFaqs() {
         {loading ? (
           <div className="p-10 flex justify-center"><Loader2 className="animate-spin text-primary w-8 h-8" /></div>
         ) : (
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 font-medium text-sm">
-                <th className="py-4 px-6">Pertanyaan & Jawaban</th>
-                <th className="py-4 px-6 w-24">Urutan</th>
-                <th className="py-4 px-6 text-right w-32">Aksi</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100">
-              {items.map((item) => (
-                <tr key={item.id} className="hover:bg-slate-50/50 transition-colors">
-                  <td className="py-4 px-6">
-                    <p className="font-bold text-slate-800 text-base mb-1">Q: {item.question}</p>
-                    <p className="text-sm text-slate-500 bg-slate-50 p-3 rounded border border-slate-100">
-                      A: {item.answer}
-                    </p>
-                  </td>
-                  <td className="py-4 px-6 text-slate-600 font-medium">{item.order_index}</td>
-                  <td className="py-4 px-6 text-right">
-                    <div className="flex justify-end gap-3">
-                      <button onClick={() => handleOpenModal(item)} className="text-slate-400 hover:text-primary transition-colors bg-blue-50 p-2 rounded-lg">
-                        <Edit2 size={18} />
-                      </button>
-                      <button onClick={() => handleDelete(item.id)} className="text-slate-400 hover:text-red-500 transition-colors bg-red-50 p-2 rounded-lg">
-                        <Trash2 size={18} />
-                      </button>
-                    </div>
-                  </td>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse min-w-[600px]">
+              <thead>
+                <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 font-medium text-sm">
+                  <th className="py-4 px-6 w-24">Urutan</th>
+                  <th className="py-4 px-6">Pertanyaan & Jawaban</th>
+                  <th className="py-4 px-6 text-right w-32">Aksi</th>
                 </tr>
-              ))}
-              {items.length === 0 && (
-                <tr>
-                  <td colSpan="3" className="py-12 text-center text-slate-500 font-medium">Belum ada FAQ.</td>
-                </tr>
-              )}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {items.map((item) => (
+                  <tr key={item.id} className="hover:bg-slate-50/50 transition-colors">
+                    <td className="py-4 px-6 text-slate-600 font-medium">{item.order_index}</td>
+                    <td className="py-4 px-6">
+                      <p className="font-semibold text-slate-800">{item.question}</p>
+                      <p className="text-sm text-slate-500 mt-1 line-clamp-2">{item.answer}</p>
+                    </td>
+                    <td className="py-4 px-6 text-right">
+                      <div className="flex justify-end gap-3">
+                        <button onClick={() => handleOpenModal(item)} className="text-slate-400 hover:text-primary transition-colors">
+                          <Edit2 size={18} />
+                        </button>
+                        <button onClick={() => handleDelete(item.id)} className="text-slate-400 hover:text-red-500 transition-colors">
+                          <Trash2 size={18} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+                {items.length === 0 && (
+                  <tr>
+                    <td colSpan="3" className="py-8 text-center text-slate-500">Belum ada FAQ.</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
 

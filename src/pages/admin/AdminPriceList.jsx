@@ -152,50 +152,60 @@ export default function AdminPriceList() {
         {loading ? (
           <div className="p-10 flex justify-center"><Loader2 className="animate-spin text-primary w-8 h-8" /></div>
         ) : (
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 font-medium text-sm">
-                <th className="py-4 px-6 w-24">Gambar</th>
-                <th className="py-4 px-6">Nama Paket / Item</th>
-                <th className="py-4 px-6">Harga</th>
-                <th className="py-4 px-6 text-right w-32">Aksi</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100">
-              {filteredItems.map((item) => (
-                <tr key={item.id} className="hover:bg-slate-50/50 transition-colors">
-                  <td className="py-4 px-6">
-                    {item.image_url ? (
-                      <img src={item.image_url} alt="Item" className="w-16 h-12 object-cover rounded bg-slate-100" />
-                    ) : (
-                      <div className="w-16 h-12 bg-slate-100 flex items-center justify-center rounded text-xs text-slate-400">No Img</div>
-                    )}
-                  </td>
-                  <td className="py-4 px-6">
-                    <p className="font-semibold text-slate-800">{item.name}</p>
-                    {item.subtitle && <p className="text-xs text-slate-500">{item.subtitle}</p>}
-                    {item.ribbon && <span className="inline-block mt-1 px-2 py-0.5 bg-slate-800 text-white text-[10px] rounded">{item.ribbon}</span>}
-                  </td>
-                  <td className="py-4 px-6 text-slate-600 font-medium">Rp. {item.price}</td>
-                  <td className="py-4 px-6 text-right">
-                    <div className="flex justify-end gap-3">
-                      <button onClick={() => handleOpenModal(item)} className="text-slate-400 hover:text-primary transition-colors">
-                        <Edit2 size={18} />
-                      </button>
-                      <button onClick={() => handleDelete(item.id)} className="text-slate-400 hover:text-red-500 transition-colors">
-                        <Trash2 size={18} />
-                      </button>
-                    </div>
-                  </td>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse min-w-[800px]">
+              <thead>
+                <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 font-medium text-sm">
+                  <th className="py-4 px-6 w-32">Kategori</th>
+                  <th className="py-4 px-6">Nama Paket / Item</th>
+                  <th className="py-4 px-6">Harga</th>
+                  <th className="py-4 px-6">Features</th>
+                  <th className="py-4 px-6 text-right w-32">Aksi</th>
                 </tr>
-              ))}
-              {filteredItems.length === 0 && (
-                <tr>
-                  <td colSpan="4" className="py-8 text-center text-slate-500">Belum ada paket/item di kategori {activeCategory}.</td>
-                </tr>
-              )}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {filteredItems.map((item) => (
+                  <tr key={item.id} className="hover:bg-slate-50/50 transition-colors">
+                    <td className="py-4 px-6">
+                      <span className="inline-block bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-xs font-medium border border-slate-200">
+                        {item.category}
+                      </span>
+                    </td>
+                    <td className="py-4 px-6">
+                      <p className="font-semibold text-slate-800">{item.name}</p>
+                      {item.subtitle && <p className="text-xs text-slate-500 mt-0.5">{item.subtitle}</p>}
+                      {item.image_url ? (
+                        <img src={item.image_url} alt="Item" className="w-16 h-12 object-cover rounded bg-slate-100 mt-2 border border-slate-200" />
+                      ) : null}
+                    </td>
+                    <td className="py-4 px-6">
+                      <p className="font-bold text-primary">{item.price}</p>
+                    </td>
+                    <td className="py-4 px-6">
+                      <div className="text-xs text-slate-500 max-h-16 overflow-y-auto pr-2">
+                        {Array.isArray(item.features) ? item.features.map((f, i) => <div key={i}>• {f}</div>) : '-'}
+                      </div>
+                    </td>
+                    <td className="py-4 px-6 text-right">
+                      <div className="flex justify-end gap-3">
+                        <button onClick={() => handleOpenModal(item)} className="text-slate-400 hover:text-primary transition-colors">
+                          <Edit2 size={18} />
+                        </button>
+                        <button onClick={() => handleDelete(item.id)} className="text-slate-400 hover:text-red-500 transition-colors">
+                          <Trash2 size={18} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+                {filteredItems.length === 0 && (
+                  <tr>
+                    <td colSpan="5" className="py-8 text-center text-slate-500">Belum ada data paket harga.</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
 

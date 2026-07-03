@@ -111,45 +111,48 @@ export default function AdminProjects() {
         {loading ? (
           <div className="p-10 flex justify-center"><Loader2 className="animate-spin text-primary w-8 h-8" /></div>
         ) : (
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 font-medium text-sm">
-                <th className="py-4 px-6 w-24">Gambar</th>
-                <th className="py-4 px-6">Nama Project</th>
-                <th className="py-4 px-6">Klien</th>
-                <th className="py-4 px-6 text-right w-32">Aksi</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100">
-              {projects.map((item) => (
-                <tr key={item.id} className="hover:bg-slate-50/50 transition-colors">
-                  <td className="py-4 px-6">
-                    <img src={item.image_url || 'https://placehold.co/100'} alt="Project" className="w-16 h-16 object-cover rounded bg-slate-100" />
-                  </td>
-                  <td className="py-4 px-6">
-                    <p className="font-semibold text-slate-800">{item.title}</p>
-                    <p className="text-xs text-slate-500 line-clamp-1">{item.description}</p>
-                  </td>
-                  <td className="py-4 px-6 text-slate-600 font-medium">{item.client_name || '-'}</td>
-                  <td className="py-4 px-6 text-right">
-                    <div className="flex justify-end gap-3">
-                      <button onClick={() => handleOpenModal(item)} className="text-slate-400 hover:text-primary transition-colors">
-                        <Edit2 size={18} />
-                      </button>
-                      <button onClick={() => handleDelete(item.id)} className="text-slate-400 hover:text-red-500 transition-colors">
-                        <Trash2 size={18} />
-                      </button>
-                    </div>
-                  </td>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse min-w-[700px]">
+              <thead>
+                <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 font-medium text-sm">
+                  <th className="py-4 px-6 w-24">Gambar</th>
+                  <th className="py-4 px-6">Nama Project & Klien</th>
+                  <th className="py-4 px-6 w-32">Tanggal</th>
+                  <th className="py-4 px-6 text-right w-32">Aksi</th>
                 </tr>
-              ))}
-              {projects.length === 0 && (
-                <tr>
-                  <td colSpan="4" className="py-8 text-center text-slate-500">Belum ada data project.</td>
-                </tr>
-              )}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {projects.map((item) => (
+                  <tr key={item.id} className="hover:bg-slate-50/50 transition-colors">
+                    <td className="py-4 px-6">
+                      <img src={item.image_url || 'https://placehold.co/100'} alt="Project" className="w-16 h-16 object-cover rounded bg-slate-100" />
+                    </td>
+                    <td className="py-4 px-6">
+                      <p className="font-semibold text-slate-800">{item.title}</p>
+                      <p className="text-xs text-slate-500 mt-0.5"><span className="font-medium">Klien:</span> {item.client_name}</p>
+                      <p className="text-xs text-slate-400 mt-1 line-clamp-1">{item.description}</p>
+                    </td>
+                    <td className="py-4 px-6 text-slate-600 text-sm">{item.date_completed ? new Date(item.date_completed).toLocaleDateString('id-ID') : '-'}</td>
+                    <td className="py-4 px-6 text-right">
+                      <div className="flex justify-end gap-3">
+                        <button onClick={() => handleOpenModal(item)} className="text-slate-400 hover:text-primary transition-colors">
+                          <Edit2 size={18} />
+                        </button>
+                        <button onClick={() => handleDelete(item.id)} className="text-slate-400 hover:text-red-500 transition-colors">
+                          <Trash2 size={18} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+                {projects.length === 0 && (
+                  <tr>
+                    <td colSpan="4" className="py-8 text-center text-slate-500">Belum ada data project.</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
 

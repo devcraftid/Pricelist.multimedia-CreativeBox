@@ -105,45 +105,47 @@ export default function AdminEquipments() {
         {loading ? (
           <div className="p-10 flex justify-center"><Loader2 className="animate-spin text-primary w-8 h-8" /></div>
         ) : (
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 font-medium text-sm">
-                <th className="py-4 px-6 w-32">Gambar Alat</th>
-                <th className="py-4 px-6">Nama & Spesifikasi</th>
-                <th className="py-4 px-6 w-24">Urutan</th>
-                <th className="py-4 px-6 text-right w-32">Aksi</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100">
-              {items.map((item) => (
-                <tr key={item.id} className="hover:bg-slate-50/50 transition-colors">
-                  <td className="py-4 px-6">
-                    <img src={item.image_url || 'https://placehold.co/100'} alt="Equip" className="w-16 h-16 object-cover rounded-lg bg-slate-100 border border-slate-200" />
-                  </td>
-                  <td className="py-4 px-6">
-                    <p className="font-semibold text-slate-800 text-lg">{item.title}</p>
-                    <p className="text-sm text-slate-500 line-clamp-2 mt-1">{item.description}</p>
-                  </td>
-                  <td className="py-4 px-6 text-slate-600 font-medium">{item.order_index}</td>
-                  <td className="py-4 px-6 text-right">
-                    <div className="flex justify-end gap-3">
-                      <button onClick={() => handleOpenModal(item)} className="text-slate-400 hover:text-primary transition-colors bg-blue-50 p-2 rounded-lg">
-                        <Edit2 size={18} />
-                      </button>
-                      <button onClick={() => handleDelete(item.id)} className="text-slate-400 hover:text-red-500 transition-colors bg-red-50 p-2 rounded-lg">
-                        <Trash2 size={18} />
-                      </button>
-                    </div>
-                  </td>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse min-w-[600px]">
+              <thead>
+                <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 font-medium text-sm">
+                  <th className="py-4 px-6 w-24">Gambar</th>
+                  <th className="py-4 px-6">Nama Alat</th>
+                  <th className="py-4 px-6 w-24">Urutan</th>
+                  <th className="py-4 px-6 text-right w-32">Aksi</th>
                 </tr>
-              ))}
-              {items.length === 0 && (
-                <tr>
-                  <td colSpan="4" className="py-12 text-center text-slate-500 font-medium">Belum ada alat yang disewakan.</td>
-                </tr>
-              )}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {items.map((item) => (
+                  <tr key={item.id} className="hover:bg-slate-50/50 transition-colors">
+                    <td className="py-4 px-6">
+                      <img src={item.image_url || 'https://placehold.co/100'} alt="Equip" className="w-16 h-16 object-cover rounded-lg bg-slate-100 border border-slate-200" />
+                    </td>
+                    <td className="py-4 px-6">
+                      <p className="font-semibold text-slate-800">{item.title}</p>
+                      <p className="text-xs text-slate-500 line-clamp-1">{item.description}</p>
+                    </td>
+                    <td className="py-4 px-6 text-slate-600 font-medium">{item.order_index}</td>
+                    <td className="py-4 px-6 text-right">
+                      <div className="flex justify-end gap-3">
+                        <button onClick={() => handleOpenModal(item)} className="text-slate-400 hover:text-primary transition-colors">
+                          <Edit2 size={18} />
+                        </button>
+                        <button onClick={() => handleDelete(item.id)} className="text-slate-400 hover:text-red-500 transition-colors">
+                          <Trash2 size={18} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+                {items.length === 0 && (
+                  <tr>
+                    <td colSpan="4" className="py-8 text-center text-slate-500">Belum ada data rental equipment.</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
 
