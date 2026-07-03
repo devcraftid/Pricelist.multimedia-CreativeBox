@@ -46,8 +46,8 @@ export default function PublicPriceList() {
     }
   };
 
-  const handlePesan = (itemName) => {
-    const text = encodeURIComponent(`Halo multimedia Creative Box, saya tertarik untuk memesan ${itemName}. Boleh minta info lebih lanjut?`);
+  const handlePesan = (item) => {
+    const text = encodeURIComponent(`Halo Admin multimedia Creative Box, saya melihat penawaran di website dan tertarik untuk memesan:\n\n*Kategori:* ${item.category}\n*Paket/Item:* ${item.name}\n*Harga:* Rp. ${item.price}\n\nApakah saya bisa mendapatkan informasi lebih detail mengenai ketersediaan dan prosedur pemesanannya? Terima kasih.`);
     window.open(`https://wa.me/6287772486006?text=${text}`, '_blank');
   };
 
@@ -95,7 +95,7 @@ export default function PublicPriceList() {
                         {item.subtitle && <p className="text-xs text-gray-500 mt-1">{item.subtitle}</p>}
                         <p className={`text-lg font-bold mt-2 ${colorTheme.text}`}>Rp. {item.price}</p>
                         <button 
-                          onClick={() => handlePesan(item.name)}
+                          onClick={() => handlePesan(item)}
                           className="mt-4 w-full bg-[#2a3c5a] hover:bg-[#1a2538] text-white font-bold py-2 px-4 rounded transition-colors"
                         >
                           PESAN SEKARANG
@@ -144,7 +144,7 @@ export default function PublicPriceList() {
                       {/* Action Button & Footer */}
                       <div className="p-6 pt-0 text-center mt-auto">
                         <button 
-                          onClick={() => handlePesan(item.name)}
+                          onClick={() => handlePesan(item)}
                           className="bg-[#6b7280] hover:bg-slate-600 text-white font-bold py-2.5 px-8 text-sm transition-colors rounded-sm w-full"
                         >
                           PESAN
