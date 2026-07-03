@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { CheckCircle2, Phone } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const CATEGORIES = ['Live Cam', 'LED Videotron', 'Stage & Rigging', 'Sound System'];
 
@@ -78,7 +79,13 @@ export default function PublicPriceList() {
                   if (item.image_url) {
                     // Item with image (like Additional Equipments)
                     return (
-                      <div key={item.id} className="text-center group border border-gray-100 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
+                      <motion.div 
+                        key={item.id} 
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        className="text-center group border border-gray-100 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow"
+                      >
                         <div className="overflow-hidden bg-gray-100 mb-4 aspect-video relative rounded-lg">
                           <img 
                             src={item.image_url} 
@@ -100,13 +107,19 @@ export default function PublicPriceList() {
                         >
                           PESAN SEKARANG
                         </button>
-                      </div>
+                      </motion.div>
                     );
                   }
 
                   // Standard Package View (like Paket Hemat)
                   return (
-                    <div key={item.id} className="bg-[#f9f9f9] flex flex-col relative overflow-hidden group shadow-sm hover:shadow-md transition-shadow rounded-t-xl">
+                    <motion.div 
+                      key={item.id} 
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="bg-[#f9f9f9] flex flex-col relative overflow-hidden group shadow-sm hover:shadow-md transition-shadow rounded-t-xl"
+                    >
                       {/* Ribbon */}
                       {item.ribbon && (
                         <div className="absolute top-4 -right-8 w-32 bg-black text-white text-[10px] font-bold text-center py-1 transform rotate-45 z-10">
@@ -153,13 +166,19 @@ export default function PublicPriceList() {
                           <p className="text-[10px] text-gray-400 mt-4 italic">{item.footer}</p>
                         )}
                       </div>
-                    </div>
+                    </motion.div>
                   );
                 })}
               </div>
             </section>
 
-            <section className="mt-16 bg-gray-50 border border-gray-200 rounded-xl p-8 max-w-4xl mx-auto">
+            <motion.section 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mt-16 bg-gray-50 border border-gray-200 rounded-xl p-8 max-w-4xl mx-auto"
+            >
               <h3 className="font-bold text-[#2a3c5a] text-lg mb-4 flex items-center gap-2">
                 <CheckCircle2 className="w-5 h-5 text-[#f5a623]" /> Keterangan:
               </h3>
@@ -169,7 +188,7 @@ export default function PublicPriceList() {
                 <li>Harga tidak termasuk rehearsal H-1</li>
                 <li>Untuk upgrade kamera dan system by request</li>
               </ul>
-            </section>
+            </motion.section>
           </div>
         )}
       </main>

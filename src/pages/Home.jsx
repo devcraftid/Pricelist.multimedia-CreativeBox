@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { CheckCircle2, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
+import { motion } from 'framer-motion';
 
 const Home = () => {
   const [settings, setSettings] = useState(null);
@@ -79,7 +80,12 @@ const Home = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#273554] via-[#273554]/80 to-transparent z-0" />
         
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-10 md:mt-0">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-10 md:mt-0"
+        >
           <h2 className="text-[#f5a623] font-bold text-sm md:text-lg mb-2 uppercase tracking-wider">
             {settings?.hero_title ? settings.hero_title : 'MULTIMEDIA CREATIVE BOX'}
           </h2>
@@ -89,22 +95,33 @@ const Home = () => {
           <p className="text-gray-300 text-sm md:text-base lg:text-lg max-w-3xl leading-relaxed">
             Multimedia Support, Live Camera , Live Streaming, Rental Kamera, Backdrop, LED Videotron, Sound System, TV Plasma, Display Video dan Matador Display, GreenScreen, Generator Set, Lighting set, Stage dan Panggung Rigging Design, Virtual Studio, Virtual Event, Greenscreen, Live Event, Zoom Meeting, Webinar, DLL.
           </p>
-        </div>
+        </motion.div>
 
         {/* Floating Action Buttons */}
-        <div className="absolute bottom-0 left-0 md:left-1/2 md:-translate-x-1/2 flex flex-col sm:flex-row w-full md:w-auto z-20">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="absolute bottom-0 left-0 md:left-1/2 md:-translate-x-1/2 flex flex-col sm:flex-row w-full md:w-auto z-20"
+        >
           <Link to="/services" className="inline-block text-center w-full sm:w-auto bg-[#f5a623] text-gray-900 font-bold py-4 md:py-5 px-6 md:px-10 text-xs sm:text-sm hover:bg-yellow-500 transition-colors tracking-wider">
             LAYANAN KAMI
           </Link>
           <a href={`https://wa.me/${settings?.wa_number || '6287772486006'}`} target="_blank" rel="noreferrer" className="w-full sm:w-auto bg-[#273554]/80 border-t sm:border-t-0 sm:border-r sm:border-l border-gray-500 text-white font-bold py-4 md:py-5 px-6 md:px-10 text-xs sm:text-sm hover:bg-white/10 transition-colors tracking-wider backdrop-blur-sm text-center">
             HUBUNGI VIA WHATSAPP
           </a>
-        </div>
+        </motion.div>
       </section>
 
       {/* WHY CHOOSE US SECTION (Static content for now, or can be made dynamic later) */}
       <section className="w-full bg-[#f8f9fa] pt-12 md:pt-16 pb-16 md:pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row w-full max-w-6xl mx-auto shadow-xl bg-white relative md:-mt-8 z-30">
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7 }}
+          className="flex flex-col md:flex-row w-full max-w-6xl mx-auto shadow-xl bg-white relative md:-mt-8 z-30"
+        >
           <div className="w-full md:w-1/2 bg-[#f5a623] p-8 sm:p-10 md:p-14 text-gray-900 flex flex-col justify-center">
             <h3 className="font-bold text-lg mb-2">ingin acara anda sukses ?</h3>
             <h2 className="text-4xl md:text-5xl font-extrabold text-[#273554] mb-6 leading-[1.1]">
@@ -142,7 +159,7 @@ const Home = () => {
               <p className="text-gray-500 text-sm leading-relaxed">Di dukung oleh Crew dan peralatan yang expert dan memadai</p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* SERVICES SECTION */}
@@ -161,14 +178,21 @@ const Home = () => {
           <div className="text-center py-10 text-gray-500 bg-gray-50 border border-dashed rounded-lg">Belum ada layanan yang ditambahkan oleh Admin.</div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {services.map((svc) => (
-              <div key={svc.id} className="group cursor-pointer">
+            {services.map((svc, index) => (
+              <motion.div 
+                key={svc.id} 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group cursor-pointer"
+              >
                 <div className="overflow-hidden mb-4">
                   <img src={svc.icon_or_image_url || 'https://placehold.co/600x400?text=No+Image'} alt={svc.title} className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110" />
                 </div>
                 <h3 className="text-2xl font-bold text-[#273554] mb-3">{svc.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{svc.description}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         )}
@@ -186,14 +210,21 @@ const Home = () => {
             <div className="text-center py-10 text-gray-500 bg-white border border-dashed rounded-lg">Belum ada alat yang ditambahkan oleh Admin.</div>
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-4 gap-0">
-              {equipments.map((item) => (
-                <div key={item.id} className="relative h-48 sm:h-64 md:h-80 group overflow-hidden cursor-pointer">
+              {equipments.map((item, index) => (
+                <motion.div 
+                  key={item.id} 
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ duration: 0.4, delay: (index % 4) * 0.1 }}
+                  className="relative h-48 sm:h-64 md:h-80 group overflow-hidden cursor-pointer"
+                >
                   <img src={item.image_url || 'https://placehold.co/500x500?text=No+Image'} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#273554]/90 via-[#273554]/40 to-transparent flex flex-col justify-end p-4 md:p-6">
                     <h4 className="text-white font-bold text-sm sm:text-base md:text-xl mb-1">{item.title}</h4>
                     <p className="text-gray-300 text-[10px] sm:text-xs leading-tight line-clamp-2">{item.description}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           )}
