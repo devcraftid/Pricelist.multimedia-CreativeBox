@@ -13,7 +13,7 @@ export default function AdminPriceList() {
   
   const [formData, setFormData] = useState({ 
     id: null, category: 'Live Cam', name: '', subtitle: '', 
-    price: '', featuresText: '', ribbon: '', image_url: '' 
+    price: '', featuresText: '', ribbon: '', image_url: '', order_index: 0
   });
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function AdminPriceList() {
 
   const fetchItems = async () => {
     setLoading(true);
-    const { data, error } = await supabase.from('pricelist_items').select('*').order('name', { ascending: true });
+    const { data, error } = await supabase.from('pricelist_items').select('*').order('order_index', { ascending: true });
     if (data) setItems(data);
     setLoading(false);
   };
@@ -36,7 +36,7 @@ export default function AdminPriceList() {
     } else {
       setFormData({ 
         id: null, category: activeCategory, name: '', subtitle: '', 
-        price: '', featuresText: '', ribbon: '', image_url: '' 
+        price: '', featuresText: '', ribbon: '', image_url: '', order_index: 0
       });
     }
     setIsModalOpen(true);
@@ -44,7 +44,7 @@ export default function AdminPriceList() {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    setFormData({ id: null, category: 'Live Cam', name: '', subtitle: '', price: '', featuresText: '', ribbon: '', image_url: '' });
+    setFormData({ id: null, category: 'Live Cam', name: '', subtitle: '', price: '', featuresText: '', ribbon: '', image_url: '', order_index: 0 });
   };
 
   const handleImageUpload = async (e) => {
@@ -85,6 +85,7 @@ export default function AdminPriceList() {
         price: formData.price,
         ribbon: formData.ribbon,
         image_url: formData.image_url,
+        order_index: formData.order_index,
         features: featuresArr
       };
 
@@ -158,6 +159,7 @@ export default function AdminPriceList() {
                 <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 font-medium text-sm">
                   <th className="py-4 px-6 w-32">Kategori</th>
                   <th className="py-4 px-6">Nama Paket / Item</th>
+                  <th className="py-4 px-6 w-24">Urutan</th>
                   <th className="py-4 px-6">Harga</th>
                   <th className="py-4 px-6">Features</th>
                   <th className="py-4 px-6 text-right w-32">Aksi</th>
@@ -178,6 +180,7 @@ export default function AdminPriceList() {
                         <img src={item.image_url} alt="Item" className="w-16 h-12 object-cover rounded bg-slate-100 mt-2 border border-slate-200" />
                       ) : null}
                     </td>
+                    <td className="py-4 px-6 text-slate-600 font-medium">{item.order_index}</td>
                     <td className="py-4 px-6">
                       <p className="font-bold text-primary">{item.price}</p>
                     </td>
@@ -200,7 +203,7 @@ export default function AdminPriceList() {
                 ))}
                 {filteredItems.length === 0 && (
                   <tr>
-                    <td colSpan="5" className="py-8 text-center text-slate-500">Belum ada data paket harga.</td>
+                    <td colSpan="6" className="py-8 text-center text-slate-500">Belum ada data paket harga.</td>
                   </tr>
                 )}
               </tbody>
@@ -226,6 +229,11 @@ export default function AdminPriceList() {
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">Nama Paket / Item</label>
                 <input required type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary outline-none" />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Urutan Tampil</label>
+                <input required type="number" value={formData.order_index} onChange={e => setFormData({...formData, order_index: parseInt(e.target.value) || 0})} className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary outline-none" />
               </div>
               
               <div className="grid grid-cols-2 gap-4">
