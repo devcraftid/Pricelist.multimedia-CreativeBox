@@ -93,9 +93,9 @@ const Home = () => {
 
         {/* Floating Action Buttons */}
         <div className="absolute bottom-0 left-0 md:left-1/2 md:-translate-x-1/2 flex flex-col sm:flex-row w-full md:w-auto z-20">
-          <button className="w-full sm:w-auto bg-[#f5a623] text-gray-900 font-bold py-4 md:py-5 px-6 md:px-10 text-xs sm:text-sm hover:bg-yellow-500 transition-colors tracking-wider">
+          <Link to="/services" className="inline-block text-center w-full sm:w-auto bg-[#f5a623] text-gray-900 font-bold py-4 md:py-5 px-6 md:px-10 text-xs sm:text-sm hover:bg-yellow-500 transition-colors tracking-wider">
             LAYANAN KAMI
-          </button>
+          </Link>
           <a href={`https://wa.me/${settings?.wa_number || '6287772486006'}`} target="_blank" rel="noreferrer" className="w-full sm:w-auto bg-[#1a2035]/80 border-t sm:border-t-0 sm:border-r sm:border-l border-gray-500 text-white font-bold py-4 md:py-5 px-6 md:px-10 text-xs sm:text-sm hover:bg-white/10 transition-colors tracking-wider backdrop-blur-sm text-center">
             HUBUNGI VIA WHATSAPP
           </a>
@@ -114,9 +114,14 @@ const Home = () => {
               kami berpengalaman dalam menangani event lokal, nasional maupun internasional, baik itu live event ataupun virtual event. dengan pengalaman yang kami miliki, kami yakin dapat memenuhi kebutuhan multimedia demi suksesnya acara anda.
             </p>
             <div>
-              <button className="bg-[#1a2035] text-white font-bold py-4 px-10 text-sm hover:bg-gray-800 transition-colors tracking-wider">
+              <a 
+                href={`https://wa.me/${settings?.wa_number || '6287772486006'}`} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="inline-block bg-[#1a2035] text-white font-bold py-4 px-10 text-sm hover:bg-gray-800 transition-colors tracking-wider"
+              >
                 HUBUNGI SEKARANG
-              </button>
+              </a>
             </div>
           </div>
           <div className="w-full md:w-1/2 bg-white grid grid-cols-1 sm:grid-cols-2 text-[#1a2035]">
@@ -194,9 +199,9 @@ const Home = () => {
           )}
           
           <div className="mt-12 flex justify-center">
-            <button className="bg-[#f5a623] text-gray-900 font-bold py-3 px-8 text-sm hover:bg-yellow-500 transition-colors">
+            <Link to="/price-list" className="inline-block text-center bg-[#f5a623] text-gray-900 font-bold py-3 px-8 text-sm hover:bg-yellow-500 transition-colors">
               SELENGKAPNYA
-            </button>
+            </Link>
           </div>
         </div>
       </section>
@@ -235,9 +240,9 @@ const Home = () => {
             <p className="text-gray-300 text-sm leading-relaxed mb-8 max-w-md">
               Kami memberikan Harga yang terjangkau untuk setiap kalangan dan kelas perusahaan, kami bisa memberikan layanan sesuai dengan budged Klien, sehingga multimedia tidak terlalu membebani Biaya Pengeluaran Acara anda.
             </p>
-            <button className="bg-[#f5a623] text-gray-900 font-bold py-3 px-8 text-sm hover:bg-yellow-500 transition-colors">
+            <Link to="/price-list" className="inline-block text-center bg-[#f5a623] text-gray-900 font-bold py-3 px-8 text-sm hover:bg-yellow-500 transition-colors">
               SELENGKAPNYA
-            </button>
+            </Link>
           </div>
         </div>
 
