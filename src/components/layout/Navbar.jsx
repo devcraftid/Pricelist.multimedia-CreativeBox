@@ -61,8 +61,8 @@ const Navbar = () => {
             
             {/* Tagline */}
             <div className="block text-white">
-              <h1 className="font-bold text-xs sm:text-sm leading-tight text-[#f5a623] truncate max-w-[140px] sm:max-w-none">multimedia Creative Box</h1>
-              <p className="text-[10px] sm:text-xs text-gray-300 leading-tight max-w-[140px] sm:max-w-none truncate sm:whitespace-normal">Jasa Multimedia dan Live Camera Production</p>
+              <h1 className="font-bold text-sm md:text-lg leading-tight text-[#f5a623] truncate max-w-[180px] md:max-w-none">multimedia Creative Box</h1>
+              <p className="text-xs md:text-sm text-gray-300 leading-tight max-w-[180px] md:max-w-none truncate md:whitespace-normal">Jasa Multimedia dan Live Camera Production</p>
             </div>
           </div>
           
