@@ -64,7 +64,7 @@ const Home = () => {
   };
 
   if (loading) {
-    return <div className="min-h-screen flex items-center justify-center bg-[#1a2035] text-white">Loading data...</div>;
+    return <div className="min-h-screen flex items-center justify-center bg-[#273554] text-white">Loading data...</div>;
   }
 
   const heroBg = settings?.hero_image_url || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600&q=80';
@@ -72,12 +72,12 @@ const Home = () => {
   return (
     <div className="w-full">
       {/* HERO SECTION */}
-      <section className="relative w-full min-h-[600px] md:h-[650px] flex items-center bg-[#1a2035] overflow-hidden pt-10 pb-32 md:pb-0">
+      <section className="relative w-full min-h-[600px] md:h-[650px] flex items-center bg-[#273554] overflow-hidden pt-10 pb-32 md:pb-0">
         <div 
           className="absolute inset-0 z-0 opacity-30 bg-cover bg-center"
           style={{ backgroundImage: `url('${heroBg}')` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1a2035] via-[#1a2035]/80 to-transparent z-0" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#273554] via-[#273554]/80 to-transparent z-0" />
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-10 md:mt-0">
           <h2 className="text-[#f5a623] font-bold text-sm md:text-lg mb-2 uppercase tracking-wider">
@@ -96,7 +96,7 @@ const Home = () => {
           <Link to="/services" className="inline-block text-center w-full sm:w-auto bg-[#f5a623] text-gray-900 font-bold py-4 md:py-5 px-6 md:px-10 text-xs sm:text-sm hover:bg-yellow-500 transition-colors tracking-wider">
             LAYANAN KAMI
           </Link>
-          <a href={`https://wa.me/${settings?.wa_number || '6287772486006'}`} target="_blank" rel="noreferrer" className="w-full sm:w-auto bg-[#1a2035]/80 border-t sm:border-t-0 sm:border-r sm:border-l border-gray-500 text-white font-bold py-4 md:py-5 px-6 md:px-10 text-xs sm:text-sm hover:bg-white/10 transition-colors tracking-wider backdrop-blur-sm text-center">
+          <a href={`https://wa.me/${settings?.wa_number || '6287772486006'}`} target="_blank" rel="noreferrer" className="w-full sm:w-auto bg-[#273554]/80 border-t sm:border-t-0 sm:border-r sm:border-l border-gray-500 text-white font-bold py-4 md:py-5 px-6 md:px-10 text-xs sm:text-sm hover:bg-white/10 transition-colors tracking-wider backdrop-blur-sm text-center">
             HUBUNGI VIA WHATSAPP
           </a>
         </div>
@@ -107,7 +107,7 @@ const Home = () => {
         <div className="flex flex-col md:flex-row w-full max-w-6xl mx-auto shadow-xl bg-white relative md:-mt-8 z-30">
           <div className="w-full md:w-1/2 bg-[#f5a623] p-8 sm:p-10 md:p-14 text-gray-900 flex flex-col justify-center">
             <h3 className="font-bold text-lg mb-2">ingin acara anda sukses ?</h3>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-[#1a2035] mb-6 leading-[1.1]">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-[#273554] mb-6 leading-[1.1]">
               Percayakan Acara anda kepada kami!
             </h2>
             <p className="mb-10 text-gray-800 leading-relaxed font-medium">
@@ -118,13 +118,13 @@ const Home = () => {
                 href={`https://wa.me/${settings?.wa_number || '6287772486006'}`} 
                 target="_blank" 
                 rel="noreferrer" 
-                className="inline-block bg-[#1a2035] text-white font-bold py-4 px-10 text-sm hover:bg-gray-800 transition-colors tracking-wider"
+                className="inline-block bg-[#273554] text-white font-bold py-4 px-10 text-sm hover:bg-gray-800 transition-colors tracking-wider"
               >
                 HUBUNGI SEKARANG
               </a>
             </div>
           </div>
-          <div className="w-full md:w-1/2 bg-white grid grid-cols-1 sm:grid-cols-2 text-[#1a2035]">
+          <div className="w-full md:w-1/2 bg-white grid grid-cols-1 sm:grid-cols-2 text-[#273554]">
             <div className="p-10 border-r border-b border-gray-200">
               <h3 className="text-xl font-bold mb-3">Terpercaya</h3>
               <p className="text-gray-500 text-sm leading-relaxed">Dipakai perusahaan Lokal, Nasional dan internasional. swasta maupun pemerintah</p>
@@ -150,7 +150,7 @@ const Home = () => {
         <div className="flex justify-between items-end mb-10">
           <div>
             <h3 className="text-gray-500 font-medium mb-1">Bangun Mimpi di Acara Anda</h3>
-            <h2 className="text-4xl font-extrabold text-[#1a2035]">Layanan Kami</h2>
+            <h2 className="text-4xl font-extrabold text-[#273554]">Layanan Kami</h2>
           </div>
           <Link to="/services" className="text-sm font-bold text-gray-600 hover:text-primary flex items-center">
             VIEW ALL <ChevronRight className="w-4 h-4 ml-1" />
@@ -166,7 +166,7 @@ const Home = () => {
                 <div className="overflow-hidden mb-4">
                   <img src={svc.icon_or_image_url || 'https://placehold.co/600x400?text=No+Image'} alt={svc.title} className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110" />
                 </div>
-                <h3 className="text-2xl font-bold text-[#1a2035] mb-3">{svc.title}</h3>
+                <h3 className="text-2xl font-bold text-[#273554] mb-3">{svc.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{svc.description}</p>
               </div>
             ))}
@@ -178,7 +178,7 @@ const Home = () => {
       <section className="py-20 bg-[#f8f9fa]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
           <h3 className="text-gray-500 font-medium mb-1">Layanan</h3>
-          <h2 className="text-4xl font-extrabold text-[#1a2035]">Rental Equipment</h2>
+          <h2 className="text-4xl font-extrabold text-[#273554]">Rental Equipment</h2>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -189,7 +189,7 @@ const Home = () => {
               {equipments.map((item) => (
                 <div key={item.id} className="relative h-48 sm:h-64 md:h-80 group overflow-hidden cursor-pointer">
                   <img src={item.image_url || 'https://placehold.co/500x500?text=No+Image'} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1a2035]/90 via-[#1a2035]/40 to-transparent flex flex-col justify-end p-4 md:p-6">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#273554]/90 via-[#273554]/40 to-transparent flex flex-col justify-end p-4 md:p-6">
                     <h4 className="text-white font-bold text-sm sm:text-base md:text-xl mb-1">{item.title}</h4>
                     <p className="text-gray-300 text-[10px] sm:text-xs leading-tight line-clamp-2">{item.description}</p>
                   </div>
@@ -208,7 +208,7 @@ const Home = () => {
 
       {/* CLIENTS SECTION */}
       <section className="py-20 bg-white max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-3xl font-extrabold text-[#1a2035] mb-10">Para Pengguna Jasa</h2>
+        <h2 className="text-3xl font-extrabold text-[#273554] mb-10">Para Pengguna Jasa</h2>
         
         {clients.length === 0 ? (
           <div className="text-center py-10 text-gray-500 bg-gray-50 border border-dashed rounded-lg">Belum ada logo klien yang ditambahkan oleh Admin.</div>
@@ -230,7 +230,7 @@ const Home = () => {
             className="absolute inset-0 z-0 bg-cover bg-center"
             style={{ backgroundImage: "url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=1200&q=80')" }}
           />
-          <div className="absolute inset-0 bg-[#1a2035]/90 z-0" />
+          <div className="absolute inset-0 bg-[#273554]/90 z-0" />
           
           <div className="relative z-10 w-full max-w-lg mx-auto md:ml-auto md:mr-0">
             <h3 className="text-[#f5a623] font-bold text-sm mb-3">Acara Sukses tanpa biaya mahal</h3>
@@ -261,16 +261,16 @@ const Home = () => {
             
             <ul className="space-y-6">
               <li className="flex items-center font-bold text-lg">
-                <CheckCircle2 className="w-6 h-6 mr-4 text-[#1a2035]" /> Harga Terjangkau
+                <CheckCircle2 className="w-6 h-6 mr-4 text-[#273554]" /> Harga Terjangkau
               </li>
               <li className="flex items-center font-bold text-lg">
-                <CheckCircle2 className="w-6 h-6 mr-4 text-[#1a2035]" /> Berpengalaman
+                <CheckCircle2 className="w-6 h-6 mr-4 text-[#273554]" /> Berpengalaman
               </li>
               <li className="flex items-center font-bold text-lg">
-                <CheckCircle2 className="w-6 h-6 mr-4 text-[#1a2035]" /> Layanan Terlengkap
+                <CheckCircle2 className="w-6 h-6 mr-4 text-[#273554]" /> Layanan Terlengkap
               </li>
               <li className="flex items-center font-bold text-lg">
-                <CheckCircle2 className="w-6 h-6 mr-4 text-[#1a2035]" /> Kerjasama yang Flexible
+                <CheckCircle2 className="w-6 h-6 mr-4 text-[#273554]" /> Kerjasama yang Flexible
               </li>
             </ul>
           </div>
@@ -279,7 +279,7 @@ const Home = () => {
 
       {/* CALL TO ACTION NUMBER */}
       <section className="w-full py-16 bg-white text-center">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-[#1a2035]">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-[#273554]">
           Hubungi Kami di :<br />
           {settings?.wa_number || '+62 877-7248-6006'}
         </h2>
@@ -341,7 +341,7 @@ const Home = () => {
         <div className="w-full md:w-1/2 bg-[#f8f9fa] p-8 sm:p-12 md:p-20">
           <div className="max-w-md mx-auto md:mr-auto md:ml-10">
             <h3 className="text-[#f5a623] font-bold text-sm mb-2">Pelajari Kami</h3>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1a2035] mb-8 leading-tight">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#273554] mb-8 leading-tight">
               Pertanyaan Sering<br className="hidden md:block" /> yang sering ada
             </h2>
             
@@ -351,7 +351,7 @@ const Home = () => {
               ) : (
                 faqs.map((faq, i) => (
                   <div key={faq.id} className="border-b border-gray-200">
-                    <button className="w-full flex justify-between items-center p-4 text-left font-bold text-sm text-[#1a2035]">
+                    <button className="w-full flex justify-between items-center p-4 text-left font-bold text-sm text-[#273554]">
                       <span>{i + 1}. {faq.question}</span>
                       {/* For simplicity we just show all answers for now or you can make it togglable */}
                     </button>

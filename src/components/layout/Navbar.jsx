@@ -41,7 +41,7 @@ const Navbar = () => {
   ];
 
   return (
-    <header className={`w-full z-50 transition-all duration-300 ${location.pathname === '/' || location.pathname === '/services' ? 'absolute top-0' : 'sticky top-0 bg-[#1a2035]'}`}>
+    <header className={`w-full z-50 transition-all duration-300 ${location.pathname === '/' || location.pathname === '/services' ? 'absolute top-0' : 'sticky top-0 bg-[#273554]'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Top Row: Logo & Contact (Hidden on very small mobile, merged with nav on mobile) */}
@@ -126,7 +126,7 @@ const Navbar = () => {
               </button>
               
               <div 
-                className={`absolute left-0 mt-0 w-48 bg-[#1a2035] border border-gray-700 rounded-md shadow-xl py-1 z-50 transition-all duration-200 ${isPriceListOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
+                className={`absolute left-0 mt-0 w-48 bg-[#273554] border border-gray-700 rounded-md shadow-xl py-1 z-50 transition-all duration-200 ${isPriceListOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
               >
                 <Link to="/price-list?tab=Live+Cam" className="block px-4 py-3 text-sm text-gray-300 hover:bg-gray-800 hover:text-[#f5a623]">Live Cam</Link>
                 <Link to="/price-list?tab=LED+Videotron" className="block px-4 py-3 text-sm text-gray-300 hover:bg-gray-800 hover:text-[#f5a623]">LED Videotron</Link>
@@ -145,7 +145,7 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu Dropdown */}
-      <div className={`md:hidden absolute top-full left-0 w-full bg-[#1a2035] shadow-2xl transition-all duration-300 overflow-hidden ${isOpen ? 'max-h-screen border-b border-gray-700 opacity-100' : 'max-h-0 opacity-0'}`}>
+      <div className={`md:hidden absolute top-full left-0 w-full bg-[#273554] shadow-2xl transition-all duration-300 overflow-hidden ${isOpen ? 'max-h-screen border-b border-gray-700 opacity-100' : 'max-h-0 opacity-0'}`}>
         <div className="px-4 pt-2 pb-6 space-y-1">
           {navLinks.map((link) => (
             <Link 

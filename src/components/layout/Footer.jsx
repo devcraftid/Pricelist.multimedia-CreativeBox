@@ -14,7 +14,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#1a2035] text-white pt-16 pb-8 border-t border-[#2a3045]">
+    <footer className="bg-[#273554] text-white pt-16 pb-8 border-t border-[#2a3045]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main Footer Content */}

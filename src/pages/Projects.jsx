@@ -53,7 +53,7 @@ const Projects = () => {
   };
 
   if (loading) {
-    return <div className="min-h-screen flex items-center justify-center bg-white text-[#1a2035] font-bold">Loading Project Updates...</div>;
+    return <div className="min-h-screen flex items-center justify-center bg-white text-[#273554] font-bold">Loading Project Updates...</div>;
   }
 
   return (
@@ -62,7 +62,7 @@ const Projects = () => {
         
         {/* Title */}
         <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-extrabold text-[#1a2035]">Project Update !</h1>
+          <h1 className="text-3xl md:text-4xl font-extrabold text-[#273554]">Project Update !</h1>
         </div>
 
         {/* Grid Gallery */}
