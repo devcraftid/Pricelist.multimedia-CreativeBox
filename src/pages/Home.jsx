@@ -67,7 +67,7 @@ const Home = () => {
     return <div className="min-h-screen flex items-center justify-center bg-[#1a2035] text-white">Loading data...</div>;
   }
 
-  const heroBg = settings?.hero_image_url || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600&q=80';
+  const heroBg = 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600&q=80';
 
   return (
     <div className="w-full">
