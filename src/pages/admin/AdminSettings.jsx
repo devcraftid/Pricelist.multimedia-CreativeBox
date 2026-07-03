@@ -156,19 +156,6 @@ export default function AdminSettings() {
               </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Gambar Banner Utama (Hero)</label>
-              {settings.hero_image_url && (
-                <img src={settings.hero_image_url} alt="Hero" className="h-16 w-32 object-cover bg-slate-100 rounded mb-3" />
-              )}
-              <div className="flex items-center gap-3">
-                <label className="cursor-pointer bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2">
-                  <Upload size={16} /> Upload Banner
-                  <input type="file" className="hidden" accept="image/*" onChange={(e) => handleFileUpload(e, 'hero_image_url')} />
-                </label>
-              </div>
-            </div>
-
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-slate-700 mb-1">Judul Atas Banner (Kecil)</label>
               <input type="text" name="hero_title" value={settings.hero_title} onChange={handleChange} className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary outline-none" />

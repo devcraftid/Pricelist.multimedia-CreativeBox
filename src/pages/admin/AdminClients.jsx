@@ -62,10 +62,12 @@ export default function AdminClients() {
     try {
       if (formData.id) {
         const { id, ...updateData } = formData;
-        await supabase.from('clients').update(updateData).eq('id', id);
+        const { error } = await supabase.from('clients').update(updateData).eq('id', id);
+        if (error) throw error;
       } else {
         const { id, ...insertData } = formData;
-        await supabase.from('clients').insert([insertData]);
+        const { error } = await supabase.from('clients').insert([insertData]);
+        if (error) throw error;
       }
       await fetchItems();
       handleCloseModal();

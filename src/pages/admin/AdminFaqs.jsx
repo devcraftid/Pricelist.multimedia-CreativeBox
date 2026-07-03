@@ -42,10 +42,12 @@ export default function AdminFaqs() {
     try {
       if (formData.id) {
         const { id, ...updateData } = formData;
-        await supabase.from('faqs').update(updateData).eq('id', id);
+        const { error } = await supabase.from('faqs').update(updateData).eq('id', id);
+        if (error) throw error;
       } else {
         const { id, ...insertData } = formData;
-        await supabase.from('faqs').insert([insertData]);
+        const { error } = await supabase.from('faqs').insert([insertData]);
+        if (error) throw error;
       }
       await fetchItems();
       handleCloseModal();

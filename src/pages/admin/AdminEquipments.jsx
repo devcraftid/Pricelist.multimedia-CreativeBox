@@ -62,10 +62,12 @@ export default function AdminEquipments() {
     try {
       if (formData.id) {
         const { id, ...updateData } = formData;
-        await supabase.from('rental_equipments').update(updateData).eq('id', id);
+        const { error } = await supabase.from('rental_equipments').update(updateData).eq('id', id);
+        if (error) throw error;
       } else {
         const { id, ...insertData } = formData;
-        await supabase.from('rental_equipments').insert([insertData]);
+        const { error } = await supabase.from('rental_equipments').insert([insertData]);
+        if (error) throw error;
       }
       await fetchItems();
       handleCloseModal();

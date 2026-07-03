@@ -63,11 +63,13 @@ export default function AdminServices() {
       if (formData.id) {
         // Update
         const { id, ...updateData } = formData;
-        await supabase.from('services').update(updateData).eq('id', id);
+        const { error } = await supabase.from('services').update(updateData).eq('id', id);
+        if (error) throw error;
       } else {
         // Insert
         const { id, ...insertData } = formData;
-        await supabase.from('services').insert([insertData]);
+        const { error } = await supabase.from('services').insert([insertData]);
+        if (error) throw error;
       }
       await fetchServices();
       handleCloseModal();
