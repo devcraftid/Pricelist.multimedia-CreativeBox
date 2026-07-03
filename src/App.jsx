@@ -13,6 +13,7 @@ import AdminLayout from './components/AdminLayout';
 
 import AdminSettings from './pages/admin/AdminSettings';
 import AdminServices from './pages/admin/AdminServices';
+import AdminProjects from './pages/admin/AdminProjects';
 import AdminEquipments from './pages/admin/AdminEquipments';
 import AdminClients from './pages/admin/AdminClients';
 import AdminFaqs from './pages/admin/AdminFaqs';
@@ -39,6 +40,7 @@ function App() {
           <Route index element={<AdminDashboard />} />
           <Route path="settings" element={<AdminSettings />} />
           <Route path="services" element={<AdminServices />} />
+          <Route path="projects" element={<AdminProjects />} />
           <Route path="equipments" element={<AdminEquipments />} />
           <Route path="clients" element={<AdminClients />} />
           <Route path="faqs" element={<AdminFaqs />} />

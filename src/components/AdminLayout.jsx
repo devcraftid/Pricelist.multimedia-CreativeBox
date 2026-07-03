@@ -3,7 +3,7 @@ import { Outlet, Navigate, useNavigate, Link, useLocation } from 'react-router-d
 import { supabase } from '../lib/supabase';
 import { 
   LayoutDashboard, LogOut, Settings, LayoutList, 
-  Camera, Users, HelpCircle, Inbox, Menu, X 
+  Camera, Users, HelpCircle, Inbox, Menu, X, Image
 } from 'lucide-react';
 
 export default function AdminLayout() {
@@ -45,6 +45,7 @@ export default function AdminLayout() {
     { name: 'Dashboard', path: '/admin', icon: LayoutDashboard },
     { name: 'Pengaturan Situs', path: '/admin/settings', icon: Settings },
     { name: 'Layanan Kami', path: '/admin/services', icon: LayoutList },
+    { name: 'Project Galeri', path: '/admin/projects', icon: Image },
     { name: 'Rental Equipment', path: '/admin/equipments', icon: Camera },
     { name: 'Klien', path: '/admin/clients', icon: Users },
     { name: 'FAQ', path: '/admin/faqs', icon: HelpCircle },
