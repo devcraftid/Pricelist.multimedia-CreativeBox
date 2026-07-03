@@ -11,11 +11,11 @@ export default function AdminLayout() {
   const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   
-  // Real app should use session
-  const isAuthenticated = true; 
+  // Basic authentication using localStorage
+  const isAuthenticated = localStorage.getItem('isAdminLoggedIn') === 'true'; 
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
+    localStorage.removeItem('isAdminLoggedIn');
     navigate('/admin/login');
   };
 

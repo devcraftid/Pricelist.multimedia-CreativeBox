@@ -14,26 +14,17 @@ export default function AdminLogin() {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    
-    // For mock testing, if email is admin@multicam.id and pass is admin
-    if (email === 'admin@multicam.id' && password === 'admin') {
-       navigate('/admin');
-       return;
-    }
 
-    try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-      if (error) throw error;
-      navigate('/admin');
-    } catch (err) {
-      setError(err.message || 'Login failed');
-    } finally {
-      setLoading(false);
-    }
+    // Basic hardcoded auth simulation
+    setTimeout(() => {
+      if (email === 'admin@multicam.id' && password === 'admin') {
+        localStorage.setItem('isAdminLoggedIn', 'true');
+        navigate('/admin');
+      } else {
+        setError('Email atau password salah');
+        setLoading(false);
+      }
+    }, 800);
   };
 
   return (
