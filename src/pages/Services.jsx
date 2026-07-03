@@ -43,7 +43,7 @@ const Services = () => {
   return (
     <div className="w-full bg-white">
       {/* HERO BANNER */}
-      <section className="relative w-full h-[250px] md:h-[350px] flex items-center justify-center overflow-hidden">
+      <section className="relative w-full min-h-[400px] md:min-h-[500px] flex items-center justify-center overflow-hidden">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center"
           style={{ backgroundImage: `url('${heroBg}')` }}
