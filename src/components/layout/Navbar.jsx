@@ -145,7 +145,7 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu Dropdown */}
-      <div className={`md:hidden absolute top-full left-0 w-full bg-[#273554] shadow-2xl transition-all duration-300 overflow-hidden ${isOpen ? 'max-h-screen border-b border-gray-700 opacity-100' : 'max-h-0 opacity-0'}`}>
+      <div className={`md:hidden absolute top-full left-0 w-full bg-[#273554] shadow-2xl transition-all duration-300 ${isOpen ? 'max-h-[85vh] overflow-y-auto border-b border-gray-700 opacity-100' : 'max-h-0 overflow-hidden opacity-0'}`}>
         <div className="px-4 pt-2 pb-6 space-y-1">
           {navLinks.map((link) => (
             <Link 
