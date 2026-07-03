@@ -142,24 +142,7 @@ export default function PublicPriceList() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-slate-800 font-sans">
-      {/* Top Bar (Mocking the dark top bar from image) */}
-      <div className="bg-[#2c303a] text-white text-sm">
-        <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="flex space-x-6 text-gray-300 font-medium">
-            <a href="#" className="hover:text-white transition-colors">Home</a>
-            <a href="#" className="hover:text-white transition-colors">Services</a>
-            <a href="#" className="hover:text-white transition-colors">Project Update !</a>
-            <a href="#" className="hover:text-white transition-colors">About</a>
-            <a href="#" className="hover:text-white transition-colors">Contact us</a>
-            <a href="#" className="hover:text-white transition-colors">News & Blog</a>
-            <a href="#" className="text-white border-b-2 border-yellow-500 pb-1">Price List ▾</a>
-          </div>
-          <div className="hidden md:flex bg-yellow-500 text-[#2c303a] px-6 py-2 font-bold text-xs rounded-sm">
-            PROMO !
-          </div>
-        </div>
-      </div>
+    <div className="min-h-screen bg-white text-slate-800 font-sans pt-12 md:pt-16">
 
       <main className="max-w-6xl mx-auto px-4 py-12">
         {loading ? (
