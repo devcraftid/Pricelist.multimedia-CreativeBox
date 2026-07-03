@@ -130,8 +130,10 @@ const Navbar = () => {
               <div 
                 className={`absolute left-0 mt-0 w-48 bg-[#1a2035] border border-gray-700 rounded-md shadow-xl py-1 z-50 transition-all duration-200 ${isPriceListOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
               >
-                <Link to="/price-list" className="block px-4 py-3 text-sm text-gray-300 hover:bg-gray-800 hover:text-[#f5a623]">Live Cam Packages</Link>
-                <Link to="/price-list#equipment" className="block px-4 py-3 text-sm text-gray-300 hover:bg-gray-800 hover:text-[#f5a623]">Rental Equipment</Link>
+                <Link to="/price-list?tab=Live+Cam" className="block px-4 py-3 text-sm text-gray-300 hover:bg-gray-800 hover:text-[#f5a623]">Live Cam</Link>
+                <Link to="/price-list?tab=LED+Videotron" className="block px-4 py-3 text-sm text-gray-300 hover:bg-gray-800 hover:text-[#f5a623]">LED Videotron</Link>
+                <Link to="/price-list?tab=Stage+%26+Rigging" className="block px-4 py-3 text-sm text-gray-300 hover:bg-gray-800 hover:text-[#f5a623]">Stage & Rigging</Link>
+                <Link to="/price-list?tab=Sound+System" className="block px-4 py-3 text-sm text-gray-300 hover:bg-gray-800 hover:text-[#f5a623]">Sound System</Link>
               </div>
             </div>
           </nav>
@@ -159,8 +161,10 @@ const Navbar = () => {
           ))}
           <div className="border-t border-gray-700 pt-2 mt-2">
             <span className="block px-3 py-2 text-sm font-semibold text-[#f5a623] uppercase">Price List</span>
-            <Link to="/price-list" className="block px-3 py-3 rounded-md text-base font-medium text-white hover:text-[#f5a623] hover:bg-gray-800 pl-6" onClick={() => setIsOpen(false)}>Live Cam Packages</Link>
-            <Link to="/price-list#equipment" className="block px-3 py-3 rounded-md text-base font-medium text-white hover:text-[#f5a623] hover:bg-gray-800 pl-6" onClick={() => setIsOpen(false)}>Rental Equipment</Link>
+            <Link to="/price-list?tab=Live+Cam" className="block px-3 py-3 rounded-md text-base font-medium text-white hover:text-[#f5a623] hover:bg-gray-800 pl-6" onClick={() => setIsOpen(false)}>Live Cam</Link>
+            <Link to="/price-list?tab=LED+Videotron" className="block px-3 py-3 rounded-md text-base font-medium text-white hover:text-[#f5a623] hover:bg-gray-800 pl-6" onClick={() => setIsOpen(false)}>LED Videotron</Link>
+            <Link to="/price-list?tab=Stage+%26+Rigging" className="block px-3 py-3 rounded-md text-base font-medium text-white hover:text-[#f5a623] hover:bg-gray-800 pl-6" onClick={() => setIsOpen(false)}>Stage & Rigging</Link>
+            <Link to="/price-list?tab=Sound+System" className="block px-3 py-3 rounded-md text-base font-medium text-white hover:text-[#f5a623] hover:bg-gray-800 pl-6" onClick={() => setIsOpen(false)}>Sound System</Link>
           </div>
           
           <div className="border-t border-gray-700 pt-4 mt-4 px-3 flex flex-col space-y-4">

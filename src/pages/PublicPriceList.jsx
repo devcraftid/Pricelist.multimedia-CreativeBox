@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { CheckCircle2, Phone } from 'lucide-react';
 
@@ -14,9 +15,18 @@ const COLORS = [
 ];
 
 export default function PublicPriceList() {
+  const location = useLocation();
   const [activeTab, setActiveTab] = useState('Live Cam');
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const tabParam = searchParams.get('tab');
+    if (tabParam && CATEGORIES.includes(tabParam)) {
+      setActiveTab(tabParam);
+    }
+  }, [location.search]);
 
   useEffect(() => {
     fetchData();
