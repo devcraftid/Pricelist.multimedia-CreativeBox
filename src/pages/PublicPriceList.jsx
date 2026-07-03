@@ -57,23 +57,6 @@ export default function PublicPriceList() {
     <div className="min-h-screen bg-white text-slate-800 font-sans pt-12 md:pt-16">
 
       <main className="max-w-6xl mx-auto px-4 py-12">
-        {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
-          {CATEGORIES.map(cat => (
-            <button
-              key={cat}
-              onClick={() => setActiveTab(cat)}
-              className={`px-6 py-3 font-bold rounded-full transition-all duration-300 ${
-                activeTab === cat 
-                  ? 'bg-[#f5a623] text-gray-900 shadow-md transform scale-105' 
-                  : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
         {loading ? (
           <div className="text-center py-20 text-slate-500 font-medium">Loading paket harga...</div>
         ) : activeItems.length === 0 ? (
