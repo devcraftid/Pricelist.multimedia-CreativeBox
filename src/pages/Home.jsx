@@ -96,7 +96,7 @@ const Home = () => {
           <button className="w-full sm:w-auto bg-[#f5a623] text-gray-900 font-bold py-4 md:py-5 px-6 md:px-10 text-xs sm:text-sm hover:bg-yellow-500 transition-colors tracking-wider">
             LAYANAN KAMI
           </button>
-          <a href={`https://wa.me/${settings?.wa_number || '6281398399060'}`} target="_blank" rel="noreferrer" className="w-full sm:w-auto bg-[#1a2035]/80 border-t sm:border-t-0 sm:border-r sm:border-l border-gray-500 text-white font-bold py-4 md:py-5 px-6 md:px-10 text-xs sm:text-sm hover:bg-white/10 transition-colors tracking-wider backdrop-blur-sm text-center">
+          <a href={`https://wa.me/${settings?.wa_number || '6287772486006'}`} target="_blank" rel="noreferrer" className="w-full sm:w-auto bg-[#1a2035]/80 border-t sm:border-t-0 sm:border-r sm:border-l border-gray-500 text-white font-bold py-4 md:py-5 px-6 md:px-10 text-xs sm:text-sm hover:bg-white/10 transition-colors tracking-wider backdrop-blur-sm text-center">
             HUBUNGI VIA WHATSAPP
           </a>
         </div>
@@ -276,7 +276,7 @@ const Home = () => {
       <section className="w-full py-16 bg-white text-center">
         <h2 className="text-3xl md:text-4xl font-extrabold text-[#1a2035]">
           Hubungi Kami di :<br />
-          {settings?.wa_number || '(0813) 9839-9060'}
+          {settings?.wa_number || '+62 877-7248-6006'}
         </h2>
       </section>
 

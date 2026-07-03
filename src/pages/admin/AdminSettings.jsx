@@ -188,7 +188,7 @@ export default function AdminSettings() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1">Nomor WhatsApp</label>
-              <input type="text" name="wa_number" value={settings.wa_number} onChange={handleChange} placeholder="Cth: 6281398399060" className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary outline-none" />
+              <input type="text" name="wa_number" value={settings.wa_number} onChange={handleChange} placeholder="Cth: 6287772486006" className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary outline-none" />
             </div>
             
             <div>
