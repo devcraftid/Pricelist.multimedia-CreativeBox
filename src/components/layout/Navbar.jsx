@@ -49,11 +49,11 @@ const Navbar = () => {
           
           <div className="flex items-center space-x-3 sm:space-x-4">
             {/* Logo */}
-            <Link to="/" className="flex-shrink-0 flex items-center bg-white rounded-xl p-2 md:p-3 shadow-md">
+            <Link to="/" className="flex-shrink-0 flex items-center">
               {settings?.logo_url ? (
-                <img src={settings.logo_url} alt="Logo multimedia Creative Box" className="h-20 md:h-24 object-contain" />
+                <img src={settings.logo_url} alt="Logo multimedia Creative Box" className="h-16 md:h-20 object-contain brightness-0 invert drop-shadow-sm" />
               ) : (
-                <div className="h-20 md:h-24 w-40 bg-slate-100 rounded border border-slate-200 flex items-center justify-center text-xs text-slate-400">
+                <div className="h-16 md:h-20 w-32 bg-slate-800 rounded border border-slate-600 flex items-center justify-center text-xs text-slate-400">
                   Logo Kosong
                 </div>
               )}
