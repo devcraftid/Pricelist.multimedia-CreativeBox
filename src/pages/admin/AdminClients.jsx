@@ -166,7 +166,17 @@ export default function AdminClients() {
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">Logo Klien</label>
                 {formData.logo_url && (
-                  <img src={formData.logo_url} alt="Preview" className="w-full h-24 object-contain rounded-lg mb-3 border border-slate-200 bg-slate-50" />
+                  <div className="relative inline-block mb-3 w-full">
+                    <img src={formData.logo_url} alt="Preview" className="w-full h-24 object-contain rounded-lg border border-slate-200 bg-slate-50" />
+                    <button 
+                      type="button" 
+                      onClick={() => setFormData({...formData, logo_url: ''})}
+                      className="absolute top-2 right-2 bg-red-500 text-white p-1.5 rounded hover:bg-red-600 shadow-sm transition-colors"
+                      title="Hapus Logo"
+                    >
+                      <X size={14} />
+                    </button>
+                  </div>
                 )}
                 <label className="cursor-pointer bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2 border border-dashed border-slate-300">
                   <Upload size={16} /> Upload Logo

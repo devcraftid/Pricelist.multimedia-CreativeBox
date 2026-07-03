@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
-import { Save, Upload, Loader2, Image as ImageIcon } from 'lucide-react';
+import { Save, Upload, Loader2, Image as ImageIcon, X } from 'lucide-react';
 
 export default function AdminSettings() {
   const [settings, setSettings] = useState({
@@ -146,7 +146,17 @@ export default function AdminSettings() {
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-2">Logo Website</label>
               {settings.logo_url && (
-                <img src={settings.logo_url} alt="Logo" className="h-16 object-contain bg-slate-100 p-2 rounded mb-3" />
+                <div className="relative inline-block mb-3">
+                  <img src={settings.logo_url} alt="Logo" className="h-16 object-contain bg-slate-100 p-2 rounded border border-slate-200" />
+                  <button 
+                    type="button" 
+                    onClick={() => setSettings({...settings, logo_url: ''})}
+                    className="absolute -top-2 -right-2 bg-red-500 text-white p-1 rounded-full hover:bg-red-600 shadow-sm"
+                    title="Hapus Logo"
+                  >
+                    <X size={12} />
+                  </button>
+                </div>
               )}
               <div className="flex items-center gap-3">
                 <label className="cursor-pointer bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2">
@@ -159,7 +169,17 @@ export default function AdminSettings() {
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-2">Gambar Banner Utama (Hero)</label>
               {settings.hero_image_url && (
-                <img src={settings.hero_image_url} alt="Hero" className="h-16 w-32 object-cover bg-slate-100 p-2 rounded mb-3 border border-slate-200" />
+                <div className="relative inline-block mb-3">
+                  <img src={settings.hero_image_url} alt="Hero" className="h-16 w-32 object-cover bg-slate-100 p-2 rounded border border-slate-200" />
+                  <button 
+                    type="button" 
+                    onClick={() => setSettings({...settings, hero_image_url: ''})}
+                    className="absolute -top-2 -right-2 bg-red-500 text-white p-1 rounded-full hover:bg-red-600 shadow-sm"
+                    title="Hapus Banner"
+                  >
+                    <X size={12} />
+                  </button>
+                </div>
               )}
               <div className="flex items-center gap-3">
                 <label className="cursor-pointer bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2">
