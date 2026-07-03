@@ -57,7 +57,7 @@ const Footer = () => {
         <div className="border-t border-gray-700 pt-6 flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center space-x-4 mb-4 md:mb-0">
             <p className="text-white font-medium text-xs">
-              Copyright &copy; {new Date().getFullYear()} multimedia Creative Box
+              multimedia Creative Box
             </p>
             <span className="text-gray-600 text-xs">|</span>
             <a href="/admin/login" className="text-gray-400 hover:text-[#f5a623] transition-colors text-sm font-semibold flex items-center">
