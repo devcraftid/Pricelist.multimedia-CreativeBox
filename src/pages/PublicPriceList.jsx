@@ -158,6 +158,18 @@ export default function PublicPriceList() {
                 })}
               </div>
             </section>
+
+            <section className="mt-16 bg-gray-50 border border-gray-200 rounded-xl p-8 max-w-4xl mx-auto">
+              <h3 className="font-bold text-[#2a3c5a] text-lg mb-4 flex items-center gap-2">
+                <CheckCircle2 className="w-5 h-5 text-[#f5a623]" /> Keterangan:
+              </h3>
+              <ul className="list-disc pl-6 space-y-2 text-sm text-gray-600">
+                <li>Harga paket di atas hanya untuk dalam kota</li>
+                <li>Tidak termasuk internet</li>
+                <li>Harga tidak termasuk rehearsal H-1</li>
+                <li>Untuk upgrade kamera dan system by request</li>
+              </ul>
+            </section>
           </div>
         )}
       </main>
