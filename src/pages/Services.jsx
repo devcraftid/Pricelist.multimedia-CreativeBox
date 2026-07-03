@@ -41,7 +41,7 @@ const Services = () => {
   const heroBg = settings?.hero_image_url || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600&q=80';
 
   return (
-    <div className="w-full bg-white pt-20">
+    <div className="w-full bg-white">
       {/* HERO BANNER */}
       <section className="relative w-full h-[250px] md:h-[350px] flex items-center justify-center overflow-hidden">
         <div 

@@ -40,10 +40,10 @@ const Navbar = () => {
     { name: 'News & Blog', path: '/blog' },
   ];
 
-  const isHome = location.pathname === '/';
+  const isHomeOrServices = location.pathname === '/' || location.pathname === '/services';
 
   return (
-    <header className={`w-full z-50 transition-all duration-300 ${isHome ? 'absolute top-0' : 'sticky top-0 bg-[#1a2035]'}`}>
+    <header className={`w-full z-50 transition-all duration-300 ${isHomeOrServices ? 'absolute top-0' : 'sticky top-0 bg-[#1a2035]'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Top Row: Logo & Contact (Hidden on very small mobile, merged with nav on mobile) */}
