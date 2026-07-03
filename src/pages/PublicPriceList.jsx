@@ -35,7 +35,7 @@ export default function PublicPriceList() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const { data, error } = await supabase.from('pricelist_items').select('*').order('created_at', { ascending: true });
+      const { data, error } = await supabase.from('pricelist_items').select('*').order('name', { ascending: true });
       if (!error && data) {
         setItems(data);
       }

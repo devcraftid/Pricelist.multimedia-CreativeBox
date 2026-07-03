@@ -22,7 +22,7 @@ export default function AdminPriceList() {
 
   const fetchItems = async () => {
     setLoading(true);
-    const { data, error } = await supabase.from('pricelist_items').select('*').order('created_at', { ascending: true });
+    const { data, error } = await supabase.from('pricelist_items').select('*').order('name', { ascending: true });
     if (data) setItems(data);
     setLoading(false);
   };
