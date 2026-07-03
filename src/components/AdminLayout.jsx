@@ -10,14 +10,32 @@ export default function AdminLayout() {
   const navigate = useNavigate();
   const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  
-  // Basic authentication using localStorage
-  const isAuthenticated = localStorage.getItem('isAdminLoggedIn') === 'true'; 
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
+
+  useEffect(() => {
+    // Check initial session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setIsAuthenticated(!!session);
+      if (!session) navigate('/admin/login');
+    });
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setIsAuthenticated(!!session);
+      if (!session) navigate('/admin/login');
+    });
+
+    return () => subscription.unsubscribe();
+  }, [navigate]);
 
   const handleLogout = async () => {
-    localStorage.removeItem('isAdminLoggedIn');
+    await supabase.auth.signOut();
     navigate('/admin/login');
   };
+
+  if (isAuthenticated === null) {
+    return <div className="min-h-screen flex items-center justify-center bg-slate-50"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>;
+  }
 
   if (!isAuthenticated) {
     return <Navigate to="/admin/login" replace />;
