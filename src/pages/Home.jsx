@@ -74,10 +74,10 @@ const Home = () => {
       {/* HERO SECTION */}
       <section className="relative w-full min-h-[600px] md:h-[650px] flex items-center bg-white overflow-hidden pt-10 pb-32 md:pb-0">
         <div 
-          className="absolute inset-0 z-0 opacity-[0.05] bg-cover bg-center mix-blend-luminosity grayscale"
+          className="absolute inset-0 z-0 opacity-50 bg-cover bg-center"
           style={{ backgroundImage: `url('${heroBg}')` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent z-0" />
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/20 z-0" />
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-10 md:mt-0">
           <h2 className="text-primary font-bold text-sm md:text-lg mb-2 uppercase tracking-wider">
