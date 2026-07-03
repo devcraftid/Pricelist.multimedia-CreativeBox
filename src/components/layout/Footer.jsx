@@ -60,9 +60,9 @@ const Footer = () => {
               Copyright &copy; {new Date().getFullYear()} Multicam Indonesia
             </p>
             <span className="text-gray-600 text-xs">|</span>
-            <a href="/admin/login" className="text-gray-500 hover:text-white transition-colors text-xs flex items-center">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              Admin Login
+            <a href="/admin/login" className="text-gray-400 hover:text-[#f5a623] transition-colors text-sm font-semibold flex items-center">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              Login Admin
             </a>
           </div>
           
