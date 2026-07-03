@@ -27,8 +27,8 @@ const Navbar = () => {
   }, []);
 
   const fetchSettings = async () => {
-    const { data } = await supabase.from('site_settings').select('*').limit(1).single();
-    if (data) setSettings(data);
+    const { data } = await supabase.from('site_settings').select('*').limit(1);
+    if (data && data.length > 0) setSettings(data[0]);
   };
 
   const navLinks = [

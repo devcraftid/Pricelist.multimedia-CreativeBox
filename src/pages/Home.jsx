@@ -29,14 +29,14 @@ const Home = () => {
         { data: clientsData },
         { data: faqsData }
       ] = await Promise.all([
-        supabase.from('site_settings').select('*').limit(1).single(),
+        supabase.from('site_settings').select('*').limit(1),
         supabase.from('services').select('*').order('order_index', { ascending: true }),
         supabase.from('rental_equipments').select('*').order('order_index', { ascending: true }),
         supabase.from('clients').select('*').order('order_index', { ascending: true }),
         supabase.from('faqs').select('*').order('order_index', { ascending: true })
       ]);
 
-      if (settingsData) setSettings(settingsData);
+      if (settingsData && settingsData.length > 0) setSettings(settingsData[0]);
       if (servicesData) setServices(servicesData);
       if (equipmentsData) setEquipments(equipmentsData);
       if (clientsData) setClients(clientsData);
