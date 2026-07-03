@@ -72,31 +72,31 @@ const Home = () => {
   return (
     <div className="w-full">
       {/* HERO SECTION */}
-      <section className="relative w-full min-h-[600px] md:h-[650px] flex items-center bg-white overflow-hidden pt-10 pb-32 md:pb-0">
+      <section className="relative w-full min-h-[600px] md:h-[650px] flex items-center bg-[#1a2035] overflow-hidden pt-10 pb-32 md:pb-0">
         <div 
-          className="absolute inset-0 z-0 opacity-50 bg-cover bg-center"
+          className="absolute inset-0 z-0 opacity-30 bg-cover bg-center"
           style={{ backgroundImage: `url('${heroBg}')` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/20 z-0" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1a2035] via-[#1a2035]/80 to-transparent z-0" />
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-10 md:mt-0">
-          <h2 className="text-primary font-bold text-sm md:text-lg mb-2 uppercase tracking-wider">
+          <h2 className="text-[#f5a623] font-bold text-sm md:text-lg mb-2 uppercase tracking-wider">
             {settings?.hero_title ? settings.hero_title : 'MULTIMEDIA CREATIVE BOX'}
           </h2>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 leading-[1.1] mb-6 max-w-4xl tracking-tight uppercase drop-shadow-sm">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] mb-6 max-w-4xl tracking-tight uppercase">
             {settings?.hero_subtitle ? settings.hero_subtitle : 'MULTIMEDIA & LIVE CAMERA PRODUCTION'}
           </h1>
-          <p className="text-slate-600 font-medium text-sm md:text-base lg:text-lg max-w-3xl leading-relaxed">
+          <p className="text-gray-300 text-sm md:text-base lg:text-lg max-w-3xl leading-relaxed">
             Multimedia Support, Live Camera , Live Streaming, Rental Kamera, Backdrop, LED Videotron, Sound System, TV Plasma, Display Video dan Matador Display, GreenScreen, Generator Set, Lighting set, Stage dan Panggung Rigging Design, Virtual Studio, Virtual Event, Greenscreen, Live Event, Zoom Meeting, Webinar, DLL.
           </p>
         </div>
 
         {/* Floating Action Buttons */}
-        <div className="absolute bottom-0 left-0 md:left-1/2 md:-translate-x-1/2 flex flex-col sm:flex-row w-full md:w-auto z-20 shadow-xl border border-slate-100 rounded-t-xl md:rounded-xl overflow-hidden bg-white">
-          <Link to="/services" className="inline-flex items-center justify-center w-full sm:w-auto bg-primary text-white font-bold py-4 md:py-5 px-6 md:px-10 text-xs sm:text-sm hover:bg-blue-700 transition-colors tracking-wider">
+        <div className="absolute bottom-0 left-0 md:left-1/2 md:-translate-x-1/2 flex flex-col sm:flex-row w-full md:w-auto z-20">
+          <Link to="/services" className="inline-block text-center w-full sm:w-auto bg-[#f5a623] text-gray-900 font-bold py-4 md:py-5 px-6 md:px-10 text-xs sm:text-sm hover:bg-yellow-500 transition-colors tracking-wider">
             LAYANAN KAMI
           </Link>
-          <a href={`https://wa.me/${settings?.wa_number || '6287772486006'}`} target="_blank" rel="noreferrer" className="w-full sm:w-auto bg-white border-t sm:border-t-0 sm:border-l border-slate-100 text-slate-800 font-bold py-4 md:py-5 px-6 md:px-10 text-xs sm:text-sm hover:bg-slate-50 transition-colors tracking-wider text-center flex items-center justify-center">
+          <a href={`https://wa.me/${settings?.wa_number || '6287772486006'}`} target="_blank" rel="noreferrer" className="w-full sm:w-auto bg-[#1a2035]/80 border-t sm:border-t-0 sm:border-r sm:border-l border-gray-500 text-white font-bold py-4 md:py-5 px-6 md:px-10 text-xs sm:text-sm hover:bg-white/10 transition-colors tracking-wider backdrop-blur-sm text-center">
             HUBUNGI VIA WHATSAPP
           </a>
         </div>
