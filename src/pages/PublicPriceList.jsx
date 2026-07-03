@@ -48,7 +48,7 @@ export default function PublicPriceList() {
 
   const handlePesan = (itemName) => {
     const text = encodeURIComponent(`Halo multimedia Creative Box, saya tertarik untuk memesan ${itemName}. Boleh minta info lebih lanjut?`);
-    window.open(`https://wa.me/6281316699665?text=${text}`, '_blank');
+    window.open(`https://wa.me/6287772486006?text=${text}`, '_blank');
   };
 
   const activeItems = items.filter(item => item.category === activeTab);
