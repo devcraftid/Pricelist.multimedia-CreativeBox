@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
-import { CheckCircle2, Phone } from 'lucide-react';
+import { CheckCircle2, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const CATEGORIES = ['Live Cam', 'LED Videotron', 'Stage & Rigging', 'Sound System'];
 
 const COLORS = [
-  { bg: 'bg-[#ba7959]', text: 'text-[#ba7959]' },
-  { bg: 'bg-[#f4c63d]', text: 'text-[#f4c63d]' },
-  { bg: 'bg-[#61b865]', text: 'text-[#61b865]' },
-  { bg: 'bg-[#5f497a]', text: 'text-[#5f497a]' },
-  { bg: 'bg-[#77299a]', text: 'text-[#77299a]' },
-  { bg: 'bg-[#ba261a]', text: 'text-[#ba261a]' }
+  { grad: 'bg-gradient-to-br from-[#ba7959] to-[#8c5941]', btn: 'bg-gradient-to-r from-[#ba7959] to-[#8c5941]', text: 'text-[#ba7959]', shadow: 'shadow-[#ba7959]/20' },
+  { grad: 'bg-gradient-to-br from-[#f4c63d] to-[#d4a82b]', btn: 'bg-gradient-to-r from-[#f4c63d] to-[#d4a82b]', text: 'text-[#d4a82b]', shadow: 'shadow-[#f4c63d]/20' },
+  { grad: 'bg-gradient-to-br from-[#61b865] to-[#46914a]', btn: 'bg-gradient-to-r from-[#61b865] to-[#46914a]', text: 'text-[#61b865]', shadow: 'shadow-[#61b865]/20' },
+  { grad: 'bg-gradient-to-br from-[#5f497a] to-[#45345a]', btn: 'bg-gradient-to-r from-[#5f497a] to-[#45345a]', text: 'text-[#5f497a]', shadow: 'shadow-[#5f497a]/20' },
+  { grad: 'bg-gradient-to-br from-[#77299a] to-[#591d74]', btn: 'bg-gradient-to-r from-[#77299a] to-[#591d74]', text: 'text-[#77299a]', shadow: 'shadow-[#77299a]/20' },
+  { grad: 'bg-gradient-to-br from-[#ba261a] to-[#8c1b12]', btn: 'bg-gradient-to-r from-[#ba261a] to-[#8c1b12]', text: 'text-[#ba261a]', shadow: 'shadow-[#ba261a]/20' }
 ];
 
 export default function PublicPriceList() {
@@ -55,115 +55,135 @@ export default function PublicPriceList() {
   const activeItems = items.filter(item => item.category === activeTab);
 
   return (
-    <div className="min-h-screen bg-white text-slate-800 font-sans pt-12 md:pt-16">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 text-slate-800 font-sans pt-12 md:pt-16 pb-20 relative overflow-hidden">
+      
+      {/* Decorative Background Elements for HD feel */}
+      <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-[#273554]/5 to-transparent z-0 pointer-events-none" />
+      <div className="absolute top-20 -right-40 w-96 h-96 bg-[#f5a623]/10 rounded-full blur-3xl z-0 pointer-events-none" />
+      <div className="absolute top-40 -left-40 w-96 h-96 bg-[#273554]/5 rounded-full blur-3xl z-0 pointer-events-none" />
 
-      <main className="max-w-6xl mx-auto px-4 py-12">
+      <main className="max-w-6xl mx-auto px-4 py-12 relative z-10">
         {loading ? (
-          <div className="text-center py-20 text-slate-500 font-medium">Loading paket harga...</div>
+          <div className="text-center py-20 text-slate-500 font-medium flex flex-col items-center justify-center">
+            <div className="w-10 h-10 border-4 border-[#273554]/20 border-t-[#273554] rounded-full animate-spin mb-4" />
+            Loading paket harga premium...
+          </div>
         ) : activeItems.length === 0 ? (
-          <div className="text-center py-20 bg-gray-50 border border-dashed border-gray-300 rounded-2xl text-gray-500">
+          <div className="text-center py-20 bg-white/50 backdrop-blur-md border border-white/60 shadow-xl rounded-2xl text-gray-500">
             Belum ada paket/item untuk kategori <span className="font-bold">{activeTab}</span> yang ditambahkan oleh Admin.
           </div>
         ) : (
-          <div className="space-y-20">
+          <div className="space-y-24">
             <section>
-              <h2 className="text-2xl font-bold text-[#2a3c5a] mb-8 uppercase tracking-wide border-b-2 border-[#f5a623] inline-block pb-2">
-                PRICELIST {activeTab}
-              </h2>
+              <div className="text-center mb-16">
+                <motion.h2 
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-4xl md:text-5xl font-extrabold mb-4 uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#273554] to-[#f5a623]"
+                >
+                  PRICELIST {activeTab}
+                </motion.h2>
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.2 }}
+                  className="h-1 w-24 bg-gradient-to-r from-[#273554] to-[#f5a623] mx-auto rounded-full"
+                />
+              </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-10">
                 {activeItems.map((item, index) => {
                   const colorTheme = COLORS[index % COLORS.length];
                   
-                  // Use specific view based on whether it has an image (Additional items) or features (Packages)
                   if (item.image_url) {
-                    // Item with image (like Additional Equipments)
                     return (
                       <motion.div 
                         key={item.id} 
-                        initial={{ opacity: 0, y: 30 }}
+                        initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                        className="text-center group border border-gray-100 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow"
+                        transition={{ duration: 0.6, delay: index * 0.1, type: "spring", stiffness: 100 }}
+                        className="bg-white/80 backdrop-blur-lg border border-white shadow-xl shadow-slate-200/50 rounded-2xl p-5 hover:-translate-y-2 transition-transform duration-300 group flex flex-col"
                       >
-                        <div className="overflow-hidden bg-gray-100 mb-4 aspect-video relative rounded-lg">
+                        <div className="overflow-hidden bg-slate-100 mb-5 aspect-video relative rounded-xl shadow-inner">
                           <img 
                             src={item.image_url} 
                             alt={item.name} 
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                           />
                           {item.ribbon && (
-                            <div className="absolute top-2 left-2 bg-[#f5a623] text-xs font-bold px-2 py-1 rounded">
-                              {item.ribbon}
+                            <div className="absolute top-3 left-3 bg-gradient-to-r from-[#f5a623] to-[#e09212] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1">
+                              <Sparkles className="w-3 h-3" /> {item.ribbon}
                             </div>
                           )}
                         </div>
-                        <h4 className="font-bold text-gray-800 text-lg">{item.name}</h4>
-                        {item.subtitle && <p className="text-xs text-gray-500 mt-1">{item.subtitle}</p>}
-                        <p className={`text-lg font-bold mt-2 ${colorTheme.text}`}>Rp. {item.price}</p>
-                        <button 
-                          onClick={() => handlePesan(item)}
-                          className="mt-4 w-full bg-[#2a3c5a] hover:bg-[#1a2538] text-white font-bold py-2 px-4 rounded transition-colors"
-                        >
-                          PESAN SEKARANG
-                        </button>
+                        <h4 className="font-extrabold text-slate-800 text-xl tracking-tight mb-1">{item.name}</h4>
+                        {item.subtitle && <p className="text-sm text-slate-500 font-medium mb-3">{item.subtitle}</p>}
+                        
+                        <div className="mt-auto pt-4 flex items-center justify-between border-t border-slate-100">
+                          <p className={`text-xl font-extrabold ${colorTheme.text}`}>Rp {item.price}</p>
+                          <button 
+                            onClick={() => handlePesan(item)}
+                            className="bg-[#273554] hover:bg-[#1d2740] text-white font-bold py-2 px-5 rounded-lg transition-all shadow-md hover:shadow-lg text-sm"
+                          >
+                            PESAN
+                          </button>
+                        </div>
                       </motion.div>
                     );
                   }
 
-                  // Standard Package View (like Paket Hemat)
                   return (
                     <motion.div 
                       key={item.id} 
-                      initial={{ opacity: 0, y: 30 }}
+                      initial={{ opacity: 0, y: 50 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="bg-[#f9f9f9] flex flex-col relative overflow-hidden group shadow-sm hover:shadow-md transition-shadow rounded-t-xl"
+                      transition={{ duration: 0.6, delay: index * 0.1, type: "spring", stiffness: 100 }}
+                      className={`bg-white rounded-2xl flex flex-col relative overflow-hidden group shadow-2xl ${colorTheme.shadow} hover:-translate-y-3 transition-all duration-300 border border-slate-100/50`}
                     >
-                      {/* Ribbon */}
                       {item.ribbon && (
-                        <div className="absolute top-4 -right-8 w-32 bg-black text-white text-[10px] font-bold text-center py-1 transform rotate-45 z-10">
+                        <div className="absolute top-5 -right-12 w-40 bg-gradient-to-r from-slate-900 to-slate-800 text-white text-[10px] uppercase tracking-widest font-extrabold text-center py-1.5 transform rotate-45 z-10 shadow-lg">
                           {item.ribbon}
                         </div>
                       )}
                       
-                      {/* Header */}
-                      <div className={`${colorTheme.bg} text-white text-center py-6 px-4`}>
-                        <h3 className="text-xl font-bold">{item.name}</h3>
-                        <p className="text-xs mt-1 opacity-90">{item.subtitle}</p>
+                      {/* Premium Header */}
+                      <div className={`${colorTheme.grad} text-white text-center py-8 px-6 relative overflow-hidden`}>
+                        <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <h3 className="text-2xl font-extrabold tracking-tight relative z-10 drop-shadow-md">{item.name}</h3>
+                        <p className="text-sm mt-1.5 font-medium opacity-90 relative z-10">{item.subtitle}</p>
                       </div>
                       
-                      {/* Price */}
-                      <div className="text-center py-8">
-                        <div className="flex items-start justify-center">
-                          <span className="text-sm font-bold mt-2 mr-1">Rp.</span>
-                          <span className={`text-5xl font-bold ${colorTheme.text}`}>{item.price}</span>
+                      <div className="text-center py-8 bg-gradient-to-b from-slate-50 to-white relative">
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-white rounded-full flex items-center justify-center shadow-inner">
+                          <div className={`w-2 h-2 rounded-full ${colorTheme.grad}`} />
                         </div>
-                        <p className="text-xs text-gray-500 mt-2">Only</p>
+                        <div className="flex items-start justify-center">
+                          <span className="text-sm font-bold mt-2 mr-1 text-slate-500">Rp</span>
+                          <span className={`text-5xl font-black tracking-tighter ${colorTheme.text} drop-shadow-sm`}>{item.price}</span>
+                        </div>
+                        <p className="text-xs text-slate-400 font-bold uppercase tracking-widest mt-2">Only</p>
                       </div>
 
-                      {/* Features */}
-                      <div className="flex-1 px-8 pb-6">
+                      <div className="flex-1 px-8 pb-8 bg-white">
                         <ul className="space-y-4">
                           {Array.isArray(item.features) && item.features.map((feature, idx) => (
-                            <li key={idx} className="flex items-start gap-3 text-sm text-gray-600 border-b border-gray-200 pb-3 last:border-0">
-                              <CheckCircle2 className="w-4 h-4 text-gray-400 mt-0.5 shrink-0" />
-                              <span>{feature}</span>
+                            <li key={idx} className="flex items-start gap-3 text-sm text-slate-600 font-medium">
+                              <CheckCircle2 className={`w-5 h-5 mt-0.5 shrink-0 ${colorTheme.text}`} />
+                              <span className="leading-relaxed">{feature}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
 
-                      {/* Action Button & Footer */}
-                      <div className="p-6 pt-0 text-center mt-auto">
+                      <div className="p-8 pt-0 text-center mt-auto bg-white">
                         <button 
                           onClick={() => handlePesan(item)}
-                          className="bg-[#6b7280] hover:bg-slate-600 text-white font-bold py-2.5 px-8 text-sm transition-colors rounded-sm w-full"
+                          className={`${colorTheme.btn} text-white font-extrabold py-3.5 px-8 text-sm transition-all rounded-xl w-full shadow-lg ${colorTheme.shadow} hover:opacity-90 hover:scale-[1.02] active:scale-95 tracking-wider`}
                         >
-                          PESAN
+                          PESAN SEKARANG
                         </button>
                         {item.footer && (
-                          <p className="text-[10px] text-gray-400 mt-4 italic">{item.footer}</p>
+                          <p className="text-[11px] text-slate-400 mt-5 italic font-medium">{item.footer}</p>
                         )}
                       </div>
                     </motion.div>
@@ -176,17 +196,26 @@ export default function PublicPriceList() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="mt-16 bg-gray-50 border border-gray-200 rounded-xl p-8 max-w-4xl mx-auto"
+              transition={{ duration: 0.8 }}
+              className="mt-20 bg-white/60 backdrop-blur-lg border border-slate-200/50 shadow-xl shadow-slate-200/40 rounded-2xl p-8 md:p-10 max-w-4xl mx-auto relative overflow-hidden"
             >
-              <h3 className="font-bold text-[#2a3c5a] text-lg mb-4 flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-[#f5a623]" /> Keterangan:
+              <div className="absolute top-0 left-0 w-1 h-full bg-[#f5a623]" />
+              <h3 className="font-extrabold text-[#273554] text-xl mb-5 flex items-center gap-2 tracking-tight">
+                <CheckCircle2 className="w-6 h-6 text-[#f5a623]" /> Keterangan Penting
               </h3>
-              <ul className="list-disc pl-6 space-y-2 text-sm text-gray-600">
-                <li>Harga paket di atas hanya untuk dalam kota</li>
-                <li>Tidak termasuk internet</li>
-                <li>Harga tidak termasuk rehearsal H-1</li>
-                <li>Untuk upgrade kamera dan system by request</li>
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium bg-white p-3 rounded-lg shadow-sm border border-slate-50">
+                  <div className="w-2 h-2 rounded-full bg-[#f5a623] mt-1.5" /> Harga paket di atas hanya untuk dalam kota
+                </li>
+                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium bg-white p-3 rounded-lg shadow-sm border border-slate-50">
+                  <div className="w-2 h-2 rounded-full bg-[#f5a623] mt-1.5" /> Tidak termasuk koneksi internet
+                </li>
+                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium bg-white p-3 rounded-lg shadow-sm border border-slate-50">
+                  <div className="w-2 h-2 rounded-full bg-[#f5a623] mt-1.5" /> Harga tidak termasuk rehearsal H-1
+                </li>
+                <li className="flex items-start gap-3 text-sm text-slate-600 font-medium bg-white p-3 rounded-lg shadow-sm border border-slate-50">
+                  <div className="w-2 h-2 rounded-full bg-[#f5a623] mt-1.5" /> Upgrade kamera & system by request
+                </li>
               </ul>
             </motion.section>
           </div>
