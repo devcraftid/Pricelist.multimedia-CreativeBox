@@ -50,11 +50,13 @@ const Navbar = () => {
           <div className="flex items-center space-x-3 sm:space-x-4">
             {/* Logo */}
             <Link to="/" className="flex-shrink-0 flex items-center">
-              <img 
-                src={settings?.logo_url || '/admin-logo.png'} 
-                alt="Logo multimedia Creative Box" 
-                className="h-14 md:h-16 object-contain brightness-0 invert drop-shadow-sm transition-all" 
-              />
+              <div className="bg-white p-1.5 rounded-xl shadow-md">
+                <img 
+                  src="/admin-logo.png" 
+                  alt="Logo Creative Box" 
+                  className="h-10 md:h-12 object-contain transition-all" 
+                />
+              </div>
             </Link>
             
             {/* Tagline */}
