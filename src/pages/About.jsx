@@ -80,7 +80,7 @@ const About = () => {
             >
               <h3 className="text-[#f5a623] font-bold text-lg md:text-xl mb-3 tracking-wide">About Us</h3>
               <h2 className="text-3xl md:text-4xl font-extrabold text-[#273554] mb-8 leading-tight tracking-tight">
-                multicam.id jasa dokumentasi Produksi live multi kamera profesional
+                Creative Box Jasa dokumentasi Produksi live multi kamera profesional
               </h2>
               
               <div className="space-y-6 text-slate-600 leading-relaxed font-medium">
