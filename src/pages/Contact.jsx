@@ -102,45 +102,51 @@ const Contact = () => {
           >
             <h3 className="text-2xl md:text-3xl font-extrabold text-[#273554] mb-10 flex items-center gap-3 justify-center lg:justify-start">
               <Building2 className="w-8 h-8 text-[#f5a623] hidden lg:block" />
-              Creative Box dan livecam.id
+              Creative Box
             </h3>
 
             <div className="space-y-8 w-full">
-              <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4">
-                <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center shrink-0">
-                  <MapPin className="w-6 h-6 text-[#273554]" />
+              {settings?.address && (
+                <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4">
+                  <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center shrink-0">
+                    <MapPin className="w-6 h-6 text-[#273554]" />
+                  </div>
+                  <div>
+                    <h4 className="font-extrabold text-slate-800 text-lg mb-2">Address:</h4>
+                    <p className="text-slate-600 font-medium leading-relaxed max-w-xs whitespace-pre-wrap">
+                      {settings.address}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-extrabold text-slate-800 text-lg mb-2">Address:</h4>
-                  <p className="text-slate-600 font-medium leading-relaxed max-w-xs whitespace-pre-wrap">
-                    {settings?.address || ''}
-                  </p>
-                </div>
-              </div>
+              )}
 
-              <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4">
-                <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center shrink-0">
-                  <Phone className="w-6 h-6 text-[#273554]" />
+              {settings?.wa_number && (
+                <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4">
+                  <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center shrink-0">
+                    <Phone className="w-6 h-6 text-[#273554]" />
+                  </div>
+                  <div>
+                    <h4 className="font-extrabold text-slate-800 text-lg mb-2">Phone:</h4>
+                    <p className="text-slate-600 font-medium leading-relaxed max-w-xs">
+                      +{settings.wa_number}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-extrabold text-slate-800 text-lg mb-2">Phone:</h4>
-                  <p className="text-slate-600 font-medium leading-relaxed max-w-xs">
-                    {settings?.wa_number ? `+${settings.wa_number}` : ''}
-                  </p>
-                </div>
-              </div>
+              )}
 
-              <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4">
-                <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center shrink-0">
-                  <Mail className="w-6 h-6 text-[#273554]" />
+              {settings?.email && (
+                <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4">
+                  <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center shrink-0">
+                    <Mail className="w-6 h-6 text-[#273554]" />
+                  </div>
+                  <div>
+                    <h4 className="font-extrabold text-slate-800 text-lg mb-2">Email:</h4>
+                    <p className="text-slate-600 font-medium leading-relaxed max-w-xs whitespace-pre-wrap">
+                      {settings.email}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-extrabold text-slate-800 text-lg mb-2">Email:</h4>
-                  <p className="text-slate-600 font-medium leading-relaxed max-w-xs whitespace-pre-wrap">
-                    {settings?.email || ''}
-                  </p>
-                </div>
-              </div>
+              )}
             </div>
 
             <div className="mt-12 w-full flex justify-center lg:justify-start">
