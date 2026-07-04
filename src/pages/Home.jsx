@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CheckCircle2, ChevronRight, ShieldCheck, ArrowRight, PlayCircle } from 'lucide-react';
+import { CheckCircle2, ChevronRight, ShieldCheck, ArrowRight, PlayCircle, Zap, Trophy, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { motion } from 'framer-motion';
@@ -165,15 +165,19 @@ const Home = () => {
           </div>
 
           <div className="w-full lg:w-3/5 p-10 md:p-16 grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12 bg-white">
-            {displayAdvantages.slice(0, 4).map((adv, idx) => (
-              <div key={idx} className="relative group">
-                <div className="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                  <ShieldCheck className="text-[#f5a623] w-6 h-6" />
+            {displayAdvantages.slice(0, 4).map((adv, idx) => {
+              const icons = [ShieldCheck, Zap, Trophy, Users];
+              const Icon = icons[idx % icons.length];
+              return (
+                <div key={idx} className="relative group">
+                  <div className="w-14 h-14 bg-[#1b253b] rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-blue-900/10 group-hover:bg-gradient-to-br group-hover:from-[#f5a623] group-hover:to-[#e09212] group-hover:-translate-y-1 transition-all duration-300">
+                    <Icon className="text-[#f5a623] group-hover:text-white w-7 h-7 transition-colors duration-300" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-xl font-extrabold text-[#1b253b] mb-3 group-hover:text-[#f5a623] transition-colors">{adv.title}</h3>
+                  <p className="text-slate-500 text-sm leading-relaxed font-medium">{adv.description}</p>
                 </div>
-                <h3 className="text-xl font-extrabold text-[#1b253b] mb-3">{adv.title}</h3>
-                <p className="text-slate-500 text-sm leading-relaxed font-medium">{adv.description}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </motion.div>
       </section>
