@@ -98,10 +98,10 @@ const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="w-full lg:w-1/3 flex flex-col items-center lg:items-start text-center lg:text-left"
+            className={`w-full flex flex-col text-center ${settings?.map_embed_url ? 'lg:w-1/3 items-center lg:items-start lg:text-left' : 'max-w-xl mx-auto items-center'}`}
           >
             {(settings?.address || settings?.email || settings?.wa_number) && (
-              <h3 className="text-2xl md:text-3xl font-extrabold text-[#273554] mb-10 flex items-center gap-3 justify-center lg:justify-start">
+              <h3 className={`text-2xl md:text-3xl font-extrabold text-[#273554] mb-10 flex items-center gap-3 justify-center ${settings?.map_embed_url ? 'lg:justify-start' : ''}`}>
                 <Building2 className="w-8 h-8 text-[#f5a623] hidden lg:block" />
                 Creative Box
               </h3>
@@ -109,7 +109,7 @@ const Contact = () => {
 
             <div className="space-y-8 w-full">
               {settings?.address && (
-                <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4">
+                <div className={`flex flex-col lg:flex-row items-center gap-4 ${settings?.map_embed_url ? 'lg:items-start' : ''}`}>
                   <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center shrink-0">
                     <MapPin className="w-6 h-6 text-[#273554]" />
                   </div>
@@ -123,7 +123,7 @@ const Contact = () => {
               )}
 
               {settings?.wa_number && (
-                <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4">
+                <div className={`flex flex-col lg:flex-row items-center gap-4 ${settings?.map_embed_url ? 'lg:items-start' : ''}`}>
                   <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center shrink-0">
                     <Phone className="w-6 h-6 text-[#273554]" />
                   </div>
@@ -137,7 +137,7 @@ const Contact = () => {
               )}
 
               {settings?.email && (
-                <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4">
+                <div className={`flex flex-col lg:flex-row items-center gap-4 ${settings?.map_embed_url ? 'lg:items-start' : ''}`}>
                   <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center shrink-0">
                     <Mail className="w-6 h-6 text-[#273554]" />
                   </div>
@@ -152,7 +152,7 @@ const Contact = () => {
             </div>
 
             {settings?.wa_number && (
-              <div className="mt-12 w-full flex justify-center lg:justify-start">
+              <div className={`mt-12 w-full flex justify-center ${settings?.map_embed_url ? 'lg:justify-start' : ''}`}>
                 <a 
                   href={`https://wa.me/${settings.wa_number}`} 
                   target="_blank" 
@@ -166,25 +166,27 @@ const Contact = () => {
           </motion.div>
 
           {/* Right Column (Map) */}
-          <motion.div 
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="w-full lg:w-2/3 h-[400px] lg:h-auto rounded-2xl overflow-hidden shadow-inner border border-slate-200 relative group"
-          >
-            <div className="absolute inset-0 bg-[#273554]/5 group-hover:bg-transparent transition-colors duration-500 pointer-events-none z-10" />
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126906.84074251261!2d106.66699313930107!3d-6.427670989397689!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69e6b432a27ea7%3A0x6b29d89163e8a6d6!2sParung%2C%20Bogor%20Regency%2C%20West%20Java!5e0!3m2!1sen!2sid!4v1714562000000!5m2!1sen!2sid" 
-              width="100%" 
-              height="100%" 
-              style={{ border: 0, minHeight: '400px' }} 
-              allowFullScreen="" 
-              loading="lazy" 
-              referrerPolicy="no-referrer-when-downgrade"
-              className="w-full h-full"
-            ></iframe>
-          </motion.div>
+          {settings?.map_embed_url && (
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="w-full lg:w-2/3 h-[400px] lg:h-auto rounded-2xl overflow-hidden shadow-inner border border-slate-200 relative group"
+            >
+              <div className="absolute inset-0 bg-[#273554]/5 group-hover:bg-transparent transition-colors duration-500 pointer-events-none z-10" />
+              <iframe 
+                src={settings.map_embed_url} 
+                width="100%" 
+                height="100%" 
+                style={{ border: 0, minHeight: '400px' }} 
+                allowFullScreen="" 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full"
+              ></iframe>
+            </motion.div>
+          )}
 
         </div>
       </section>
