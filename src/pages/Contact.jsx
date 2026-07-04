@@ -100,10 +100,12 @@ const Contact = () => {
             transition={{ duration: 0.6 }}
             className="w-full lg:w-1/3 flex flex-col items-center lg:items-start text-center lg:text-left"
           >
-            <h3 className="text-2xl md:text-3xl font-extrabold text-[#273554] mb-10 flex items-center gap-3 justify-center lg:justify-start">
-              <Building2 className="w-8 h-8 text-[#f5a623] hidden lg:block" />
-              Creative Box
-            </h3>
+            {(settings?.address || settings?.email || settings?.wa_number) && (
+              <h3 className="text-2xl md:text-3xl font-extrabold text-[#273554] mb-10 flex items-center gap-3 justify-center lg:justify-start">
+                <Building2 className="w-8 h-8 text-[#f5a623] hidden lg:block" />
+                Creative Box
+              </h3>
+            )}
 
             <div className="space-y-8 w-full">
               {settings?.address && (
@@ -149,16 +151,18 @@ const Contact = () => {
               )}
             </div>
 
-            <div className="mt-12 w-full flex justify-center lg:justify-start">
-              <a 
-                href={`https://wa.me/${settings?.wa_number || '6287772486006'}`} 
-                target="_blank" 
-                rel="noreferrer" 
-                className="w-full sm:w-auto bg-gradient-to-r from-[#f5a623] to-[#e09212] text-white font-extrabold py-4 px-8 rounded-xl shadow-lg shadow-orange-500/30 hover:-translate-y-1 hover:shadow-orange-500/40 transition-all duration-300 text-center"
-              >
-                HUBUNGI VIA WHATSAPP
-              </a>
-            </div>
+            {settings?.wa_number && (
+              <div className="mt-12 w-full flex justify-center lg:justify-start">
+                <a 
+                  href={`https://wa.me/${settings.wa_number}`} 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="w-full sm:w-auto bg-gradient-to-r from-[#f5a623] to-[#e09212] text-white font-extrabold py-4 px-8 rounded-xl shadow-lg shadow-orange-500/30 hover:-translate-y-1 hover:shadow-orange-500/40 transition-all duration-300 text-center"
+                >
+                  HUBUNGI VIA WHATSAPP
+                </a>
+              </div>
+            )}
           </motion.div>
 
           {/* Right Column (Map) */}
