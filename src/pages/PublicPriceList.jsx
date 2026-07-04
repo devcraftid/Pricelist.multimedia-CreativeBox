@@ -66,7 +66,7 @@ export default function PublicPriceList() {
         {loading ? (
           <div className="text-center py-20 text-slate-500 font-medium flex flex-col items-center justify-center">
             <div className="w-10 h-10 border-4 border-[#273554]/20 border-t-[#273554] rounded-full animate-spin mb-4" />
-            Loading paket harga premium...
+            Loading paket harga...
           </div>
         ) : activeItems.length === 0 ? (
           <div className="text-center py-20 bg-white/50 backdrop-blur-md border border-white/60 shadow-xl rounded-2xl text-gray-500">
