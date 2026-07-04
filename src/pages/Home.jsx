@@ -164,17 +164,15 @@ const Home = () => {
             </Link>
           </div>
 
-          <div className="w-full lg:w-3/5 p-10 md:p-16 grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12 bg-white">
+          <div className="w-full lg:w-3/5 p-10 md:p-16 grid grid-cols-1 sm:grid-cols-2 gap-10 md:gap-14 bg-white">
             {displayAdvantages.slice(0, 4).map((adv, idx) => {
               const icons = [ShieldCheck, Zap, Trophy, Users];
               const Icon = icons[idx % icons.length];
               return (
-                <div key={idx} className="relative group">
-                  <div className="w-14 h-14 bg-[#1b253b] rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-blue-900/10 group-hover:bg-gradient-to-br group-hover:from-[#f5a623] group-hover:to-[#e09212] group-hover:-translate-y-1 transition-all duration-300">
-                    <Icon className="text-[#f5a623] group-hover:text-white w-7 h-7 transition-colors duration-300" strokeWidth={1.5} />
-                  </div>
-                  <h3 className="text-xl font-extrabold text-[#1b253b] mb-3 group-hover:text-[#f5a623] transition-colors">{adv.title}</h3>
-                  <p className="text-slate-500 text-sm leading-relaxed font-medium">{adv.description}</p>
+                <div key={idx} className="flex flex-col items-start">
+                  <Icon className="text-[#273554] w-9 h-9 mb-4 opacity-90" strokeWidth={1.2} />
+                  <h3 className="text-lg md:text-xl font-extrabold text-[#1b253b] mb-2.5 leading-tight">{adv.title}</h3>
+                  <p className="text-slate-500/90 text-sm md:text-base leading-relaxed">{adv.description}</p>
                 </div>
               );
             })}

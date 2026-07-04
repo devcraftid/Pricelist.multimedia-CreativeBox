@@ -141,8 +141,8 @@ const About = () => {
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 className="flex items-start gap-6 group"
               >
-                <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-[#f5a623] to-yellow-400 rounded-2xl flex items-center justify-center shadow-lg shadow-yellow-500/20 group-hover:scale-110 transition-transform duration-300">
-                  <ShieldCheck className="w-8 h-8 text-white" />
+                <div className="flex-shrink-0 mt-1">
+                  <ShieldCheck className="w-9 h-9 text-[#f5a623] opacity-90" strokeWidth={1.2} />
                 </div>
                 <div>
                   <h4 className="text-xl font-bold text-[#273554] mb-2">{feat.title}</h4>
