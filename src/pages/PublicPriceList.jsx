@@ -48,7 +48,7 @@ export default function PublicPriceList() {
   };
 
   const handlePesan = (item) => {
-    const text = encodeURIComponent(`Halo Admin multimedia Creative Box, saya melihat penawaran di website dan tertarik untuk memesan:\n\n*Kategori:* ${item.category}\n*Paket/Item:* ${item.name}\n*Harga:* Rp. ${item.price}\n\nApakah saya bisa mendapatkan informasi lebih detail mengenai ketersediaan dan prosedur pemesanannya? Terima kasih.`);
+    const text = encodeURIComponent(`Halo Admin Multimedia Creative Box, saya melihat penawaran di website dan tertarik untuk memesan:\n\n*Kategori:* ${item.category}\n*Paket/Item:* ${item.name}\n*Harga:* Rp. ${item.price}\n\nApakah saya bisa mendapatkan informasi lebih detail mengenai ketersediaan dan prosedur pemesanannya? Terima kasih.`);
     window.open(`https://wa.me/6287772486006?text=${text}`, '_blank');
   };
 
@@ -56,7 +56,7 @@ export default function PublicPriceList() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 text-slate-800 font-sans pt-12 md:pt-16 pb-20 relative overflow-hidden">
-      
+
       {/* Decorative Background Elements for HD feel */}
       <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-[#273554]/5 to-transparent z-0 pointer-events-none" />
       <div className="absolute top-20 -right-40 w-96 h-96 bg-[#f5a623]/10 rounded-full blur-3xl z-0 pointer-events-none" />
@@ -76,38 +76,38 @@ export default function PublicPriceList() {
           <div className="space-y-24">
             <section>
               <div className="text-center mb-16">
-                <motion.h2 
+                <motion.h2
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="text-4xl md:text-5xl font-extrabold mb-4 uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#273554] to-[#f5a623]"
                 >
                   PRICELIST {activeTab}
                 </motion.h2>
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.2 }}
                   className="h-1 w-24 bg-gradient-to-r from-[#273554] to-[#f5a623] mx-auto rounded-full"
                 />
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-10">
                 {activeItems.map((item, index) => {
                   const colorTheme = COLORS[index % COLORS.length];
-                  
+
                   if (item.image_url) {
                     return (
-                      <motion.div 
-                        key={item.id} 
+                      <motion.div
+                        key={item.id}
                         initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: index * 0.1, type: "spring", stiffness: 100 }}
                         className="bg-white/80 backdrop-blur-lg border border-white shadow-xl shadow-slate-200/50 rounded-2xl p-5 hover:-translate-y-2 transition-transform duration-300 group flex flex-col"
                       >
                         <div className="overflow-hidden bg-slate-100 mb-5 aspect-video relative rounded-xl shadow-inner">
-                          <img 
-                            src={item.image_url} 
-                            alt={item.name} 
+                          <img
+                            src={item.image_url}
+                            alt={item.name}
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                           />
                           {item.ribbon && (
@@ -118,10 +118,10 @@ export default function PublicPriceList() {
                         </div>
                         <h4 className="font-extrabold text-slate-800 text-xl tracking-tight mb-1">{item.name}</h4>
                         {item.subtitle && <p className="text-sm text-slate-500 font-medium mb-3">{item.subtitle}</p>}
-                        
+
                         <div className="mt-auto pt-4 flex items-center justify-between border-t border-slate-100">
                           <p className={`text-xl font-extrabold ${colorTheme.text}`}>Rp {item.price}</p>
-                          <button 
+                          <button
                             onClick={() => handlePesan(item)}
                             className="bg-[#273554] hover:bg-[#1d2740] text-white font-bold py-2 px-5 rounded-lg transition-all shadow-md hover:shadow-lg text-sm"
                           >
@@ -133,8 +133,8 @@ export default function PublicPriceList() {
                   }
 
                   return (
-                    <motion.div 
-                      key={item.id} 
+                    <motion.div
+                      key={item.id}
                       initial={{ opacity: 0, y: 50 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: index * 0.1, type: "spring", stiffness: 100 }}
@@ -145,14 +145,14 @@ export default function PublicPriceList() {
                           {item.ribbon}
                         </div>
                       )}
-                      
+
                       {/* Premium Header */}
                       <div className={`${colorTheme.grad} text-white text-center py-8 px-6 relative overflow-hidden`}>
                         <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         <h3 className="text-2xl font-extrabold tracking-tight relative z-10 drop-shadow-md">{item.name}</h3>
                         <p className="text-sm mt-1.5 font-medium opacity-90 relative z-10">{item.subtitle}</p>
                       </div>
-                      
+
                       <div className="text-center py-8 bg-gradient-to-b from-slate-50 to-white relative">
                         <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-white rounded-full flex items-center justify-center shadow-inner">
                           <div className={`w-2 h-2 rounded-full ${colorTheme.grad}`} />
@@ -176,7 +176,7 @@ export default function PublicPriceList() {
                       </div>
 
                       <div className="p-8 pt-0 text-center mt-auto bg-white">
-                        <button 
+                        <button
                           onClick={() => handlePesan(item)}
                           className={`${colorTheme.btn} text-white font-extrabold py-3.5 px-8 text-sm transition-all rounded-xl w-full shadow-lg ${colorTheme.shadow} hover:opacity-90 hover:scale-[1.02] active:scale-95 tracking-wider`}
                         >
@@ -192,7 +192,7 @@ export default function PublicPriceList() {
               </div>
             </section>
 
-            <motion.section 
+            <motion.section
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
