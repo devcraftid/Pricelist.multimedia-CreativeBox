@@ -51,18 +51,18 @@ const Navbar = () => {
         <div className="flex justify-between items-center">
           
           {/* Logo Section */}
-          <div className="flex items-center space-x-3 sm:space-x-4">
+          <div className="flex items-center space-x-2 sm:space-x-4">
             <Link to="/" className="flex-shrink-0 flex items-center group">
               <img 
                 src="/admin-logo.png" 
                 alt="Logo Creative Box" 
-                className="h-10 md:h-12 object-contain filter invert brightness-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-105" 
+                className="h-14 sm:h-16 md:h-20 object-contain filter invert brightness-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-105" 
               />
             </Link>
             
-            <div className="hidden sm:block text-white border-l border-white/20 pl-4 ml-2">
-              <h1 className="font-extrabold text-sm md:text-base leading-tight text-white tracking-wide">MULTIMEDIA CREATIVE BOX</h1>
-              <p className="text-[10px] md:text-xs text-blue-200/80 uppercase tracking-widest font-semibold mt-0.5">Production Services</p>
+            <div className="block text-white border-l border-white/20 pl-2 sm:pl-4 ml-1 sm:ml-2">
+              <h1 className="font-extrabold text-[11px] sm:text-sm md:text-base leading-tight text-white tracking-wide">MULTIMEDIA CREATIVE BOX</h1>
+              <p className="text-[8px] sm:text-[10px] md:text-xs text-blue-200/80 uppercase tracking-widest font-semibold mt-0.5">Production Services</p>
             </div>
           </div>
           
