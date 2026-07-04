@@ -112,9 +112,8 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-extrabold text-slate-800 text-lg mb-2">Address:</h4>
-                  <p className="text-slate-600 font-medium leading-relaxed max-w-xs">
-                    Jl Kyai Jenggot Naga, RT 002/005 Parung Kab Bogor<br />
-                    Jawa Barat kodepos 16330
+                  <p className="text-slate-600 font-medium leading-relaxed max-w-xs whitespace-pre-wrap">
+                    {settings?.address || ''}
                   </p>
                 </div>
               </div>
@@ -126,7 +125,7 @@ const Contact = () => {
                 <div>
                   <h4 className="font-extrabold text-slate-800 text-lg mb-2">Phone:</h4>
                   <p className="text-slate-600 font-medium leading-relaxed max-w-xs">
-                    {settings?.wa_number ? `+${settings.wa_number}` : '(0813) 9839 9060'}
+                    {settings?.wa_number ? `+${settings.wa_number}` : ''}
                   </p>
                 </div>
               </div>
@@ -137,9 +136,8 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-extrabold text-slate-800 text-lg mb-2">Email:</h4>
-                  <p className="text-slate-600 font-medium leading-relaxed max-w-xs">
-                    admin@multicam.id<br />
-                    admin@livecam.id
+                  <p className="text-slate-600 font-medium leading-relaxed max-w-xs whitespace-pre-wrap">
+                    {settings?.email || ''}
                   </p>
                 </div>
               </div>
