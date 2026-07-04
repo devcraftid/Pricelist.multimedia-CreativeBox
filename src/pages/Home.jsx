@@ -165,17 +165,12 @@ const Home = () => {
           </div>
 
           <div className="w-full lg:w-3/5 p-10 md:p-16 grid grid-cols-1 sm:grid-cols-2 gap-10 md:gap-14 bg-white">
-            {displayAdvantages.slice(0, 4).map((adv, idx) => {
-              const icons = [ShieldCheck, Zap, Trophy, Users];
-              const Icon = icons[idx % icons.length];
-              return (
-                <div key={idx} className="flex flex-col items-start">
-                  <Icon className="text-[#273554] w-9 h-9 mb-4 opacity-90" strokeWidth={1.2} />
-                  <h3 className="text-lg md:text-xl font-extrabold text-[#1b253b] mb-2.5 leading-tight">{adv.title}</h3>
-                  <p className="text-slate-500/90 text-sm md:text-base leading-relaxed">{adv.description}</p>
-                </div>
-              );
-            })}
+            {displayAdvantages.slice(0, 4).map((adv, idx) => (
+              <div key={idx} className="flex flex-col items-start">
+                <h3 className="text-lg md:text-xl font-extrabold text-[#1b253b] mb-2.5 leading-tight">{adv.title}</h3>
+                <p className="text-slate-500/90 text-sm md:text-base leading-relaxed">{adv.description}</p>
+              </div>
+            ))}
           </div>
         </motion.div>
       </section>

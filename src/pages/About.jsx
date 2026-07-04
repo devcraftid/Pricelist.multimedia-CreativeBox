@@ -139,11 +139,8 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="flex items-start gap-6 group"
+                className="group"
               >
-                <div className="flex-shrink-0 mt-1">
-                  <ShieldCheck className="w-9 h-9 text-[#f5a623] opacity-90" strokeWidth={1.2} />
-                </div>
                 <div>
                   <h4 className="text-xl font-bold text-[#273554] mb-2">{feat.title}</h4>
                   <p className="text-slate-500 leading-relaxed text-sm">{feat.description}</p>
