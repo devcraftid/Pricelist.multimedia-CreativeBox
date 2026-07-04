@@ -50,8 +50,8 @@ export default function AdminLogin() {
         <div className="bg-white/10 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-8 sm:p-10">
           
           <div className="flex flex-col items-center mb-10">
-            <div className="bg-white p-3 rounded-2xl shadow-lg mb-6 w-24 h-24 flex items-center justify-center transform -rotate-2 hover:rotate-0 transition-transform duration-300">
-              <img src="/admin-logo.png" alt="Logo" className="w-full h-full object-contain" />
+            <div className="mb-6 w-32 h-24 flex items-center justify-center transform transition-transform duration-300">
+              <img src="/admin-logo.png" alt="Logo" className="w-full h-full object-contain filter invert brightness-0" />
             </div>
             <h2 className="text-3xl font-extrabold text-white tracking-tight">Admin Portal</h2>
             <p className="text-blue-100/70 mt-2 font-medium">Masuk untuk mengelola konten website</p>
