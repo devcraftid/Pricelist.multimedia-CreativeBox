@@ -62,8 +62,10 @@ export default function AdminLayout() {
     <div className="min-h-screen bg-slate-50 flex">
       {/* Mobile Top Bar */}
       <div className="md:hidden fixed top-0 left-0 w-full bg-slate-900 text-white z-50 flex justify-between items-center px-4 py-3 shadow-md">
-        <div className="flex items-center gap-2">
-          <img src="/logo.png" alt="Logo" className="h-8 object-contain filter invert opacity-90" />
+        <div className="flex items-center gap-3">
+          <div className="bg-white p-1 rounded shadow-sm">
+            <img src="/admin-logo.png" alt="Logo" className="h-7 object-contain" />
+          </div>
           <h1 className="text-xl font-bold tracking-tight">Admin</h1>
         </div>
         <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="p-2 bg-slate-800 rounded">
@@ -82,7 +84,9 @@ export default function AdminLayout() {
       {/* Sidebar */}
       <aside className={`w-64 bg-slate-900 text-slate-300 flex flex-col fixed h-full z-50 transition-transform duration-300 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
         <div className="p-6 hidden md:flex items-center gap-3">
-          <img src="/logo.png" alt="Logo" className="h-10 object-contain filter invert opacity-90" />
+          <div className="bg-white p-1.5 rounded-lg shadow-sm">
+            <img src="/admin-logo.png" alt="Logo" className="h-8 object-contain" />
+          </div>
           <h1 className="text-xl font-bold text-white tracking-tight">Admin</h1>
         </div>
         <div className="p-6 md:hidden flex justify-end">
