@@ -57,7 +57,7 @@ const Contact = () => {
     <div className="w-full bg-slate-50 font-sans overflow-hidden">
       
       {/* HERO SECTION */}
-      <section className="relative w-full h-[400px] md:h-[500px] flex items-center justify-center bg-[#273554] overflow-hidden">
+      <section className="relative w-full h-[250px] md:h-[300px] flex items-center justify-center bg-[#273554] overflow-hidden">
         <div 
           className="absolute inset-0 z-0 opacity-40 bg-cover bg-center mix-blend-overlay"
           style={{ backgroundImage: `url('${heroBg}')` }}
