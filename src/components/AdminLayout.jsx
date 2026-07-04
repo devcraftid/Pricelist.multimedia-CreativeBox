@@ -13,13 +13,11 @@ export default function AdminLayout() {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
 
   useEffect(() => {
-    // Check initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setIsAuthenticated(!!session);
       if (!session) navigate('/admin/login');
     });
 
-    // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setIsAuthenticated(!!session);
       if (!session) navigate('/admin/login');
@@ -34,7 +32,7 @@ export default function AdminLayout() {
   };
 
   if (isAuthenticated === null) {
-    return <div className="min-h-screen flex items-center justify-center bg-slate-50"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div>;
+    return <div className="min-h-screen flex items-center justify-center bg-slate-50"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#1b253b]"></div></div>;
   }
 
   if (!isAuthenticated) {
@@ -59,14 +57,13 @@ export default function AdminLayout() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex">
+    <div className="min-h-screen bg-slate-50 flex font-sans">
       {/* Mobile Top Bar */}
-      <div className="md:hidden fixed top-0 left-0 w-full bg-slate-900 text-white z-50 flex justify-between items-center px-4 py-3 shadow-md">
+      <div className="md:hidden fixed top-0 left-0 w-full bg-[#1b253b] text-white z-50 flex justify-between items-center px-4 py-3 shadow-md">
         <div className="flex items-center gap-3">
           <img src="/admin-logo.png" alt="Logo" className="h-7 object-contain filter invert brightness-0 opacity-90" />
-          <h1 className="text-xl font-bold tracking-tight">Admin</h1>
         </div>
-        <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="p-2 bg-slate-800 rounded">
+        <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="p-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors">
           {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
@@ -74,22 +71,21 @@ export default function AdminLayout() {
       {/* Sidebar Overlay */}
       {isSidebarOpen && (
         <div 
-          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          className="fixed inset-0 bg-[#1b253b]/50 backdrop-blur-sm z-40 md:hidden"
           onClick={() => setIsSidebarOpen(false)}
         />
       )}
 
       {/* Sidebar */}
-      <aside className={`w-64 bg-slate-900 text-slate-300 flex flex-col fixed h-full z-50 transition-transform duration-300 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
-        <div className="p-6 hidden md:flex items-center gap-3">
-          <img src="/admin-logo.png" alt="Logo" className="h-10 object-contain filter invert brightness-0 opacity-90" />
-          <h1 className="text-xl font-bold text-white tracking-tight">Admin</h1>
+      <aside className={`w-64 bg-[#1b253b] text-slate-300 flex flex-col fixed h-full z-50 transition-transform duration-300 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'} shadow-2xl`}>
+        <div className="p-6 hidden md:flex items-center gap-3 border-b border-white/5">
+          <img src="/admin-logo.png" alt="Logo" className="h-8 object-contain filter invert brightness-0 opacity-100" />
         </div>
         <div className="p-6 md:hidden flex justify-end">
-           <button onClick={() => setIsSidebarOpen(false)}><X size={24} className="text-white"/></button>
+           <button onClick={() => setIsSidebarOpen(false)} className="bg-white/10 p-2 rounded-lg"><X size={20} className="text-white"/></button>
         </div>
         
-        <nav className="flex-1 px-4 mt-2 md:mt-0 overflow-y-auto pb-4">
+        <nav className="flex-1 px-4 mt-6 overflow-y-auto pb-4 custom-scrollbar">
           <div className="space-y-1">
             {navItems.map((item, idx) => {
               const isActive = location.pathname === item.path || (item.path !== '/admin' && location.pathname.startsWith(item.path));
@@ -99,31 +95,31 @@ export default function AdminLayout() {
                   <Link 
                     to={item.path} 
                     onClick={() => setIsSidebarOpen(false)}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-colors ${isActive ? 'bg-[#f5a623] text-slate-900 shadow-sm' : 'hover:bg-slate-800 hover:text-white text-slate-400'}`}
+                    className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-all duration-200 group ${isActive ? 'bg-[#f5a623]/10 text-[#f5a623] font-bold' : 'hover:bg-white/5 hover:text-white text-slate-400 font-medium'}`}
                   >
-                    <Icon size={18} />
+                    <Icon size={18} className={`${isActive ? 'text-[#f5a623]' : 'text-slate-500 group-hover:text-white'} transition-colors`} />
                     {item.name}
                   </Link>
-                  {item.divider && <div className="h-px bg-slate-800 my-4 mx-2" />}
+                  {item.divider && <div className="h-px bg-white/5 my-4 mx-2" />}
                 </React.Fragment>
               );
             })}
           </div>
         </nav>
         
-        <div className="p-4 border-t border-slate-800">
+        <div className="p-4 border-t border-white/5">
           <button 
             onClick={handleLogout}
-            className="flex items-center gap-3 px-4 py-3 w-full hover:bg-slate-800 hover:text-white rounded-xl font-medium transition-colors text-left"
+            className="flex items-center gap-3 px-4 py-3 w-full hover:bg-red-500/10 text-slate-400 hover:text-red-400 rounded-lg text-sm font-bold transition-colors text-left"
           >
-            <LogOut size={20} />
-            Keluar
+            <LogOut size={18} />
+            Keluar Sistem
           </button>
         </div>
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 md:ml-64 p-4 sm:p-8 pt-20 md:pt-8 min-w-0">
+      <main className="flex-1 md:ml-64 p-4 sm:p-8 pt-20 md:pt-8 min-w-0 bg-slate-50/50">
         <Outlet />
       </main>
     </div>
