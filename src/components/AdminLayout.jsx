@@ -3,7 +3,7 @@ import { Outlet, Navigate, useNavigate, Link, useLocation } from 'react-router-d
 import { supabase } from '../lib/supabase';
 import { 
   LayoutDashboard, LogOut, Settings, LayoutList, 
-  Camera, Users, HelpCircle, Inbox, Menu, X, Image, Tag
+  Camera, Users, HelpCircle, Inbox, Menu, X, Image, Tag, Star, Info
 } from 'lucide-react';
 
 export default function AdminLayout() {
@@ -42,22 +42,30 @@ export default function AdminLayout() {
   }
 
   const navItems = [
-    { name: 'Dashboard', path: '/admin', icon: LayoutDashboard },
-    { name: 'Pengaturan Situs', path: '/admin/settings', icon: Settings },
-    { name: 'Layanan Kami', path: '/admin/services', icon: LayoutList },
-    { name: 'Project Galeri', path: '/admin/projects', icon: Image },
-    { name: 'Paket Harga', path: '/admin/pricelist', icon: Tag },
-    { name: 'Rental Equipment', path: '/admin/equipments', icon: Camera },
-    { name: 'Klien', path: '/admin/clients', icon: Users },
-    { name: 'FAQ', path: '/admin/faqs', icon: HelpCircle },
-    { name: 'Pesan Masuk', path: '/admin/inbox', icon: Inbox },
+    { name: 'Dashboard', path: '/admin', icon: LayoutDashboard, divider: false },
+    { name: 'Pengaturan Umum', path: '/admin/settings', icon: Settings, divider: true },
+    
+    { name: 'Tentang Kami', path: '/admin/about', icon: Info, divider: false },
+    { name: 'Keunggulan Kami', path: '/admin/advantages', icon: Star, divider: false },
+    { name: 'Layanan Kami', path: '/admin/services', icon: LayoutList, divider: false },
+    { name: 'Paket Harga', path: '/admin/pricelist', icon: Tag, divider: false },
+    { name: 'FAQ (Tanya Jawab)', path: '/admin/faqs', icon: HelpCircle, divider: true },
+
+    { name: 'Project Galeri', path: '/admin/projects', icon: Image, divider: false },
+    { name: 'Logo Klien', path: '/admin/clients', icon: Users, divider: false },
+    { name: 'Rental Equipment', path: '/admin/equipments', icon: Camera, divider: true },
+
+    { name: 'Pesan Masuk', path: '/admin/inbox', icon: Inbox, divider: false },
   ];
 
   return (
     <div className="min-h-screen bg-slate-50 flex">
       {/* Mobile Top Bar */}
       <div className="md:hidden fixed top-0 left-0 w-full bg-slate-900 text-white z-50 flex justify-between items-center px-4 py-3 shadow-md">
-        <h1 className="text-xl font-bold tracking-tight">CreativeBox<span className="text-primary">.Admin</span></h1>
+        <div className="flex items-center gap-2">
+          <img src="/logo.png" alt="Logo" className="h-8 object-contain filter invert opacity-90" />
+          <h1 className="text-xl font-bold tracking-tight">Admin</h1>
+        </div>
         <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="p-2 bg-slate-800 rounded">
           {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
@@ -73,29 +81,34 @@ export default function AdminLayout() {
 
       {/* Sidebar */}
       <aside className={`w-64 bg-slate-900 text-slate-300 flex flex-col fixed h-full z-50 transition-transform duration-300 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
-        <div className="p-6 hidden md:block">
-          <h1 className="text-xl font-bold text-white tracking-tight">CreativeBox<span className="text-primary">.Admin</span></h1>
+        <div className="p-6 hidden md:flex items-center gap-3">
+          <img src="/logo.png" alt="Logo" className="h-10 object-contain filter invert opacity-90" />
+          <h1 className="text-xl font-bold text-white tracking-tight">Admin</h1>
         </div>
         <div className="p-6 md:hidden flex justify-end">
            <button onClick={() => setIsSidebarOpen(false)}><X size={24} className="text-white"/></button>
         </div>
         
-        <nav className="flex-1 px-4 space-y-2 mt-4 md:mt-0 overflow-y-auto">
-          {navItems.map((item) => {
-            const isActive = location.pathname === item.path || (item.path !== '/admin' && location.pathname.startsWith(item.path));
-            const Icon = item.icon;
-            return (
-              <Link 
-                key={item.name}
-                to={item.path} 
-                onClick={() => setIsSidebarOpen(false)}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-colors ${isActive ? 'bg-[#f5a623] text-slate-900' : 'hover:bg-slate-800 hover:text-white'}`}
-              >
-                <Icon size={20} />
-                {item.name}
-              </Link>
-            );
-          })}
+        <nav className="flex-1 px-4 mt-2 md:mt-0 overflow-y-auto pb-4">
+          <div className="space-y-1">
+            {navItems.map((item, idx) => {
+              const isActive = location.pathname === item.path || (item.path !== '/admin' && location.pathname.startsWith(item.path));
+              const Icon = item.icon;
+              return (
+                <React.Fragment key={item.name}>
+                  <Link 
+                    to={item.path} 
+                    onClick={() => setIsSidebarOpen(false)}
+                    className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-colors ${isActive ? 'bg-[#f5a623] text-slate-900 shadow-sm' : 'hover:bg-slate-800 hover:text-white text-slate-400'}`}
+                  >
+                    <Icon size={18} />
+                    {item.name}
+                  </Link>
+                  {item.divider && <div className="h-px bg-slate-800 my-4 mx-2" />}
+                </React.Fragment>
+              );
+            })}
+          </div>
         </nav>
         
         <div className="p-4 border-t border-slate-800">

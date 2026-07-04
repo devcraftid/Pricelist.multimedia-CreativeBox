@@ -12,6 +12,8 @@ import AdminLogin from './pages/AdminLogin';
 import AdminLayout from './components/AdminLayout';
 
 import AdminSettings from './pages/admin/AdminSettings';
+import AdminAbout from './pages/admin/AdminAbout';
+import AdminAdvantages from './pages/admin/AdminAdvantages';
 import AdminServices from './pages/admin/AdminServices';
 import AdminProjects from './pages/admin/AdminProjects';
 import AdminPriceList from './pages/admin/AdminPriceList';
@@ -40,6 +42,8 @@ function App() {
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<AdminDashboard />} />
           <Route path="settings" element={<AdminSettings />} />
+          <Route path="about" element={<AdminAbout />} />
+          <Route path="advantages" element={<AdminAdvantages />} />
           <Route path="services" element={<AdminServices />} />
           <Route path="projects" element={<AdminProjects />} />
           <Route path="pricelist" element={<AdminPriceList />} />

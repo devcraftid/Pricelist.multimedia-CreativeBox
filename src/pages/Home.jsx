@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CheckCircle2, ChevronRight } from 'lucide-react';
+import { CheckCircle2, ChevronRight, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { motion } from 'framer-motion';
@@ -10,6 +10,7 @@ const Home = () => {
   const [equipments, setEquipments] = useState([]);
   const [clients, setClients] = useState([]);
   const [faqs, setFaqs] = useState([]);
+  const [advantages, setAdvantages] = useState([]);
   const [loading, setLoading] = useState(true);
 
   // Form State
@@ -28,13 +29,15 @@ const Home = () => {
         { data: servicesData },
         { data: equipmentsData },
         { data: clientsData },
-        { data: faqsData }
+        { data: faqsData },
+        { data: advData }
       ] = await Promise.all([
         supabase.from('site_settings').select('*').limit(1),
         supabase.from('services').select('*').order('order_index', { ascending: true }),
         supabase.from('rental_equipments').select('*').order('order_index', { ascending: true }),
         supabase.from('clients').select('*').order('order_index', { ascending: true }),
-        supabase.from('faqs').select('*').order('order_index', { ascending: true })
+        supabase.from('faqs').select('*').order('order_index', { ascending: true }),
+        supabase.from('advantages').select('*').order('order_index', { ascending: true })
       ]);
 
       if (settingsData && settingsData.length > 0) setSettings(settingsData[0]);
@@ -42,6 +45,7 @@ const Home = () => {
       if (equipmentsData) setEquipments(equipmentsData);
       if (clientsData) setClients(clientsData);
       if (faqsData) setFaqs(faqsData);
+      if (advData) setAdvantages(advData);
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
@@ -69,6 +73,14 @@ const Home = () => {
   }
 
   const heroBg = settings?.hero_image_url || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600&q=80';
+
+  // Fallback advantages if none
+  const displayAdvantages = advantages.length > 0 ? advantages : [
+    { title: "Terpercaya", description: "Dipakai perusahaan Lokal, Nasional dan internasional. swasta maupun pemerintah" },
+    { title: "Pengalaman", description: "Lebih dari 5 Tahun dalam Menangani Live Event" },
+    { title: "Terjangkau", description: "dengan harga bersaing, anda dapat menghemat budged acara event anda" },
+    { title: "Berkualitas", description: "Di dukung oleh Crew dan peralatan yang expert dan memadai" }
+  ];
 
   return (
     <div className="w-full">
@@ -113,7 +125,7 @@ const Home = () => {
         </motion.div>
       </section>
 
-      {/* WHY CHOOSE US SECTION (Static content for now, or can be made dynamic later) */}
+      {/* WHY CHOOSE US SECTION */}
       <section className="w-full bg-[#f8f9fa] pt-12 md:pt-16 pb-16 md:pb-20 px-4 sm:px-6 lg:px-8">
         <motion.div 
           initial={{ opacity: 0, y: 40 }}
@@ -142,22 +154,12 @@ const Home = () => {
             </div>
           </div>
           <div className="w-full md:w-1/2 bg-white grid grid-cols-1 sm:grid-cols-2 text-[#273554]">
-            <div className="p-10 border-r border-b border-gray-200">
-              <h3 className="text-xl font-bold mb-3">Terpercaya</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">Dipakai perusahaan Lokal, Nasional dan internasional. swasta maupun pemerintah</p>
-            </div>
-            <div className="p-10 border-b border-gray-200">
-              <h3 className="text-xl font-bold mb-3">Pengalaman</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">Lebih dari 5 Tahun dalam Menangani Live Event</p>
-            </div>
-            <div className="p-10 border-r border-gray-200">
-              <h3 className="text-xl font-bold mb-3">Terjangkau</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">dengan harga bersaing, anda dapat menghemat budged acara event anda</p>
-            </div>
-            <div className="p-10">
-              <h3 className="text-xl font-bold mb-3">Berkualitas</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">Di dukung oleh Crew dan peralatan yang expert dan memadai</p>
-            </div>
+            {displayAdvantages.slice(0, 4).map((adv, idx) => (
+              <div key={idx} className={`p-10 border-gray-200 ${idx === 0 ? 'border-r border-b' : idx === 1 ? 'border-b' : idx === 2 ? 'border-r' : ''}`}>
+                <h3 className="text-xl font-bold mb-3">{adv.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{adv.description}</p>
+              </div>
+            ))}
           </div>
         </motion.div>
       </section>
@@ -266,10 +268,10 @@ const Home = () => {
           <div className="relative z-10 w-full max-w-lg mx-auto md:ml-auto md:mr-0">
             <h3 className="text-[#f5a623] font-bold text-sm mb-3">Acara Sukses tanpa biaya mahal</h3>
             <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-6 leading-tight">
-              Harga Terjangkau,<br/>Relatif Murah di<br/>Kelasnya!
+              Kualitas Terbaik,<br/>Relatif Murah di<br/>Kelasnya!
             </h2>
             <p className="text-gray-300 text-sm leading-relaxed mb-8 max-w-md">
-              Kami memberikan Harga yang terjangkau untuk setiap kalangan dan kelas perusahaan, kami bisa memberikan layanan sesuai dengan budged Klien, sehingga multimedia tidak terlalu membebani Biaya Pengeluaran Acara anda.
+              Kami memberikan layanan yang terjangkau untuk setiap kalangan dan kelas perusahaan. Kami bisa menyesuaikan dengan budget klien, sehingga dokumentasi tidak terlalu membebani biaya pengeluaran acara Anda.
             </p>
             <Link to="/price-list" className="inline-block text-center bg-[#f5a623] text-gray-900 font-bold py-3 px-8 text-sm hover:bg-yellow-500 transition-colors">
               SELENGKAPNYA
@@ -287,22 +289,15 @@ const Home = () => {
           <div className="relative z-10 text-gray-900 w-full max-w-lg mx-auto md:ml-0 md:mr-auto">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">Keunggulan kami</h2>
             <p className="text-sm font-medium mb-8 max-w-md">
-              Kami siap memiliki keunggulan dalam menangani acara-acara besar menengah ataupun sederhana
+              Kami siap memberikan layanan unggulan untuk menangani acara-acara besar menengah ataupun sederhana
             </p>
             
             <ul className="space-y-6">
-              <li className="flex items-center font-bold text-lg">
-                <CheckCircle2 className="w-6 h-6 mr-4 text-[#273554]" /> Harga Terjangkau
-              </li>
-              <li className="flex items-center font-bold text-lg">
-                <CheckCircle2 className="w-6 h-6 mr-4 text-[#273554]" /> Berpengalaman
-              </li>
-              <li className="flex items-center font-bold text-lg">
-                <CheckCircle2 className="w-6 h-6 mr-4 text-[#273554]" /> Layanan Terlengkap
-              </li>
-              <li className="flex items-center font-bold text-lg">
-                <CheckCircle2 className="w-6 h-6 mr-4 text-[#273554]" /> Kerjasama yang Flexible
-              </li>
+              {displayAdvantages.slice(0, 4).map((item, idx) => (
+                <li key={item.id || idx} className="flex items-center font-bold text-lg">
+                  <CheckCircle2 className="w-6 h-6 mr-4 text-[#273554] shrink-0" /> {item.title}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -312,7 +307,7 @@ const Home = () => {
       <section className="w-full py-16 bg-white text-center">
         <h2 className="text-3xl md:text-4xl font-extrabold text-[#273554]">
           Hubungi Kami di :<br />
-          {settings?.wa_number || '+62 877-7248-6006'}
+          {settings?.wa_number ? `+${settings.wa_number}` : ''}
         </h2>
       </section>
 
@@ -384,7 +379,6 @@ const Home = () => {
                   <div key={faq.id} className="border-b border-gray-200">
                     <button className="w-full flex justify-between items-center p-4 text-left font-bold text-sm text-[#273554]">
                       <span>{i + 1}. {faq.question}</span>
-                      {/* For simplicity we just show all answers for now or you can make it togglable */}
                     </button>
                     <div className="p-4 pt-0 text-sm text-gray-500 leading-relaxed bg-[#f8f9fa]">
                       {faq.answer}

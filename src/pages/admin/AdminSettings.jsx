@@ -13,7 +13,8 @@ export default function AdminSettings() {
     facebook_url: '',
     instagram_url: '',
     logo_url: '',
-    hero_image_url: ''
+    hero_image_url: '',
+    map_embed_url: ''
   });
   
   const [loading, setLoading] = useState(false);
@@ -86,6 +87,7 @@ export default function AdminSettings() {
             instagram_url: settings.instagram_url,
             logo_url: settings.logo_url,
             hero_image_url: settings.hero_image_url,
+            map_embed_url: settings.map_embed_url,
             updated_at: new Date().toISOString()
           })
           .eq('id', settings.id);
@@ -102,7 +104,8 @@ export default function AdminSettings() {
             facebook_url: settings.facebook_url,
             instagram_url: settings.instagram_url,
             logo_url: settings.logo_url,
-            hero_image_url: settings.hero_image_url
+            hero_image_url: settings.hero_image_url,
+            map_embed_url: settings.map_embed_url
           }]);
         error = insertError;
         // Fetch again to get the new ID
@@ -229,6 +232,11 @@ export default function AdminSettings() {
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1">Link Instagram</label>
               <input type="url" name="instagram_url" value={settings.instagram_url} onChange={handleChange} placeholder="https://instagram.com/..." className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary outline-none" />
+            </div>
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-slate-700 mb-1">Google Maps Embed URL (Iframe src)</label>
+              <input type="url" name="map_embed_url" value={settings.map_embed_url} onChange={handleChange} placeholder="https://www.google.com/maps/embed?pb=..." className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary outline-none" />
+              <p className="text-xs text-slate-500 mt-1">Kosongkan jika Anda belum ingin menampilkan peta di halaman Contact Us.</p>
             </div>
           </div>
         </div>
