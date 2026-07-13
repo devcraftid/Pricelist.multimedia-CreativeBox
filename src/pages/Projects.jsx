@@ -58,6 +58,33 @@ const Projects = () => {
     return <div className="min-h-screen flex items-center justify-center bg-white text-secondary font-bold">Loading Project Updates...</div>;
   }
 
+  const getEmbedUrl = (url) => {
+    if (!url) return '';
+    
+    // YouTube
+    if (url.includes('youtube.com/watch?v=')) {
+      return url.replace('watch?v=', 'embed/');
+    }
+    if (url.includes('youtu.be/')) {
+      return url.replace('youtu.be/', 'www.youtube.com/embed/');
+    }
+    
+    // Instagram
+    if (url.includes('instagram.com')) {
+      let cleanUrl = url.split('?')[0];
+      if (cleanUrl.endsWith('/')) {
+        cleanUrl = cleanUrl.slice(0, -1);
+      }
+      if (!cleanUrl.endsWith('/embed')) {
+        return `${cleanUrl}/embed`;
+      }
+      return cleanUrl;
+    }
+
+    // Default
+    return url;
+  };
+
   return (
     <div className="w-full bg-white pt-32 md:pt-40 pb-20 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -124,7 +151,7 @@ const Projects = () => {
                 {selectedProject.video_url ? (
                   <div className="w-full aspect-video rounded-lg shadow-2xl overflow-hidden bg-black flex items-center justify-center">
                     <iframe
-                      src={selectedProject.video_url.includes('watch?v=') ? selectedProject.video_url.replace('watch?v=', 'embed/') : selectedProject.video_url}
+                      src={getEmbedUrl(selectedProject.video_url)}
                       className="w-full h-full"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
