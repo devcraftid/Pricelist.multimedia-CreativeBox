@@ -272,7 +272,7 @@ const About = () => {
             className="mb-16"
           >
             <h3 className="text-primary font-bold tracking-widest uppercase mb-2">Trust and Worth</h3>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-secondary tracking-tight">Our Clients</h2>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-[#FFFFF0] tracking-tight">Our Clients</h2>
           </motion.div>
           
           {clients.length === 0 ? (
