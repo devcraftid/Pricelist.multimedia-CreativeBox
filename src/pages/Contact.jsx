@@ -87,7 +87,7 @@ const Contact = () => {
           className="text-center mb-16"
         >
           <h3 className="text-primary font-bold text-lg md:text-xl tracking-wide mb-2">Kunjungi Kantor Kami</h3>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-secondary tracking-tight">Contact Details</h2>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-[#FFFFF0] tracking-tight">Contact Details</h2>
         </motion.div>
 
         <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl shadow-blue-900/10 border border-white p-8 md:p-12 lg:p-16 flex flex-col lg:flex-row gap-12 lg:gap-16">
