@@ -101,12 +101,8 @@ const Services = () => {
         ) : (
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
             {clients.map((client) => (
-              <div key={client.id} className="grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100 cursor-pointer">
-                <img 
-                  src={client.logo_url || 'https://placehold.co/200x100?text=Logo'} 
-                  alt={client.name} 
-                  className="max-h-12 md:max-h-16 object-contain" 
-                />
+              <div key={client.id} className="w-28 md:w-36 bg-white p-4 rounded-2xl shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300 flex items-center justify-center aspect-[3/2] border border-slate-100">
+                <img src={client.logo_url || 'https://placehold.co/200x100?text=Logo'} alt={client.name} className="max-w-full max-h-full object-contain" />
               </div>
             ))}
           </div>
