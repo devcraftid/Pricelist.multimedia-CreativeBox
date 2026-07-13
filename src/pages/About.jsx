@@ -83,7 +83,7 @@ const About = () => {
 
       {/* MAIN CONTENT & FEATURES */}
       <section className="py-20 md:py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-20 -mt-10 md:-mt-20">
-        <div className="rounded-3xl p-8 md:p-16 flex flex-col lg:flex-row gap-12 lg:gap-20">
+        <div className="bg-white rounded-3xl shadow-2xl shadow-blue-900/10 border border-slate-100 p-8 md:p-16 flex flex-col lg:flex-row gap-12 lg:gap-20">
           
           {/* Left Column (Main Text) */}
           <div className="w-full lg:w-1/2">
@@ -94,22 +94,22 @@ const About = () => {
               transition={{ duration: 0.6 }}
             >
               <h3 className="text-primary font-bold text-lg md:text-xl mb-3 tracking-wide">About Us</h3>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-[#FFFFF0] mb-8 leading-tight tracking-tight">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-8 leading-tight tracking-tight">
                 {settings?.hero_title || 'Creative Box'}
               </h2>
               
-              <div className="space-y-6 text-slate-300 leading-relaxed font-medium whitespace-pre-wrap">
+              <div className="space-y-6 text-slate-600 leading-relaxed font-medium whitespace-pre-wrap">
                 {aboutData?.company_history || 'Creative Box menyediakan jasa live camera production profesional...'}
                 
                 {aboutData?.vision && (
                   <div className="mt-6">
-                    <h4 className="font-bold text-[#FFFFF0] text-lg mb-2">Visi Kami</h4>
+                    <h4 className="font-bold text-secondary text-lg mb-2">Visi Kami</h4>
                     <p>{aboutData.vision}</p>
                   </div>
                 )}
                 {aboutData?.mission && (
                   <div className="mt-6">
-                    <h4 className="font-bold text-[#FFFFF0] text-lg mb-2">Misi Kami</h4>
+                    <h4 className="font-bold text-secondary text-lg mb-2">Misi Kami</h4>
                     <p>{aboutData.mission}</p>
                   </div>
                 )}
@@ -142,8 +142,8 @@ const About = () => {
                 className="group"
               >
                 <div>
-                  <h4 className="text-xl font-bold text-[#FFFFF0] mb-2">{feat.title}</h4>
-                  <p className="text-slate-300 leading-relaxed text-sm">{feat.description}</p>
+                  <h4 className="text-xl font-bold text-secondary mb-2">{feat.title}</h4>
+                  <p className="text-slate-500 leading-relaxed text-sm">{feat.description}</p>
                 </div>
               </motion.div>
             ))}
