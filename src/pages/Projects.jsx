@@ -166,7 +166,9 @@ const Projects = () => {
               </button>
               
               <div
-                className="relative w-full max-w-5xl max-h-[90vh] flex flex-col items-center justify-center"
+                className={`relative flex flex-col items-center justify-center ${
+                  selectedProject.video_url ? "w-full max-w-5xl" : "w-auto max-w-[95vw]"
+                }`}
                 onClick={(e) => e.stopPropagation()}
               >
                 {selectedProject.video_url ? (
@@ -186,18 +188,18 @@ const Projects = () => {
                     transition={{ type: "spring", damping: 25, stiffness: 300 }}
                     src={selectedProject.image_url || 'https://placehold.co/800x600?text=No+Image'}
                     alt={selectedProject.title}
-                    className="max-w-full max-h-[75vh] object-contain rounded-lg shadow-2xl cursor-zoom-out"
+                    className="w-auto h-auto max-w-full max-h-[75vh] object-contain rounded-lg shadow-2xl cursor-zoom-out"
                     onClick={() => setSelectedProject(null)}
                   />
                 )}
                 
-                <div className="mt-6 text-center">
-                  <h3 className="text-white text-2xl font-bold">{selectedProject.title}</h3>
+                <div className="mt-4 w-full text-center bg-black/60 backdrop-blur-md p-4 rounded-xl border border-white/10 shadow-xl">
+                  <h3 className="text-white text-xl md:text-2xl font-bold">{selectedProject.title}</h3>
                   {selectedProject.client_name && (
                     <p className="text-primary font-medium mt-1">Client: {selectedProject.client_name}</p>
                   )}
                   {selectedProject.description && (
-                    <p className="text-gray-300 mt-3 max-w-2xl mx-auto">{selectedProject.description}</p>
+                    <p className="text-gray-300 mt-2 text-sm md:text-base max-w-2xl mx-auto">{selectedProject.description}</p>
                   )}
                 </div>
               </div>
