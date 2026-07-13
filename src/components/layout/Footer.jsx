@@ -16,8 +16,8 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#1b253b] text-white pt-20 pb-10 border-t border-white/5 relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[#f5a623] rounded-full mix-blend-multiply filter blur-[150px] opacity-10 pointer-events-none" />
+    <footer className="bg-secondary text-white pt-20 pb-10 border-t border-white/5 relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary rounded-full mix-blend-multiply filter blur-[150px] opacity-10 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-600 rounded-full mix-blend-multiply filter blur-[150px] opacity-10 pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -39,16 +39,16 @@ const Footer = () => {
             
             <div className="flex space-x-4">
               {settings?.facebook_url && (
-                <a href={settings.facebook_url} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-[#f5a623] hover:text-white transition-all transform hover:-translate-y-1">
+                <a href={settings.facebook_url} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all transform hover:-translate-y-1">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
                 </a>
               )}
               {settings?.instagram_url && (
-                <a href={settings.instagram_url} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-[#f5a623] hover:text-white transition-all transform hover:-translate-y-1">
+                <a href={settings.instagram_url} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all transform hover:-translate-y-1">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                 </a>
               )}
-              <a href={`https://wa.me/${settings?.wa_number || ''}`} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-[#f5a623] hover:text-white transition-all transform hover:-translate-y-1">
+              <a href={`https://wa.me/${settings?.wa_number || ''}`} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white transition-all transform hover:-translate-y-1">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
               </a>
             </div>
@@ -60,8 +60,8 @@ const Footer = () => {
             <ul className="space-y-3">
               {['Home', 'Services', 'Project Update !', 'About', 'Contact Us'].map((item, index) => (
                 <li key={index}>
-                  <Link to={item === 'Home' ? '/' : `/${item.toLowerCase().replace(/ !| us/g, '').replace(/ /g, '-')}`} className="text-slate-400 hover:text-[#f5a623] text-sm font-medium transition-colors flex items-center">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#f5a623] mr-3 opacity-0 transition-opacity" />
+                  <Link to={item === 'Home' ? '/' : `/${item.toLowerCase().replace(/ !| us/g, '').replace(/ /g, '-')}`} className="text-slate-400 hover:text-primary text-sm font-medium transition-colors flex items-center">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary mr-3 opacity-0 transition-opacity" />
                     {item}
                   </Link>
                 </li>
@@ -74,15 +74,15 @@ const Footer = () => {
             <h4 className="text-white font-bold mb-6 tracking-wide uppercase text-sm">Hubungi Kami</h4>
             <ul className="space-y-5">
               <li className="flex items-start">
-                <MapPin className="text-[#f5a623] shrink-0 mr-4 mt-0.5" size={20} />
+                <MapPin className="text-primary shrink-0 mr-4 mt-0.5" size={20} />
                 <span className="text-slate-400 text-sm leading-relaxed">{settings?.address || 'Alamat belum diatur'}</span>
               </li>
               <li className="flex items-center">
-                <Phone className="text-[#f5a623] shrink-0 mr-4" size={20} />
+                <Phone className="text-primary shrink-0 mr-4" size={20} />
                 <span className="text-slate-400 text-sm font-medium">{settings?.wa_number || '-'}</span>
               </li>
               <li className="flex items-center">
-                <Mail className="text-[#f5a623] shrink-0 mr-4" size={20} />
+                <Mail className="text-primary shrink-0 mr-4" size={20} />
                 <span className="text-slate-400 text-sm font-medium">{settings?.email || '-'}</span>
               </li>
             </ul>

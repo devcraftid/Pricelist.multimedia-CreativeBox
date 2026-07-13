@@ -120,7 +120,7 @@ export default function AdminAbout() {
   return (
     <div className="max-w-4xl mx-auto">
       <div className="mb-8">
-        <h2 className="text-3xl font-bold text-slate-900">Tentang Kami</h2>
+        <h2 className="text-3xl font-bold text-foreground">Tentang Kami</h2>
         <p className="text-slate-500 mt-2">Atur teks deskripsi perusahaan, visi, misi, dan angka statistik yang muncul di halaman About Us.</p>
       </div>
 
@@ -186,7 +186,7 @@ export default function AdminAbout() {
           <h3 className="text-xl font-bold text-slate-800 mb-6">Angka Pencapaian (Stats)</h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="p-4 border border-slate-100 rounded-xl bg-slate-50">
+            <div className="p-4 border border-slate-100 rounded-xl bg-background">
               <label className="block text-sm font-bold text-slate-700 mb-1">Statistik 1</label>
               <div className="space-y-2">
                 <input type="text" name="stat_1_title" value={settings.stat_1_title || ''} onChange={handleChange} placeholder="Judul (Cth: Didirikan)" className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm" />
@@ -194,7 +194,7 @@ export default function AdminAbout() {
               </div>
             </div>
             
-            <div className="p-4 border border-slate-100 rounded-xl bg-slate-50">
+            <div className="p-4 border border-slate-100 rounded-xl bg-background">
               <label className="block text-sm font-bold text-slate-700 mb-1">Statistik 2</label>
               <div className="space-y-2">
                 <input type="text" name="stat_2_title" value={settings.stat_2_title || ''} onChange={handleChange} placeholder="Judul (Cth: Klien Puas)" className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm" />
@@ -202,7 +202,7 @@ export default function AdminAbout() {
               </div>
             </div>
 
-            <div className="p-4 border border-slate-100 rounded-xl bg-slate-50">
+            <div className="p-4 border border-slate-100 rounded-xl bg-background">
               <label className="block text-sm font-bold text-slate-700 mb-1">Statistik 3</label>
               <div className="space-y-2">
                 <input type="text" name="stat_3_title" value={settings.stat_3_title || ''} onChange={handleChange} placeholder="Judul (Cth: Proyek Selesai)" className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm" />
@@ -210,7 +210,7 @@ export default function AdminAbout() {
               </div>
             </div>
 
-            <div className="p-4 border border-slate-100 rounded-xl bg-slate-50">
+            <div className="p-4 border border-slate-100 rounded-xl bg-background">
               <label className="block text-sm font-bold text-slate-700 mb-1">Statistik 4</label>
               <div className="space-y-2">
                 <input type="text" name="stat_4_title" value={settings.stat_4_title || ''} onChange={handleChange} placeholder="Judul (Cth: Dukungan Tim)" className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm" />

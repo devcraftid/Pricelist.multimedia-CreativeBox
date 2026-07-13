@@ -92,7 +92,7 @@ export default function AdminServices() {
     <div className="max-w-6xl mx-auto">
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h2 className="text-3xl font-bold text-slate-900">Layanan Kami</h2>
+          <h2 className="text-3xl font-bold text-foreground">Layanan Kami</h2>
           <p className="text-slate-500 mt-1">Kelola daftar layanan yang muncul di halaman depan.</p>
         </div>
         <button 
@@ -110,7 +110,7 @@ export default function AdminServices() {
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse min-w-[600px]">
               <thead>
-                <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 font-medium text-sm">
+                <tr className="bg-background border-b border-slate-200 text-slate-500 font-medium text-sm">
                   <th className="py-4 px-6 w-24">Gambar</th>
                   <th className="py-4 px-6">Nama Layanan</th>
                   <th className="py-4 px-6 w-24">Urutan</th>
@@ -119,7 +119,7 @@ export default function AdminServices() {
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {services.map((item) => (
-                  <tr key={item.id} className="hover:bg-slate-50/50 transition-colors">
+                  <tr key={item.id} className="hover:bg-background/50 transition-colors">
                     <td className="py-4 px-6">
                       <img src={item.icon_or_image_url || 'https://placehold.co/100'} alt="Icon" className="w-16 h-12 object-cover rounded bg-slate-100" />
                     </td>
@@ -155,7 +155,7 @@ export default function AdminServices() {
         <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-2xl w-full max-w-lg p-6 shadow-xl relative overflow-y-auto max-h-[90vh]">
             <button onClick={handleCloseModal} className="absolute top-4 right-4 text-slate-400 hover:text-slate-700"><X size={24}/></button>
-            <h3 className="text-xl font-bold text-slate-900 mb-6">{formData.id ? 'Edit' : 'Tambah'} Layanan</h3>
+            <h3 className="text-xl font-bold text-foreground mb-6">{formData.id ? 'Edit' : 'Tambah'} Layanan</h3>
             
             <form onSubmit={handleSave} className="space-y-4">
               <div>

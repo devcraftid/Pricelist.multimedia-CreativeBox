@@ -90,7 +90,7 @@ export default function AdminClients() {
     <div className="max-w-6xl mx-auto">
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h2 className="text-3xl font-bold text-slate-900">Klien Kami</h2>
+          <h2 className="text-3xl font-bold text-foreground">Klien Kami</h2>
           <p className="text-slate-500 mt-1">Kelola logo klien atau pengguna jasa Anda.</p>
         </div>
         <button 
@@ -108,7 +108,7 @@ export default function AdminClients() {
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse min-w-[500px]">
               <thead>
-                <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 font-medium text-sm">
+                <tr className="bg-background border-b border-slate-200 text-slate-500 font-medium text-sm">
                   <th className="py-4 px-6 w-32">Logo</th>
                   <th className="py-4 px-6">Nama Klien</th>
                   <th className="py-4 px-6 w-24">Urutan</th>
@@ -117,9 +117,9 @@ export default function AdminClients() {
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {items.map((item) => (
-                  <tr key={item.id} className="hover:bg-slate-50/50 transition-colors">
+                  <tr key={item.id} className="hover:bg-background/50 transition-colors">
                     <td className="py-4 px-6">
-                      <img src={item.logo_url || 'https://placehold.co/100'} alt="Logo" className="w-20 h-12 object-contain bg-slate-50 border border-slate-200 p-1 rounded" />
+                      <img src={item.logo_url || 'https://placehold.co/100'} alt="Logo" className="w-20 h-12 object-contain bg-background border border-slate-200 p-1 rounded" />
                     </td>
                     <td className="py-4 px-6">
                       <p className="font-semibold text-slate-800">{item.name}</p>
@@ -152,7 +152,7 @@ export default function AdminClients() {
         <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-2xl w-full max-w-md p-6 shadow-xl relative">
             <button onClick={handleCloseModal} className="absolute top-4 right-4 text-slate-400 hover:text-slate-700"><X size={24}/></button>
-            <h3 className="text-xl font-bold text-slate-900 mb-6">{formData.id ? 'Edit' : 'Tambah'} Klien</h3>
+            <h3 className="text-xl font-bold text-foreground mb-6">{formData.id ? 'Edit' : 'Tambah'} Klien</h3>
             
             <form onSubmit={handleSave} className="space-y-4">
               <div>
@@ -169,7 +169,7 @@ export default function AdminClients() {
                 <label className="block text-sm font-medium text-slate-700 mb-2">Logo Klien</label>
                 {formData.logo_url && (
                   <div className="relative inline-block mb-3 w-full">
-                    <img src={formData.logo_url} alt="Preview" className="w-full h-24 object-contain rounded-lg border border-slate-200 bg-slate-50" />
+                    <img src={formData.logo_url} alt="Preview" className="w-full h-24 object-contain rounded-lg border border-slate-200 bg-background" />
                     <button 
                       type="button" 
                       onClick={() => setFormData({...formData, logo_url: ''})}

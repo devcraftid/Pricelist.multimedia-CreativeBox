@@ -45,7 +45,7 @@ export default function AdminDashboard() {
   return (
     <div className="max-w-6xl mx-auto">
       <div className="mb-8">
-        <h2 className="text-3xl font-bold text-slate-900">Selamat Datang di Admin Panel!</h2>
+        <h2 className="text-3xl font-bold text-foreground">Selamat Datang di Admin Panel!</h2>
         <p className="text-slate-500 mt-2 text-lg">Pilih menu di bawah ini untuk mulai mengelola konten website Anda.</p>
       </div>
 
@@ -58,13 +58,13 @@ export default function AdminDashboard() {
                 <div className={`p-4 rounded-xl text-white ${card.color} shadow-inner`}>
                   <Icon size={28} />
                 </div>
-                <div className="text-slate-400 group-hover:text-primary transition-colors bg-slate-50 p-2 rounded-lg">
+                <div className="text-slate-400 group-hover:text-primary transition-colors bg-background p-2 rounded-lg">
                   <ArrowRight size={20} />
                 </div>
               </div>
               <div className="relative z-10">
                 <h3 className="text-lg font-semibold text-slate-700">{card.title}</h3>
-                <p className="text-2xl font-bold text-slate-900 mt-1">{card.value}</p>
+                <p className="text-2xl font-bold text-foreground mt-1">{card.value}</p>
               </div>
               <div className={`absolute -bottom-6 -right-6 w-32 h-32 rounded-full opacity-5 ${card.color} blur-2xl`}></div>
             </Link>

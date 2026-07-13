@@ -58,14 +58,14 @@ export default function PublicPriceList() {
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 text-slate-800 font-sans pt-12 md:pt-16 pb-20 relative overflow-hidden">
 
       {/* Decorative Background Elements for HD feel */}
-      <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-[#273554]/5 to-transparent z-0 pointer-events-none" />
-      <div className="absolute top-20 -right-40 w-96 h-96 bg-[#f5a623]/10 rounded-full blur-3xl z-0 pointer-events-none" />
-      <div className="absolute top-40 -left-40 w-96 h-96 bg-[#273554]/5 rounded-full blur-3xl z-0 pointer-events-none" />
+      <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-secondary/5 to-transparent z-0 pointer-events-none" />
+      <div className="absolute top-20 -right-40 w-96 h-96 bg-primary/10 rounded-full blur-3xl z-0 pointer-events-none" />
+      <div className="absolute top-40 -left-40 w-96 h-96 bg-secondary/5 rounded-full blur-3xl z-0 pointer-events-none" />
 
       <main className="max-w-6xl mx-auto px-4 py-12 relative z-10">
         {loading ? (
           <div className="text-center py-20 text-slate-500 font-medium flex flex-col items-center justify-center">
-            <div className="w-10 h-10 border-4 border-[#273554]/20 border-t-[#273554] rounded-full animate-spin mb-4" />
+            <div className="w-10 h-10 border-4 border-secondary/20 border-t-secondary rounded-full animate-spin mb-4" />
             Loading paket harga...
           </div>
         ) : activeItems.length === 0 ? (
@@ -79,7 +79,7 @@ export default function PublicPriceList() {
                 <motion.h2
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="text-4xl md:text-5xl font-extrabold mb-4 uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#273554] to-[#f5a623]"
+                  className="text-4xl md:text-5xl font-extrabold mb-4 uppercase tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-secondary to-primary"
                 >
                   PRICELIST {activeTab}
                 </motion.h2>
@@ -87,7 +87,7 @@ export default function PublicPriceList() {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.2 }}
-                  className="h-1 w-24 bg-gradient-to-r from-[#273554] to-[#f5a623] mx-auto rounded-full"
+                  className="h-1 w-24 bg-gradient-to-r from-secondary to-primary mx-auto rounded-full"
                 />
               </div>
 
@@ -111,7 +111,7 @@ export default function PublicPriceList() {
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                           />
                           {item.ribbon && (
-                            <div className="absolute top-3 left-3 bg-gradient-to-r from-[#f5a623] to-[#e09212] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1">
+                            <div className="absolute top-3 left-3 bg-gradient-to-r from-primary to-primary text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1">
                               <Sparkles className="w-3 h-3" /> {item.ribbon}
                             </div>
                           )}
@@ -123,7 +123,7 @@ export default function PublicPriceList() {
                           <p className={`text-xl font-extrabold ${colorTheme.text}`}>Rp {item.price}</p>
                           <button
                             onClick={() => handlePesan(item)}
-                            className="bg-[#273554] hover:bg-[#1d2740] text-white font-bold py-2 px-5 rounded-lg transition-all shadow-md hover:shadow-lg text-sm"
+                            className="bg-secondary hover:bg-[#1d2740] text-white font-bold py-2 px-5 rounded-lg transition-all shadow-md hover:shadow-lg text-sm"
                           >
                             PESAN
                           </button>
@@ -199,22 +199,22 @@ export default function PublicPriceList() {
               transition={{ duration: 0.8 }}
               className="mt-20 bg-white/60 backdrop-blur-lg border border-slate-200/50 shadow-xl shadow-slate-200/40 rounded-2xl p-8 md:p-10 max-w-4xl mx-auto relative overflow-hidden"
             >
-              <div className="absolute top-0 left-0 w-1 h-full bg-[#f5a623]" />
-              <h3 className="font-extrabold text-[#273554] text-xl mb-5 flex items-center gap-2 tracking-tight">
-                <CheckCircle2 className="w-6 h-6 text-[#f5a623]" /> Keterangan Penting
+              <div className="absolute top-0 left-0 w-1 h-full bg-primary" />
+              <h3 className="font-extrabold text-secondary text-xl mb-5 flex items-center gap-2 tracking-tight">
+                <CheckCircle2 className="w-6 h-6 text-primary" /> Keterangan Penting
               </h3>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <li className="flex items-start gap-3 text-sm text-slate-600 font-medium bg-white p-3 rounded-lg shadow-sm border border-slate-50">
-                  <div className="w-2 h-2 rounded-full bg-[#f5a623] mt-1.5" /> Harga paket di atas hanya untuk dalam kota
+                  <div className="w-2 h-2 rounded-full bg-primary mt-1.5" /> Harga paket di atas hanya untuk dalam kota
                 </li>
                 <li className="flex items-start gap-3 text-sm text-slate-600 font-medium bg-white p-3 rounded-lg shadow-sm border border-slate-50">
-                  <div className="w-2 h-2 rounded-full bg-[#f5a623] mt-1.5" /> Tidak termasuk koneksi internet
+                  <div className="w-2 h-2 rounded-full bg-primary mt-1.5" /> Tidak termasuk koneksi internet
                 </li>
                 <li className="flex items-start gap-3 text-sm text-slate-600 font-medium bg-white p-3 rounded-lg shadow-sm border border-slate-50">
-                  <div className="w-2 h-2 rounded-full bg-[#f5a623] mt-1.5" /> Harga tidak termasuk rehearsal H-1
+                  <div className="w-2 h-2 rounded-full bg-primary mt-1.5" /> Harga tidak termasuk rehearsal H-1
                 </li>
                 <li className="flex items-start gap-3 text-sm text-slate-600 font-medium bg-white p-3 rounded-lg shadow-sm border border-slate-50">
-                  <div className="w-2 h-2 rounded-full bg-[#f5a623] mt-1.5" /> Upgrade kamera & system by request
+                  <div className="w-2 h-2 rounded-full bg-primary mt-1.5" /> Upgrade kamera & system by request
                 </li>
               </ul>
             </motion.section>

@@ -44,8 +44,8 @@ const About = () => {
   const heroBg = aboutData?.team_image_url || settings?.hero_image_url || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600&q=80';
 
   if (loading) {
-    return <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-slate-50 to-slate-100 text-[#273554] font-bold">
-      <div className="w-10 h-10 border-4 border-[#273554]/20 border-t-[#273554] rounded-full animate-spin mr-3" />
+    return <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-slate-50 to-slate-100 text-secondary font-bold">
+      <div className="w-10 h-10 border-4 border-secondary/20 border-t-secondary rounded-full animate-spin mr-3" />
       Memuat Profil...
     </div>;
   }
@@ -58,15 +58,15 @@ const About = () => {
   ];
 
   return (
-    <div className="w-full bg-slate-50 font-sans overflow-hidden">
+    <div className="w-full bg-background font-sans overflow-hidden">
       
       {/* HERO SECTION */}
-      <section className="relative w-full h-[250px] md:h-[300px] flex items-center justify-center bg-[#273554] overflow-hidden">
+      <section className="relative w-full h-[250px] md:h-[300px] flex items-center justify-center bg-secondary overflow-hidden">
         <div 
           className="absolute inset-0 z-0 opacity-40 bg-cover bg-center mix-blend-overlay"
           style={{ backgroundImage: `url('${heroBg}')` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#273554]/90 via-[#273554]/60 to-[#273554] z-0" />
+        <div className="absolute inset-0 bg-gradient-to-b from-secondary/90 via-secondary/60 to-secondary z-0" />
         
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
@@ -77,7 +77,7 @@ const About = () => {
           <h1 className="text-5xl md:text-7xl font-extrabold text-white tracking-tight uppercase drop-shadow-lg">
             ABOUT US
           </h1>
-          <div className="w-24 h-1.5 bg-gradient-to-r from-[#f5a623] to-yellow-300 mx-auto mt-6 rounded-full" />
+          <div className="w-24 h-1.5 bg-gradient-to-r from-primary to-yellow-300 mx-auto mt-6 rounded-full" />
         </motion.div>
       </section>
 
@@ -93,8 +93,8 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h3 className="text-[#f5a623] font-bold text-lg md:text-xl mb-3 tracking-wide">About Us</h3>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-[#273554] mb-8 leading-tight tracking-tight">
+              <h3 className="text-primary font-bold text-lg md:text-xl mb-3 tracking-wide">About Us</h3>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-secondary mb-8 leading-tight tracking-tight">
                 {settings?.hero_title || 'Creative Box'}
               </h2>
               
@@ -121,7 +121,7 @@ const About = () => {
                     href={`https://wa.me/${settings.wa_number}`} 
                     target="_blank" 
                     rel="noreferrer" 
-                    className="inline-block bg-gradient-to-r from-[#f5a623] to-[#e09212] text-white font-extrabold py-4 px-8 rounded-xl shadow-lg shadow-orange-500/30 hover:-translate-y-1 hover:shadow-orange-500/40 transition-all duration-300"
+                    className="inline-block bg-gradient-to-r from-primary to-primary text-white font-extrabold py-4 px-8 rounded-xl shadow-lg shadow-orange-500/30 hover:-translate-y-1 hover:shadow-orange-500/40 transition-all duration-300"
                   >
                     HUBUNGI VIA WHATSAPP
                   </a>
@@ -142,7 +142,7 @@ const About = () => {
                 className="group"
               >
                 <div>
-                  <h4 className="text-xl font-bold text-[#273554] mb-2">{feat.title}</h4>
+                  <h4 className="text-xl font-bold text-secondary mb-2">{feat.title}</h4>
                   <p className="text-slate-500 leading-relaxed text-sm">{feat.description}</p>
                 </div>
               </motion.div>
@@ -154,14 +154,14 @@ const About = () => {
 
       {/* STATS BANNER */}
       {(aboutData?.stat_1_title || aboutData?.stat_2_title) && (
-        <section className="relative w-full py-16 bg-[#273554] overflow-hidden">
+        <section className="relative w-full py-16 bg-secondary overflow-hidden">
           <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 divide-x divide-white/10 text-center">
               
               {aboutData?.stat_1_title && (
                 <motion.div initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="flex flex-col items-center">
-                  <Calendar className="w-8 h-8 text-[#f5a623] mb-4" />
+                  <Calendar className="w-8 h-8 text-primary mb-4" />
                   <div className="text-3xl md:text-5xl font-black text-white mb-2">{aboutData.stat_1_value}</div>
                   <div className="text-xs md:text-sm text-slate-300 uppercase tracking-widest font-medium">{aboutData.stat_1_title}</div>
                 </motion.div>
@@ -169,7 +169,7 @@ const About = () => {
 
               {aboutData?.stat_2_title && (
                 <motion.div initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="flex flex-col items-center pl-8 md:pl-12">
-                  <Award className="w-8 h-8 text-[#f5a623] mb-4" />
+                  <Award className="w-8 h-8 text-primary mb-4" />
                   <div className="text-3xl md:text-5xl font-black text-white mb-2">{aboutData.stat_2_value}</div>
                   <div className="text-xs md:text-sm text-slate-300 uppercase tracking-widest font-medium">{aboutData.stat_2_title}</div>
                 </motion.div>
@@ -177,7 +177,7 @@ const About = () => {
 
               {aboutData?.stat_3_title && (
                 <motion.div initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="flex flex-col items-center">
-                  <Users className="w-8 h-8 text-[#f5a623] mb-4" />
+                  <Users className="w-8 h-8 text-primary mb-4" />
                   <div className="text-3xl md:text-5xl font-black text-white mb-2">{aboutData.stat_3_value}</div>
                   <div className="text-xs md:text-sm text-slate-300 uppercase tracking-widest font-medium">{aboutData.stat_3_title}</div>
                 </motion.div>
@@ -185,7 +185,7 @@ const About = () => {
 
               {aboutData?.stat_4_title && (
                 <motion.div initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="flex flex-col items-center pl-8 md:pl-12">
-                  <Clock className="w-8 h-8 text-[#f5a623] mb-4" />
+                  <Clock className="w-8 h-8 text-primary mb-4" />
                   <div className="text-3xl md:text-5xl font-black text-white mb-2">{aboutData.stat_4_value}</div>
                   <div className="text-xs md:text-sm text-slate-300 uppercase tracking-widest font-medium">{aboutData.stat_4_title}</div>
                 </motion.div>
@@ -203,7 +203,7 @@ const About = () => {
             className="absolute inset-0 z-0 bg-cover bg-center transform hover:scale-105 transition-transform duration-1000"
             style={{ backgroundImage: `url('${settings?.hero_image_url || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600&q=80'}')` }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#273554]/95 to-[#273554]/80 z-0" />
+          <div className="absolute inset-0 bg-gradient-to-r from-secondary/95 to-secondary/80 z-0" />
           
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
@@ -212,21 +212,21 @@ const About = () => {
             transition={{ duration: 0.6 }}
             className="relative z-10 w-full max-w-lg mx-auto md:ml-auto md:mr-0"
           >
-            <h3 className="text-[#f5a623] font-bold text-sm mb-4 tracking-widest uppercase">Acara Sukses tanpa biaya mahal</h3>
+            <h3 className="text-primary font-bold text-sm mb-4 tracking-widest uppercase">Acara Sukses tanpa biaya mahal</h3>
             <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight tracking-tight">
               Kualitas Terbaik,<br/>Relatif Murah di<br/>Kelasnya!
             </h2>
-            <div className="w-16 h-1 bg-[#f5a623] mb-8" />
+            <div className="w-16 h-1 bg-primary mb-8" />
             <p className="text-slate-300 text-base leading-relaxed mb-10 max-w-md font-medium">
               Kami memberikan layanan yang terjangkau untuk setiap kalangan dan kelas perusahaan. Kami bisa menyesuaikan dengan budget klien, sehingga dokumentasi tidak terlalu membebani biaya pengeluaran acara Anda.
             </p>
-            <Link to="/price-list" className="inline-block bg-white text-[#273554] font-extrabold py-3.5 px-8 rounded-lg shadow-lg hover:bg-slate-100 transition-colors">
+            <Link to="/price-list" className="inline-block bg-white text-secondary font-extrabold py-3.5 px-8 rounded-lg shadow-lg hover:bg-slate-100 transition-colors">
               LIHAT PRICE LIST
             </Link>
           </motion.div>
         </div>
 
-        <div className="w-full md:w-1/2 relative min-h-[400px] md:min-h-[600px] flex items-center p-8 sm:p-12 md:p-20 bg-gradient-to-br from-[#f5a623] to-[#e09212]">
+        <div className="w-full md:w-1/2 relative min-h-[400px] md:min-h-[600px] flex items-center p-8 sm:p-12 md:p-20 bg-gradient-to-br from-primary to-primary">
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay" />
           
           <motion.div 
@@ -261,7 +261,7 @@ const About = () => {
       </section>
 
       {/* CLIENTS SECTION */}
-      <section className="py-24 bg-slate-50 relative overflow-hidden">
+      <section className="py-24 bg-background relative overflow-hidden">
         <div className="absolute -top-40 -right-40 w-96 h-96 bg-blue-100/50 rounded-full blur-3xl z-0 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -271,8 +271,8 @@ const About = () => {
             viewport={{ once: true }}
             className="mb-16"
           >
-            <h3 className="text-[#f5a623] font-bold tracking-widest uppercase mb-2">Trust and Worth</h3>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-[#273554] tracking-tight">Our Clients</h2>
+            <h3 className="text-primary font-bold tracking-widest uppercase mb-2">Trust and Worth</h3>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-secondary tracking-tight">Our Clients</h2>
           </motion.div>
           
           {clients.length === 0 ? (

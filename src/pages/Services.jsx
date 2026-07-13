@@ -35,7 +35,7 @@ const Services = () => {
   };
 
   if (loading) {
-    return <div className="min-h-screen flex items-center justify-center bg-[#f8f9fa] text-[#273554] font-bold">Loading Services...</div>;
+    return <div className="min-h-screen flex items-center justify-center bg-[#f8f9fa] text-secondary font-bold">Loading Services...</div>;
   }
 
   const heroBg = settings?.hero_image_url || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600&q=80';
@@ -48,7 +48,7 @@ const Services = () => {
           className="absolute inset-0 z-0 bg-cover bg-center"
           style={{ backgroundImage: `url('${heroBg}')` }}
         />
-        <div className="absolute inset-0 bg-[#273554]/80 z-0" />
+        <div className="absolute inset-0 bg-secondary/80 z-0" />
         
         <div className="relative z-10 text-center px-4">
           <h1 className="text-4xl md:text-6xl font-extrabold text-white tracking-wider uppercase">
@@ -60,8 +60,8 @@ const Services = () => {
       {/* OUR SERVICES SECTION */}
       <section className="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h3 className="text-[#f5a623] font-bold text-sm md:text-base mb-2">Our Services</h3>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#273554]">Layanan Kami</h2>
+          <h3 className="text-primary font-bold text-sm md:text-base mb-2">Our Services</h3>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-secondary">Layanan Kami</h2>
         </div>
 
         {services.length === 0 ? (
@@ -79,7 +79,7 @@ const Services = () => {
                     className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105" 
                   />
                 </div>
-                <h3 className="text-lg md:text-xl font-bold text-[#273554] mb-3">{svc.title}</h3>
+                <h3 className="text-lg md:text-xl font-bold text-secondary mb-3">{svc.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{svc.description}</p>
               </div>
             ))}
@@ -90,8 +90,8 @@ const Services = () => {
       {/* OUR CLIENTS SECTION */}
       <section className="py-16 md:py-24 bg-white max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-gray-100">
         <div className="text-center mb-12">
-          <h3 className="text-[#f5a623] font-bold text-sm md:text-base mb-2">Trust and Worth</h3>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#273554]">Our Clients</h2>
+          <h3 className="text-primary font-bold text-sm md:text-base mb-2">Trust and Worth</h3>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-secondary">Our Clients</h2>
         </div>
 
         {clients.length === 0 ? (

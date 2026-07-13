@@ -32,7 +32,7 @@ export default function AdminLayout() {
   };
 
   if (isAuthenticated === null) {
-    return <div className="min-h-screen flex items-center justify-center bg-slate-50"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#1b253b]"></div></div>;
+    return <div className="min-h-screen flex items-center justify-center bg-background"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-secondary"></div></div>;
   }
 
   if (!isAuthenticated) {
@@ -57,9 +57,9 @@ export default function AdminLayout() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex font-sans">
+    <div className="min-h-screen bg-background flex font-sans">
       {/* Mobile Top Bar */}
-      <div className="md:hidden fixed top-0 left-0 w-full bg-[#1b253b] text-white z-50 flex justify-between items-center px-4 py-3 shadow-md">
+      <div className="md:hidden fixed top-0 left-0 w-full bg-secondary text-white z-50 flex justify-between items-center px-4 py-3 shadow-md">
         <div className="flex items-center gap-3">
           <img src="/admin-logo.png" alt="Logo" className="h-7 object-contain filter invert brightness-0 opacity-90" />
         </div>
@@ -71,13 +71,13 @@ export default function AdminLayout() {
       {/* Sidebar Overlay */}
       {isSidebarOpen && (
         <div 
-          className="fixed inset-0 bg-[#1b253b]/50 backdrop-blur-sm z-40 md:hidden"
+          className="fixed inset-0 bg-secondary/50 backdrop-blur-sm z-40 md:hidden"
           onClick={() => setIsSidebarOpen(false)}
         />
       )}
 
       {/* Sidebar */}
-      <aside className={`w-64 bg-[#1b253b] text-slate-300 flex flex-col fixed h-full z-50 transition-transform duration-300 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'} shadow-2xl`}>
+      <aside className={`w-64 bg-secondary text-slate-300 flex flex-col fixed h-full z-50 transition-transform duration-300 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'} shadow-2xl`}>
         <div className="p-6 hidden md:flex items-center gap-3 border-b border-white/5">
           <img src="/admin-logo.png" alt="Logo" className="h-8 object-contain filter invert brightness-0 opacity-100" />
         </div>
@@ -95,9 +95,9 @@ export default function AdminLayout() {
                   <Link 
                     to={item.path} 
                     onClick={() => setIsSidebarOpen(false)}
-                    className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-all duration-200 group ${isActive ? 'bg-[#f5a623]/10 text-[#f5a623] font-bold' : 'hover:bg-white/5 hover:text-white text-slate-400 font-medium'}`}
+                    className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-all duration-200 group ${isActive ? 'bg-primary/10 text-primary font-bold' : 'hover:bg-white/5 hover:text-white text-slate-400 font-medium'}`}
                   >
-                    <Icon size={18} className={`${isActive ? 'text-[#f5a623]' : 'text-slate-500 group-hover:text-white'} transition-colors`} />
+                    <Icon size={18} className={`${isActive ? 'text-primary' : 'text-slate-500 group-hover:text-white'} transition-colors`} />
                     {item.name}
                   </Link>
                   {item.divider && <div className="h-px bg-white/5 my-4 mx-2" />}
@@ -119,7 +119,7 @@ export default function AdminLayout() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 md:ml-64 p-4 sm:p-8 pt-20 md:pt-8 min-w-0 bg-slate-50/50">
+      <main className="flex-1 md:ml-64 p-4 sm:p-8 pt-20 md:pt-8 min-w-0 bg-background/50">
         <Outlet />
       </main>
     </div>

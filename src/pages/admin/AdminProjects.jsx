@@ -96,7 +96,7 @@ export default function AdminProjects() {
     <div className="max-w-6xl mx-auto">
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h2 className="text-3xl font-bold text-slate-900">Project Update</h2>
+          <h2 className="text-3xl font-bold text-foreground">Project Update</h2>
           <p className="text-slate-500 mt-1">Kelola daftar project yang muncul di galeri halaman Project.</p>
         </div>
         <button 
@@ -114,7 +114,7 @@ export default function AdminProjects() {
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse min-w-[700px]">
               <thead>
-                <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 font-medium text-sm">
+                <tr className="bg-background border-b border-slate-200 text-slate-500 font-medium text-sm">
                   <th className="py-4 px-6 w-24">Gambar</th>
                   <th className="py-4 px-6">Nama Project & Klien</th>
                   <th className="py-4 px-6 w-32">Tanggal</th>
@@ -123,7 +123,7 @@ export default function AdminProjects() {
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {projects.map((item) => (
-                  <tr key={item.id} className="hover:bg-slate-50/50 transition-colors">
+                  <tr key={item.id} className="hover:bg-background/50 transition-colors">
                     <td className="py-4 px-6">
                       <img src={item.image_url || 'https://placehold.co/100'} alt="Project" className="w-16 h-16 object-cover rounded bg-slate-100" />
                     </td>
@@ -160,7 +160,7 @@ export default function AdminProjects() {
         <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-2xl w-full max-w-lg p-6 shadow-xl relative overflow-y-auto max-h-[90vh]">
             <button onClick={handleCloseModal} className="absolute top-4 right-4 text-slate-400 hover:text-slate-700"><X size={24}/></button>
-            <h3 className="text-xl font-bold text-slate-900 mb-6">{formData.id ? 'Edit' : 'Tambah'} Project</h3>
+            <h3 className="text-xl font-bold text-foreground mb-6">{formData.id ? 'Edit' : 'Tambah'} Project</h3>
             
             <form onSubmit={handleSave} className="space-y-4">
               <div>

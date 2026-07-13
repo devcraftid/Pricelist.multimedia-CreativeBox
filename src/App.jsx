@@ -1,4 +1,6 @@
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { supabase } from './lib/supabase';
 import MainLayout from './components/layout/MainLayout';
 import Home from './pages/Home';
 import Services from './pages/Services';
@@ -23,6 +25,19 @@ import AdminFaqs from './pages/admin/AdminFaqs';
 import AdminInbox from './pages/admin/AdminInbox';
 
 function App() {
+  useEffect(() => {
+    const fetchSettings = async () => {
+      const { data } = await supabase.from('site_settings').select('primary_color, secondary_color, bg_color, text_color').limit(1).single();
+      if (data) {
+        if (data.primary_color) document.documentElement.style.setProperty('--color-primary', data.primary_color);
+        if (data.secondary_color) document.documentElement.style.setProperty('--color-secondary', data.secondary_color);
+        if (data.bg_color) document.documentElement.style.setProperty('--color-background', data.bg_color);
+        if (data.text_color) document.documentElement.style.setProperty('--color-foreground', data.text_color);
+      }
+    };
+    fetchSettings();
+  }, []);
+
   return (
     <Router>
       <Routes>

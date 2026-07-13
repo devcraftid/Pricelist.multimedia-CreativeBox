@@ -70,8 +70,8 @@ const Home = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-[#1b253b] text-white">
-        <div className="w-12 h-12 border-4 border-[#f5a623]/30 border-t-[#f5a623] rounded-full animate-spin mb-4" />
+      <div className="min-h-screen flex flex-col items-center justify-center bg-secondary text-white">
+        <div className="w-12 h-12 border-4 border-primary/30 border-t-primary rounded-full animate-spin mb-4" />
         <p className="font-semibold tracking-wider text-sm animate-pulse">Memuat Data...</p>
       </div>
     );
@@ -87,17 +87,17 @@ const Home = () => {
   ];
 
   return (
-    <div className="w-full bg-slate-50 font-sans">
+    <div className="w-full bg-background font-sans">
 
       {/* PREMIUM HERO SECTION */}
-      <section className="relative w-full min-h-[100vh] flex items-center bg-[#1b253b] overflow-hidden">
+      <section className="relative w-full min-h-[100vh] flex items-center bg-secondary overflow-hidden">
         {/* Background Image with Parallax effect */}
         <div
           className="absolute inset-0 z-0 opacity-40 bg-cover bg-center transform scale-105"
           style={{ backgroundImage: `url('${heroBg}')` }}
         />
         {/* Elegant Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#1b253b] via-[#1b253b]/80 to-transparent z-0" />
+        <div className="absolute inset-0 bg-gradient-to-br from-secondary via-secondary/80 to-transparent z-0" />
 
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -106,8 +106,8 @@ const Home = () => {
           className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-32 pb-20"
         >
           <div className="flex items-center gap-4 mb-6">
-            <div className="w-12 h-1 bg-[#f5a623] rounded-full" />
-            <h2 className="text-[#f5a623] font-bold text-sm md:text-base uppercase tracking-[0.2em]">
+            <div className="w-12 h-1 bg-primary rounded-full" />
+            <h2 className="text-primary font-bold text-sm md:text-base uppercase tracking-[0.2em]">
               {settings?.hero_title || 'MULTIMEDIA CREATIVE BOX'}
             </h2>
           </div>
@@ -117,13 +117,13 @@ const Home = () => {
           </h1>
 
           <p className="text-blue-100/90 text-base md:text-xl max-w-3xl leading-relaxed font-medium mb-12 drop-shadow-md">
-            Solusi lengkap untuk Multimedia Support, Live Camera, LED Videotron, Sound System, dan Virtual Event. Kami hadirkan kualitas siaran standar industri untuk kesuksesan setiap momen berharga Anda.
+            layanan live multicam dan live streaming untuk berbagai kebutuhan acara, seperti seminar, webinar, konferensi, ibadah, konser, peluncuran produk, hingga kegiatan perusahaan. Dengan dukungan operator berpengalaman dan peralatan profesional, kami menghadirkan tayangan berkualitas tinggi dengan perpindahan kamera yang dinamis serta audio yang jernih.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-5">
             <Link
               to="/services"
-              className="group inline-flex items-center justify-center bg-gradient-to-r from-[#f5a623] to-[#e09212] text-white font-extrabold py-4 px-8 rounded-full text-sm hover:shadow-[0_0_30px_rgba(245,166,35,0.4)] transition-all transform hover:-translate-y-1 tracking-wider"
+              className="group inline-flex items-center justify-center bg-gradient-to-r from-primary to-primary text-white font-extrabold py-4 px-8 rounded-full text-sm hover:shadow-[0_0_30px_rgba(245,166,35,0.4)] transition-all transform hover:-translate-y-1 tracking-wider"
             >
               LIHAT LAYANAN
               <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -149,17 +149,17 @@ const Home = () => {
           transition={{ duration: 0.7 }}
           className="bg-white rounded-3xl shadow-2xl shadow-blue-900/5 overflow-hidden flex flex-col lg:flex-row border border-slate-100"
         >
-          <div className="w-full lg:w-2/5 bg-gradient-to-br from-[#1b253b] to-[#273554] p-10 md:p-16 text-white flex flex-col justify-center relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#f5a623] rounded-full mix-blend-overlay filter blur-[80px] opacity-20" />
+          <div className="w-full lg:w-2/5 bg-gradient-to-br from-secondary to-secondary p-10 md:p-16 text-white flex flex-col justify-center relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-primary rounded-full mix-blend-overlay filter blur-[80px] opacity-20" />
 
-            <h3 className="font-bold text-[#f5a623] tracking-widest text-sm mb-4 uppercase">Keunggulan Utama</h3>
+            <h3 className="font-bold text-primary tracking-widest text-sm mb-4 uppercase">Keunggulan Utama</h3>
             <h2 className="text-3xl md:text-5xl font-extrabold mb-6 leading-tight">
               Mitra Terpercaya Event Anda
             </h2>
             <p className="mb-10 text-blue-100/80 leading-relaxed font-medium">
               Kami memadukan teknologi terkini dengan kru profesional yang berpengalaman menangani berbagai event lokal, nasional, hingga internasional.
             </p>
-            <Link to="/about" className="inline-flex items-center text-sm font-bold text-[#f5a623] hover:text-white transition-colors group">
+            <Link to="/about" className="inline-flex items-center text-sm font-bold text-primary hover:text-white transition-colors group">
               TENTANG KAMI <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform" />
             </Link>
           </div>
@@ -167,7 +167,7 @@ const Home = () => {
           <div className="w-full lg:w-3/5 p-10 md:p-16 grid grid-cols-1 sm:grid-cols-2 gap-10 md:gap-14 bg-white">
             {displayAdvantages.slice(0, 4).map((adv, idx) => (
               <div key={idx} className="flex flex-col items-start">
-                <h3 className="text-lg md:text-xl font-extrabold text-[#1b253b] mb-2.5 leading-tight">{adv.title}</h3>
+                <h3 className="text-lg md:text-xl font-extrabold text-secondary mb-2.5 leading-tight">{adv.title}</h3>
                 <p className="text-slate-500/90 text-sm md:text-base leading-relaxed">{adv.description}</p>
               </div>
             ))}
@@ -176,13 +176,13 @@ const Home = () => {
       </section>
 
       {/* SERVICES SECTION */}
-      <section className="py-20 bg-slate-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 bg-background max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="max-w-2xl">
-            <h3 className="text-[#f5a623] font-bold tracking-widest text-sm mb-3 uppercase">Layanan Kami</h3>
-            <h2 className="text-4xl md:text-5xl font-black text-[#1b253b] tracking-tight">Karya Terbaik untuk Momen Terbaik</h2>
+            <h3 className="text-primary font-bold tracking-widest text-sm mb-3 uppercase">Layanan Kami</h3>
+            <h2 className="text-4xl md:text-5xl font-black text-secondary tracking-tight">Karya Terbaik untuk Momen Terbaik</h2>
           </div>
-          <Link to="/services" className="inline-flex items-center text-sm font-bold text-slate-600 hover:text-[#f5a623] transition-colors group">
+          <Link to="/services" className="inline-flex items-center text-sm font-bold text-slate-600 hover:text-primary transition-colors group">
             LIHAT SEMUA LAYANAN <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
@@ -204,12 +204,12 @@ const Home = () => {
               >
                 <div className="relative overflow-hidden aspect-[4/3]">
                   <img src={svc.icon_or_image_url || 'https://placehold.co/600x400?text=No+Image'} alt={svc.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1b253b]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
+                  <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
                     <PlayCircle className="text-white w-10 h-10 mb-2" />
                   </div>
                 </div>
                 <div className="p-8">
-                  <h3 className="text-2xl font-extrabold text-[#1b253b] mb-4 group-hover:text-[#f5a623] transition-colors">{svc.title}</h3>
+                  <h3 className="text-2xl font-extrabold text-secondary mb-4 group-hover:text-primary transition-colors">{svc.title}</h3>
                   <p className="text-slate-500 text-sm leading-relaxed font-medium line-clamp-3">{svc.description}</p>
                 </div>
               </motion.div>
@@ -221,13 +221,13 @@ const Home = () => {
       {/* RENTAL EQUIPMENT - MASONRY/GRID STYLE */}
       <section className="py-24 bg-white border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
-          <h3 className="text-[#f5a623] font-bold tracking-widest text-sm mb-3 uppercase">Rental Equipment</h3>
-          <h2 className="text-4xl md:text-5xl font-black text-[#1b253b]">Peralatan Standar Broadcast</h2>
+          <h3 className="text-primary font-bold tracking-widest text-sm mb-3 uppercase">Rental Equipment</h3>
+          <h2 className="text-4xl md:text-5xl font-black text-secondary">Peralatan Standar Broadcast</h2>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {equipments.length === 0 ? (
-            <div className="text-center py-20 bg-slate-50 rounded-3xl border border-slate-200 border-dashed">
+            <div className="text-center py-20 bg-background rounded-3xl border border-slate-200 border-dashed">
               <p className="text-slate-500 font-medium">Belum ada alat yang ditambahkan oleh Admin.</p>
             </div>
           ) : (
@@ -242,7 +242,7 @@ const Home = () => {
                   className="relative rounded-2xl overflow-hidden group aspect-[4/5] md:aspect-square bg-slate-100"
                 >
                   <img src={item.image_url || 'https://placehold.co/500x500?text=No+Image'} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1b253b] via-[#1b253b]/40 to-transparent flex flex-col justify-end p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                  <div className="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/40 to-transparent flex flex-col justify-end p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                     <h4 className="text-white font-extrabold text-lg md:text-xl mb-2">{item.title}</h4>
                     <p className="text-blue-100/70 text-xs md:text-sm font-medium line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">{item.description}</p>
                   </div>
@@ -252,7 +252,7 @@ const Home = () => {
           )}
 
           <div className="mt-16 flex justify-center">
-            <Link to="/price-list" className="inline-flex justify-center items-center bg-[#1b253b] text-white font-extrabold py-4 px-10 rounded-full text-sm hover:bg-[#273554] transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 tracking-wider">
+            <Link to="/price-list" className="inline-flex justify-center items-center bg-secondary text-white font-extrabold py-4 px-10 rounded-full text-sm hover:bg-secondary transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 tracking-wider">
               LIHAT PRICE LIST LENGKAP
             </Link>
           </div>
@@ -260,7 +260,7 @@ const Home = () => {
       </section>
 
       {/* CLIENTS MARQUEE / GRID */}
-      <section className="py-20 bg-slate-50 border-t border-slate-100">
+      <section className="py-20 bg-background border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h3 className="text-sm font-bold text-slate-400 tracking-widest uppercase mb-12">Telah Dipercaya Oleh Berbagai Perusahaan & Instansi</h3>
 
@@ -283,11 +283,11 @@ const Home = () => {
         <div className="flex flex-col lg:flex-row min-h-[700px]">
 
           {/* Contact Form Half */}
-          <div className="w-full lg:w-1/2 bg-[#1b253b] p-10 sm:p-16 lg:p-24 text-white relative overflow-hidden flex flex-col justify-center">
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#f5a623] rounded-full mix-blend-overlay filter blur-[120px] opacity-20 pointer-events-none" />
+          <div className="w-full lg:w-1/2 bg-secondary p-10 sm:p-16 lg:p-24 text-white relative overflow-hidden flex flex-col justify-center">
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary rounded-full mix-blend-overlay filter blur-[120px] opacity-20 pointer-events-none" />
 
             <div className="max-w-md w-full mx-auto lg:ml-auto lg:mr-12 relative z-10">
-              <h3 className="text-[#f5a623] font-bold tracking-widest text-sm mb-3 uppercase">Mari Berdiskusi</h3>
+              <h3 className="text-primary font-bold tracking-widest text-sm mb-3 uppercase">Mari Berdiskusi</h3>
               <h2 className="text-4xl md:text-5xl font-black mb-10 tracking-tight">Kirim Pesan<br />Untuk Kami.</h2>
 
               <form className="space-y-5" onSubmit={handleContactSubmit}>
@@ -298,7 +298,7 @@ const Home = () => {
                     value={formData.name}
                     onChange={e => setFormData({ ...formData, name: e.target.value })}
                     placeholder="Nama Anda"
-                    className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-[#f5a623] focus:ring-1 focus:ring-[#f5a623] transition-all font-medium"
+                    className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-medium"
                   />
                   <input
                     type="email"
@@ -306,7 +306,7 @@ const Home = () => {
                     value={formData.email}
                     onChange={e => setFormData({ ...formData, email: e.target.value })}
                     placeholder="Alamat Email"
-                    className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-[#f5a623] focus:ring-1 focus:ring-[#f5a623] transition-all font-medium"
+                    className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-medium"
                   />
                 </div>
                 <input
@@ -315,7 +315,7 @@ const Home = () => {
                   value={formData.subject}
                   onChange={e => setFormData({ ...formData, subject: e.target.value })}
                   placeholder="Subjek Pesan"
-                  className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-[#f5a623] focus:ring-1 focus:ring-[#f5a623] transition-all font-medium"
+                  className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-medium"
                 />
                 <textarea
                   required
@@ -323,12 +323,12 @@ const Home = () => {
                   onChange={e => setFormData({ ...formData, message: e.target.value })}
                   placeholder="Tulis pesan Anda secara detail..."
                   rows="4"
-                  className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-[#f5a623] focus:ring-1 focus:ring-[#f5a623] transition-all font-medium resize-none"
+                  className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-medium resize-none"
                 ></textarea>
                 <button
                   type="submit"
                   disabled={formStatus === 'sending...'}
-                  className="w-full bg-[#f5a623] hover:bg-yellow-400 text-[#1b253b] font-extrabold py-4 px-8 rounded-xl text-sm transition-all shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 transform hover:-translate-y-0.5 tracking-wider disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="w-full bg-primary hover:bg-yellow-400 text-secondary font-extrabold py-4 px-8 rounded-xl text-sm transition-all shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 transform hover:-translate-y-0.5 tracking-wider disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                   {formStatus === 'sending...' ? 'MENGIRIM PESAN...' : 'KIRIM PESAN SEKARANG'}
                 </button>
@@ -339,10 +339,10 @@ const Home = () => {
           </div>
 
           {/* FAQ Half */}
-          <div className="w-full lg:w-1/2 bg-slate-50 p-10 sm:p-16 lg:p-24 flex flex-col justify-center">
+          <div className="w-full lg:w-1/2 bg-background p-10 sm:p-16 lg:p-24 flex flex-col justify-center">
             <div className="max-w-md w-full mx-auto lg:mr-auto lg:ml-12">
               <h3 className="text-slate-400 font-bold tracking-widest text-sm mb-3 uppercase">Pusat Informasi</h3>
-              <h2 className="text-4xl md:text-5xl font-black text-[#1b253b] mb-12 tracking-tight">Tanya Jawab<br />Seputar Layanan</h2>
+              <h2 className="text-4xl md:text-5xl font-black text-secondary mb-12 tracking-tight">Tanya Jawab<br />Seputar Layanan</h2>
 
               <div className="space-y-4">
                 {faqs.length === 0 ? (
@@ -350,7 +350,7 @@ const Home = () => {
                 ) : (
                   faqs.map((faq, i) => (
                     <div key={faq.id} className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-shadow group cursor-pointer">
-                      <h4 className="font-extrabold text-lg text-[#1b253b] mb-3 group-hover:text-[#f5a623] transition-colors">{faq.question}</h4>
+                      <h4 className="font-extrabold text-lg text-secondary mb-3 group-hover:text-primary transition-colors">{faq.question}</h4>
                       <p className="text-sm text-slate-500 font-medium leading-relaxed">
                         {faq.answer}
                       </p>

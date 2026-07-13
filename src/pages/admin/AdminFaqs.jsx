@@ -70,7 +70,7 @@ export default function AdminFaqs() {
     <div className="max-w-5xl mx-auto">
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h2 className="text-3xl font-bold text-slate-900">FAQ (Tanya Jawab)</h2>
+          <h2 className="text-3xl font-bold text-foreground">FAQ (Tanya Jawab)</h2>
           <p className="text-slate-500 mt-1">Kelola pertanyaan yang sering diajukan pelanggan beserta jawabannya.</p>
         </div>
         <button 
@@ -88,7 +88,7 @@ export default function AdminFaqs() {
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse min-w-[600px]">
               <thead>
-                <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 font-medium text-sm">
+                <tr className="bg-background border-b border-slate-200 text-slate-500 font-medium text-sm">
                   <th className="py-4 px-6 w-24">Urutan</th>
                   <th className="py-4 px-6">Pertanyaan & Jawaban</th>
                   <th className="py-4 px-6 text-right w-32">Aksi</th>
@@ -96,7 +96,7 @@ export default function AdminFaqs() {
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {items.map((item) => (
-                  <tr key={item.id} className="hover:bg-slate-50/50 transition-colors">
+                  <tr key={item.id} className="hover:bg-background/50 transition-colors">
                     <td className="py-4 px-6 text-slate-600 font-medium">{item.order_index}</td>
                     <td className="py-4 px-6">
                       <p className="font-semibold text-slate-800">{item.question}</p>
@@ -129,7 +129,7 @@ export default function AdminFaqs() {
         <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-2xl w-full max-w-lg p-6 shadow-xl relative">
             <button onClick={handleCloseModal} className="absolute top-4 right-4 text-slate-400 hover:text-slate-700"><X size={24}/></button>
-            <h3 className="text-xl font-bold text-slate-900 mb-6">{formData.id ? 'Edit' : 'Tambah'} FAQ</h3>
+            <h3 className="text-xl font-bold text-foreground mb-6">{formData.id ? 'Edit' : 'Tambah'} FAQ</h3>
             
             <form onSubmit={handleSave} className="space-y-4">
               <div>

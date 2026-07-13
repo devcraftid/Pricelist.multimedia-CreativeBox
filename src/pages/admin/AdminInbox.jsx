@@ -33,7 +33,7 @@ export default function AdminInbox() {
     <div className="max-w-6xl mx-auto">
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h2 className="text-3xl font-bold text-slate-900">Pesan Masuk</h2>
+          <h2 className="text-3xl font-bold text-foreground">Pesan Masuk</h2>
           <p className="text-slate-500 mt-1">Daftar pesan dari form kontak website.</p>
         </div>
       </div>
@@ -44,7 +44,7 @@ export default function AdminInbox() {
         ) : (
           <div className="divide-y divide-slate-100">
             {messages.map((msg) => (
-              <div key={msg.id} className="p-6 hover:bg-slate-50/50 transition-colors flex flex-col md:flex-row gap-6">
+              <div key={msg.id} className="p-6 hover:bg-background/50 transition-colors flex flex-col md:flex-row gap-6">
                 
                 {/* Sender Info */}
                 <div className="md:w-1/4 shrink-0">
@@ -63,7 +63,7 @@ export default function AdminInbox() {
                 </div>
 
                 {/* Message Content */}
-                <div className="flex-1 bg-slate-50 p-4 rounded-xl border border-slate-100">
+                <div className="flex-1 bg-background p-4 rounded-xl border border-slate-100">
                   <h4 className="font-bold text-slate-800 mb-2">{msg.subject || 'Tidak ada subjek'}</h4>
                   <p className="text-slate-600 whitespace-pre-wrap text-sm leading-relaxed">{msg.message}</p>
                 </div>

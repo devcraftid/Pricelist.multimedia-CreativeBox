@@ -14,7 +14,11 @@ export default function AdminSettings() {
     instagram_url: '',
     logo_url: '',
     hero_image_url: '',
-    map_embed_url: ''
+    map_embed_url: '',
+    primary_color: '#f5a623',
+    secondary_color: '#1b253b',
+    bg_color: '#f8fafc',
+    text_color: '#0f172a'
   });
   
   const [loading, setLoading] = useState(false);
@@ -88,6 +92,10 @@ export default function AdminSettings() {
             logo_url: settings.logo_url,
             hero_image_url: settings.hero_image_url,
             map_embed_url: settings.map_embed_url,
+            primary_color: settings.primary_color,
+            secondary_color: settings.secondary_color,
+            bg_color: settings.bg_color,
+            text_color: settings.text_color,
             updated_at: new Date().toISOString()
           })
           .eq('id', settings.id);
@@ -105,7 +113,11 @@ export default function AdminSettings() {
             instagram_url: settings.instagram_url,
             logo_url: settings.logo_url,
             hero_image_url: settings.hero_image_url,
-            map_embed_url: settings.map_embed_url
+            map_embed_url: settings.map_embed_url,
+            primary_color: settings.primary_color,
+            secondary_color: settings.secondary_color,
+            bg_color: settings.bg_color,
+            text_color: settings.text_color
           }]);
         error = insertError;
         // Fetch again to get the new ID
@@ -127,7 +139,7 @@ export default function AdminSettings() {
   return (
     <div className="max-w-4xl mx-auto">
       <div className="mb-8">
-        <h2 className="text-3xl font-bold text-slate-900">Pengaturan Situs</h2>
+        <h2 className="text-3xl font-bold text-foreground">Pengaturan Situs</h2>
         <p className="text-slate-500 mt-2">Atur teks utama, gambar logo, banner, dan kontak website Anda.</p>
       </div>
 
@@ -237,6 +249,94 @@ export default function AdminSettings() {
               <label className="block text-sm font-medium text-slate-700 mb-1">Google Maps Embed URL (Iframe src)</label>
               <input type="url" name="map_embed_url" value={settings.map_embed_url} onChange={handleChange} placeholder="https://www.google.com/maps/embed?pb=..." className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary outline-none" />
               <p className="text-xs text-slate-500 mt-1">Kosongkan jika Anda belum ingin menampilkan peta di halaman Contact Us.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Theme Settings */}
+        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+          <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+            Warna Tema
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-1">Warna Utama (Aksen / Tombol)</label>
+              <div className="flex items-center gap-3">
+                <input 
+                  type="color" 
+                  name="primary_color" 
+                  value={settings.primary_color || '#f5a623'} 
+                  onChange={handleChange} 
+                  className="w-12 h-12 p-1 border border-slate-200 rounded cursor-pointer"
+                />
+                <input 
+                  type="text" 
+                  name="primary_color" 
+                  value={settings.primary_color || '#f5a623'} 
+                  onChange={handleChange} 
+                  className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary outline-none uppercase font-mono"
+                />
+              </div>
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-1">Warna Sekunder (Latar Gelap / Header)</label>
+              <div className="flex items-center gap-3">
+                <input 
+                  type="color" 
+                  name="secondary_color" 
+                  value={settings.secondary_color || '#1b253b'} 
+                  onChange={handleChange} 
+                  className="w-12 h-12 p-1 border border-slate-200 rounded cursor-pointer"
+                />
+                <input 
+                  type="text" 
+                  name="secondary_color" 
+                  value={settings.secondary_color || '#1b253b'} 
+                  onChange={handleChange} 
+                  className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary outline-none uppercase font-mono"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-1">Warna Latar Belakang (Website)</label>
+              <div className="flex items-center gap-3">
+                <input 
+                  type="color" 
+                  name="bg_color" 
+                  value={settings.bg_color || '#f8fafc'} 
+                  onChange={handleChange} 
+                  className="w-12 h-12 p-1 border border-slate-200 rounded cursor-pointer"
+                />
+                <input 
+                  type="text" 
+                  name="bg_color" 
+                  value={settings.bg_color || '#f8fafc'} 
+                  onChange={handleChange} 
+                  className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary outline-none uppercase font-mono"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-1">Warna Teks Utama</label>
+              <div className="flex items-center gap-3">
+                <input 
+                  type="color" 
+                  name="text_color" 
+                  value={settings.text_color || '#0f172a'} 
+                  onChange={handleChange} 
+                  className="w-12 h-12 p-1 border border-slate-200 rounded cursor-pointer"
+                />
+                <input 
+                  type="text" 
+                  name="text_color" 
+                  value={settings.text_color || '#0f172a'} 
+                  onChange={handleChange} 
+                  className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary outline-none uppercase font-mono"
+                />
+              </div>
             </div>
           </div>
         </div>
