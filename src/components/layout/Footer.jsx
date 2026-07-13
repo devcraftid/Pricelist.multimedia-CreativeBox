@@ -15,8 +15,17 @@ const Footer = () => {
     if (data && data.length > 0) setSettings(data[0]);
   };
 
+  const quickLinks = [
+    { name: 'Home', path: '/' },
+    { name: 'Services', path: '/services' },
+    { name: 'Price List', path: '/price-list' },
+    { name: 'Project Update !', path: '/projects' },
+    { name: 'About', path: '/about' },
+    { name: 'Contact Us', path: '/contact' }
+  ];
+
   return (
-    <footer className="bg-secondary text-white pt-20 pb-10 border-t border-white/5 relative overflow-hidden">
+    <footer className="bg-secondary text-white pt-20 pb-10 border-t border-white/5 relative overflow-hidden z-20">
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary rounded-full mix-blend-multiply filter blur-[150px] opacity-10 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-600 rounded-full mix-blend-multiply filter blur-[150px] opacity-10 pointer-events-none" />
       
@@ -57,12 +66,12 @@ const Footer = () => {
           {/* Quick Links */}
           <div className="lg:col-span-3">
             <h4 className="text-white font-bold mb-6 tracking-wide uppercase text-sm">Tautan Cepat</h4>
-            <ul className="space-y-3">
-              {['Home', 'Services', 'Project Update !', 'About', 'Contact Us'].map((item, index) => (
+            <ul className="space-y-2">
+              {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <Link to={item === 'Home' ? '/' : `/${item.toLowerCase().replace(/ !| us/g, '').replace(/ /g, '-')}`} className="text-slate-400 hover:text-primary text-sm font-medium transition-colors flex items-center">
+                  <Link to={link.path} className="text-slate-400 hover:text-primary text-sm font-medium transition-colors flex items-center py-2 relative z-30">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary mr-3 opacity-0 transition-opacity" />
-                    {item}
+                    {link.name}
                   </Link>
                 </li>
               ))}
