@@ -43,7 +43,7 @@ const Footer = () => {
               />
             </Link>
             <p className="text-slate-400 text-sm leading-relaxed mb-8 max-w-md">
-              Creative Box menyediakan layanan multimedia profesional, live camera production, dan berbagai kebutuhan event management Anda dengan kualitas terbaik dan tim yang berpengalaman.
+              Creative Box menghadirkan solusi multimedia profesional, live camera production, serta layanan event management yang dirancang untuk memberikan hasil berkualitas tinggi. Didukung oleh tim berpengalaman, kami siap mewujudkan setiap momen dengan standar terbaik.
             </p>
             
             <div className="flex space-x-4">
