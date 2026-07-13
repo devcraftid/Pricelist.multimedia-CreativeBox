@@ -85,6 +85,27 @@ const Projects = () => {
     return url;
   };
 
+  const getThumbnailUrl = (item) => {
+    if (item.image_url) return item.image_url;
+    
+    if (item.video_url) {
+      if (item.video_url.includes('youtube.com/watch?v=')) {
+        const videoId = item.video_url.split('v=')[1].split('&')[0];
+        return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+      }
+      if (item.video_url.includes('youtu.be/')) {
+        const videoId = item.video_url.split('youtu.be/')[1].split('?')[0];
+        return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+      }
+      if (item.video_url.includes('instagram.com')) {
+        return 'https://placehold.co/400x400/e1306c/ffffff?text=Instagram+Video';
+      }
+      return 'https://placehold.co/400x400/1e293b/ffffff?text=Video';
+    }
+    
+    return 'https://placehold.co/400x400?text=No+Image';
+  };
+
   return (
     <div className="w-full bg-white pt-32 md:pt-40 pb-20 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -104,7 +125,7 @@ const Projects = () => {
             {projects.map((item) => (
               <div key={item.id} onClick={() => setSelectedProject(item)} className="relative aspect-square overflow-hidden group cursor-pointer bg-slate-100">
                 <img 
-                  src={item.image_url || 'https://placehold.co/400x400?text=No+Image'} 
+                  src={getThumbnailUrl(item)} 
                   alt={item.title || 'Project'} 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
                 />
