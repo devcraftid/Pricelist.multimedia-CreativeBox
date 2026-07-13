@@ -13,6 +13,10 @@ CREATE TABLE IF NOT EXISTS public.site_settings (
     address TEXT,
     facebook_url TEXT,
     instagram_url TEXT,
+    primary_color TEXT DEFAULT '#f5a623',
+    secondary_color TEXT DEFAULT '#1b253b',
+    bg_color TEXT DEFAULT '#f8fafc',
+    text_color TEXT DEFAULT '#0f172a',
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
