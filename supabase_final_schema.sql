@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS public.site_settings (
     address TEXT,
     facebook_url TEXT,
     instagram_url TEXT,
+    map_embed_url TEXT,
     primary_color TEXT DEFAULT '#f5a623',
     secondary_color TEXT DEFAULT '#1b253b',
     bg_color TEXT DEFAULT '#f8fafc',
@@ -115,11 +116,11 @@ DELETE FROM public.about_page;
 
 -- 4. Reset site_settings menjadi kosong (Hanya 1 Baris)
 DELETE FROM public.site_settings;
-INSERT INTO public.site_settings (id, hero_title, hero_subtitle, wa_number, email, address, facebook_url, instagram_url, logo_url, hero_image_url)
+INSERT INTO public.site_settings (id, hero_title, hero_subtitle, wa_number, email, address, facebook_url, instagram_url, logo_url, hero_image_url, map_embed_url)
 VALUES (
     gen_random_uuid(), 
     'Website Sedang Maintenance', 
-    '', '', '', '', '', '', '', ''
+    '', '', '', '', '', '', '', '', ''
 );
 
 -- 5. Aktifkan RLS dan Kebijakan Publik (Baca Saja)
