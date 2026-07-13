@@ -7,7 +7,6 @@ import Services from './pages/Services';
 import Projects from './pages/Projects';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import Blog from './pages/Blog';
 import PublicPriceList from './pages/PublicPriceList';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminLogin from './pages/AdminLogin';
@@ -48,7 +47,6 @@ function App() {
           <Route path="projects" element={<Projects />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="blog" element={<Blog />} />
           <Route path="price-list" element={<PublicPriceList />} />
         </Route>
 

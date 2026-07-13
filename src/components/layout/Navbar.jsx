@@ -34,8 +34,7 @@ const Navbar = () => {
     { name: 'Price List', path: '/price-list' },
     { name: 'Project Update !', path: '/projects' },
     { name: 'About', path: '/about' },
-    { name: 'Contact Us', path: '/contact' },
-    { name: 'News & Blog', path: '/blog' },
+    { name: 'Contact Us', path: '/contact' }
   ];
 
   const isDarkBg = location.pathname === '/' || location.pathname === '/services';
