@@ -149,6 +149,20 @@ const Contact = () => {
                   </div>
                 </div>
               )}
+
+              {settings?.instagram_url && (
+                <div className={`flex flex-col lg:flex-row items-center gap-4 ${settings?.map_embed_url ? 'lg:items-start' : ''}`}>
+                  <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center shrink-0">
+                    <svg className="w-6 h-6 text-secondary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                  </div>
+                  <div>
+                    <h4 className="font-extrabold text-slate-800 text-lg mb-2">Instagram:</h4>
+                    <a href={settings.instagram_url} target="_blank" rel="noreferrer" className="text-slate-600 font-medium leading-relaxed max-w-xs whitespace-pre-wrap hover:text-primary transition-colors">
+                      @{settings.instagram_url.split('instagram.com/')[1]?.split('?')[0] || 'Instagram Kami'}
+                    </a>
+                  </div>
+                </div>
+              )}
             </div>
 
             {settings?.wa_number && (
