@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
-import { Play } from 'lucide-react';
+import { Play, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const FacebookIcon = ({ size = 24, ...props }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="0" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -27,6 +28,7 @@ const Projects = () => {
   const [projects, setProjects] = useState([]);
   const [settings, setSettings] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [selectedProject, setSelectedProject] = useState(null);
 
   useEffect(() => {
     fetchData();
@@ -73,7 +75,7 @@ const Projects = () => {
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-1 mb-16">
             {projects.map((item) => (
-              <div key={item.id} className="relative aspect-square overflow-hidden group cursor-pointer bg-slate-100">
+              <div key={item.id} onClick={() => setSelectedProject(item)} className="relative aspect-square overflow-hidden group cursor-pointer bg-slate-100">
                 <img 
                   src={item.image_url || 'https://placehold.co/400x400?text=No+Image'} 
                   alt={item.title || 'Project'} 
@@ -81,9 +83,11 @@ const Projects = () => {
                 />
                 
                 {/* Play Icon (Top Right) */}
-                <div className="absolute top-2 right-2 text-white/90 drop-shadow-md">
-                  <Play fill="currentColor" size={24} />
-                </div>
+                {item.video_url && (
+                  <div className="absolute top-2 right-2 text-white/90 drop-shadow-md">
+                    <Play fill="currentColor" size={24} />
+                  </div>
+                )}
 
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4 text-center">
@@ -96,38 +100,62 @@ const Projects = () => {
           </div>
         )}
 
-        {/* Social Media Section */}
-        <div className="flex flex-col items-center justify-center text-center">
-          <p className="text-gray-500 font-medium mb-6">
-            Temukan project selengkapnya di media sosial kami
-          </p>
-          <div className="flex gap-4">
-            <a 
-              href={settings?.facebook_url || '#'} 
-              target="_blank" 
-              rel="noreferrer"
-              className="w-12 h-12 flex items-center justify-center bg-[#3b5998] hover:bg-[#2d4373] text-white transition-colors shadow-md"
+        {/* Modal Lightbox */}
+        <AnimatePresence>
+          {selectedProject && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
+              onClick={() => setSelectedProject(null)}
             >
-              <FacebookIcon size={24} />
-            </a>
-            <a 
-              href="#" 
-              target="_blank" 
-              rel="noreferrer"
-              className="w-12 h-12 flex items-center justify-center bg-[#c4302b] hover:bg-[#9e2723] text-white transition-colors shadow-md"
-            >
-              <YoutubeIcon size={24} />
-            </a>
-            <a 
-              href={settings?.instagram_url || '#'} 
-              target="_blank" 
-              rel="noreferrer"
-              className="w-12 h-12 flex items-center justify-center bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] hover:opacity-90 text-white transition-opacity shadow-md"
-            >
-              <InstagramIcon size={24} />
-            </a>
-          </div>
-        </div>
+              <button
+                className="absolute top-4 right-4 text-white hover:text-gray-300 z-50 bg-black/50 p-2 rounded-full"
+                onClick={() => setSelectedProject(null)}
+              >
+                <X size={32} />
+              </button>
+              
+              <div
+                className="relative w-full max-w-5xl max-h-[90vh] flex flex-col items-center justify-center"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {selectedProject.video_url ? (
+                  <div className="w-full aspect-video rounded-lg shadow-2xl overflow-hidden bg-black flex items-center justify-center">
+                    <iframe
+                      src={selectedProject.video_url.includes('watch?v=') ? selectedProject.video_url.replace('watch?v=', 'embed/') : selectedProject.video_url}
+                      className="w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                ) : (
+                  <motion.img
+                    initial={{ scale: 0.8 }}
+                    animate={{ scale: 1 }}
+                    exit={{ scale: 0.8 }}
+                    transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                    src={selectedProject.image_url || 'https://placehold.co/800x600?text=No+Image'}
+                    alt={selectedProject.title}
+                    className="max-w-full max-h-[75vh] object-contain rounded-lg shadow-2xl cursor-zoom-out"
+                    onClick={() => setSelectedProject(null)}
+                  />
+                )}
+                
+                <div className="mt-6 text-center">
+                  <h3 className="text-white text-2xl font-bold">{selectedProject.title}</h3>
+                  {selectedProject.client_name && (
+                    <p className="text-primary font-medium mt-1">Client: {selectedProject.client_name}</p>
+                  )}
+                  {selectedProject.description && (
+                    <p className="text-gray-300 mt-3 max-w-2xl mx-auto">{selectedProject.description}</p>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
       </div>
     </div>

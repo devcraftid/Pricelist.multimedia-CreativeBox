@@ -8,7 +8,7 @@ export default function AdminProjects() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [saving, setSaving] = useState(false);
   
-  const [formData, setFormData] = useState({ id: null, title: '', description: '', image_url: '', client_name: '', date_completed: '' });
+  const [formData, setFormData] = useState({ id: null, title: '', description: '', image_url: '', video_url: '', client_name: '', date_completed: '' });
 
   useEffect(() => {
     fetchProjects();
@@ -25,14 +25,14 @@ export default function AdminProjects() {
     if (project) {
       setFormData(project);
     } else {
-      setFormData({ id: null, title: '', description: '', image_url: '', client_name: '', date_completed: '' });
+      setFormData({ id: null, title: '', description: '', image_url: '', video_url: '', client_name: '', date_completed: '' });
     }
     setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    setFormData({ id: null, title: '', description: '', image_url: '', client_name: '', date_completed: '' });
+    setFormData({ id: null, title: '', description: '', image_url: '', video_url: '', client_name: '', date_completed: '' });
   };
 
   const handleImageUpload = async (e) => {
@@ -203,6 +203,12 @@ export default function AdminProjects() {
                   <Upload size={16} /> Ganti Gambar
                   <input type="file" className="hidden" accept="image/*" onChange={handleImageUpload} />
                 </label>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Link Video (Opsional)</label>
+                <input type="url" placeholder="https://youtube.com/..." value={formData.video_url || ''} onChange={e => setFormData({...formData, video_url: e.target.value})} className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary outline-none" />
+                <p className="text-xs text-slate-500 mt-1">Jika diisi, modal akan memutar video ini saat project diklik.</p>
               </div>
               
               <div className="mt-8 flex justify-end gap-3 pt-4 border-t border-slate-100">
