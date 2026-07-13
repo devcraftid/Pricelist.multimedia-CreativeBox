@@ -61,7 +61,7 @@ const About = () => {
     <div className="w-full bg-background font-sans overflow-hidden">
       
       {/* HERO SECTION */}
-      <section className="relative w-full h-[250px] md:h-[300px] flex items-center justify-center bg-secondary overflow-hidden">
+      <section className="relative w-full min-h-[400px] md:min-h-[500px] pt-20 flex items-center justify-center bg-secondary overflow-hidden">
         <div 
           className="absolute inset-0 z-0 opacity-60 bg-cover bg-center"
           style={{ backgroundImage: `url('${heroBg}')` }}
