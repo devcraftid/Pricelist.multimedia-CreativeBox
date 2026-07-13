@@ -167,12 +167,14 @@ const Projects = () => {
               
               <div
                 className={`relative flex flex-col items-center justify-center ${
-                  selectedProject.video_url ? "w-full max-w-5xl" : "w-auto max-w-[95vw]"
+                  selectedProject.video_url 
+                    ? (selectedProject.video_url.includes('instagram.com') ? "w-full max-w-[360px]" : "w-full max-w-5xl") 
+                    : "w-auto max-w-[95vw]"
                 }`}
                 onClick={(e) => e.stopPropagation()}
               >
                 {selectedProject.video_url ? (
-                  <div className="w-full aspect-video rounded-lg shadow-2xl overflow-hidden bg-black flex items-center justify-center">
+                  <div className={`w-full ${selectedProject.video_url.includes('instagram.com') ? "aspect-[9/16]" : "aspect-video"} rounded-lg shadow-2xl overflow-hidden bg-black flex items-center justify-center`}>
                     <iframe
                       src={getEmbedUrl(selectedProject.video_url)}
                       className="w-full h-full"
