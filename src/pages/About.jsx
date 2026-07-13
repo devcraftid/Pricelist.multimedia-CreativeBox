@@ -63,10 +63,10 @@ const About = () => {
       {/* HERO SECTION */}
       <section className="relative w-full h-[250px] md:h-[300px] flex items-center justify-center bg-secondary overflow-hidden">
         <div 
-          className="absolute inset-0 z-0 opacity-40 bg-cover bg-center mix-blend-overlay"
+          className="absolute inset-0 z-0 opacity-60 bg-cover bg-center"
           style={{ backgroundImage: `url('${heroBg}')` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary/90 via-secondary/60 to-secondary z-0" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80 z-0" />
         
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
