@@ -180,7 +180,7 @@ const Home = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="max-w-2xl">
             <h3 className="text-primary font-bold tracking-widest text-sm mb-3 uppercase">Layanan Kami</h3>
-            <h2 className="text-4xl md:text-5xl font-black text-secondary tracking-tight">Karya Terbaik untuk Momen Terbaik</h2>
+            <h2 className="text-4xl md:text-5xl font-black text-[#001219] tracking-tight">Karya Terbaik untuk Momen Terbaik</h2>
           </div>
           <Link to="/services" className="inline-flex items-center text-sm font-bold text-slate-600 hover:text-primary transition-colors group">
             LIHAT SEMUA LAYANAN <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -342,7 +342,7 @@ const Home = () => {
           <div className="w-full lg:w-1/2 bg-background p-10 sm:p-16 lg:p-24 flex flex-col justify-center">
             <div className="max-w-md w-full mx-auto lg:mr-auto lg:ml-12">
               <h3 className="text-slate-400 font-bold tracking-widest text-sm mb-3 uppercase">Pusat Informasi</h3>
-              <h2 className="text-4xl md:text-5xl font-black text-secondary mb-12 tracking-tight">Tanya Jawab<br />Seputar Layanan</h2>
+              <h2 className="text-4xl md:text-5xl font-black text-[#001219] mb-12 tracking-tight">Tanya Jawab<br />Seputar Layanan</h2>
 
               <div className="space-y-4">
                 {faqs.length === 0 ? (
