@@ -31,6 +31,7 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Services', path: '/services' },
+    { name: 'Price List', path: '/price-list' },
     { name: 'Project Update !', path: '/projects' },
     { name: 'About', path: '/about' },
     { name: 'Contact Us', path: '/contact' },
@@ -84,40 +85,7 @@ const Navbar = () => {
               );
             })}
             
-            {/* Dropdown Price List */}
-            <div 
-              className="relative"
-              onMouseEnter={() => setIsPriceListOpen(true)}
-              onMouseLeave={() => setIsPriceListOpen(false)}
-            >
-              <button 
-                className={`flex items-center px-4 py-2 font-semibold text-sm transition-colors rounded-full ${location.pathname.includes('/price-list') ? 'text-primary' : 'text-slate-200 hover:text-white hover:bg-white/5'}`}
-              >
-                Price List <ChevronDown className={`ml-1 w-4 h-4 transition-transform duration-300 ${isPriceListOpen ? 'rotate-180 text-primary' : ''}`} />
-              </button>
-              
-              <AnimatePresence>
-                {isPriceListOpen && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute left-0 mt-2 w-56 bg-secondary/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl py-2 z-50 overflow-hidden"
-                  >
-                    {['Live Cam', 'LED Videotron', 'Stage & Rigging', 'Sound System'].map((item) => (
-                      <Link 
-                        key={item}
-                        to={`/price-list?tab=${encodeURIComponent(item)}`} 
-                        className="block px-5 py-3 text-sm font-medium text-slate-300 hover:bg-primary/10 hover:text-primary hover:pl-6 transition-all"
-                      >
-                        {item}
-                      </Link>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+
           </nav>
 
           {/* Desktop Right Actions */}
@@ -164,19 +132,7 @@ const Navbar = () => {
                 </Link>
               ))}
               
-              <div className="pt-4 mt-4 border-t border-white/10">
-                <span className="block px-4 py-2 text-xs font-bold text-slate-500 uppercase tracking-widest">Price List</span>
-                {['Live Cam', 'LED Videotron', 'Stage & Rigging', 'Sound System'].map((item) => (
-                  <Link 
-                    key={item}
-                    to={`/price-list?tab=${encodeURIComponent(item)}`} 
-                    className="block px-4 py-3 rounded-xl text-sm font-bold text-slate-300 hover:bg-primary/10 hover:text-primary transition-colors" 
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {item}
-                  </Link>
-                ))}
-              </div>
+
               
               <div className="pt-6 mt-4 flex flex-col space-y-4">
                  <div className="text-white text-sm px-4 flex items-center">
