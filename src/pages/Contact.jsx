@@ -165,16 +165,28 @@ const Contact = () => {
               )}
             </div>
 
-            {settings?.wa_number && (
-              <div className={`mt-12 w-full flex justify-center ${settings?.map_embed_url ? 'lg:justify-start' : ''}`}>
-                <a 
-                  href={`https://wa.me/${settings.wa_number}`} 
-                  target="_blank" 
-                  rel="noreferrer" 
-                  className="w-full sm:w-auto bg-gradient-to-r from-primary to-primary text-white font-extrabold py-4 px-8 rounded-xl shadow-lg shadow-orange-500/30 hover:-translate-y-1 hover:shadow-orange-500/40 transition-all duration-300 text-center"
-                >
-                  HUBUNGI VIA WHATSAPP
-                </a>
+            {(settings?.wa_number || settings?.instagram_url) && (
+              <div className={`mt-10 flex flex-col sm:flex-row gap-4 justify-center ${settings?.map_embed_url ? 'lg:justify-start' : ''}`}>
+                {settings?.wa_number && (
+                  <a 
+                    href={`https://wa.me/${settings.wa_number}`} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="w-full sm:w-auto bg-gradient-to-r from-primary to-primary text-white font-extrabold py-4 px-8 rounded-xl shadow-lg shadow-orange-500/30 hover:-translate-y-1 hover:shadow-orange-500/40 transition-all duration-300 text-center"
+                  >
+                    HUBUNGI VIA WHATSAPP
+                  </a>
+                )}
+                {settings?.instagram_url && (
+                  <a 
+                    href={settings.instagram_url} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="w-full sm:w-auto bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white font-extrabold py-4 px-8 rounded-xl shadow-lg shadow-purple-500/30 hover:-translate-y-1 hover:shadow-purple-500/40 transition-all duration-300 text-center"
+                  >
+                    HUBUNGI VIA INSTAGRAM
+                  </a>
+                )}
               </div>
             )}
           </motion.div>
