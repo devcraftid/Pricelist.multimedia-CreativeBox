@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
 import { Plus, Edit2, Trash2, Upload, X, Loader2 } from 'lucide-react';
 
-const CATEGORIES = ['Live Cam', 'LED Videotron', 'Stage & Rigging', 'Sound System'];
+const CATEGORIES = ['Live Cam'];
 
 export default function AdminPriceList() {
   const [items, setItems] = useState([]);

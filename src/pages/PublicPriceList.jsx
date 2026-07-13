@@ -4,7 +4,7 @@ import { supabase } from '../lib/supabase';
 import { CheckCircle2, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const CATEGORIES = ['Live Cam', 'LED Videotron', 'Stage & Rigging', 'Sound System'];
+const CATEGORIES = ['Live Cam'];
 
 const COLORS = [
   { grad: 'bg-gradient-to-br from-[#ba7959] to-[#8c5941]', btn: 'bg-gradient-to-r from-[#ba7959] to-[#8c5941]', text: 'text-[#ba7959]', shadow: 'shadow-[#ba7959]/20' },
