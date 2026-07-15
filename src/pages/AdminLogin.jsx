@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
-import { Lock, ArrowLeft, Mail, ShieldCheck } from 'lucide-react';
+import { Lock, ArrowLeft, Mail, ShieldCheck, Eye, EyeOff } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function AdminLogin() {
@@ -9,6 +9,8 @@ export default function AdminLogin() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [shake, setShake] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -26,6 +28,8 @@ export default function AdminLogin() {
       navigate('/admin');
     } catch (err) {
       setError('Email atau password tidak valid');
+      setShake(true);
+      setTimeout(() => setShake(false), 500);
     } finally {
       setLoading(false);
     }
@@ -37,8 +41,8 @@ export default function AdminLogin() {
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-secondary items-center justify-center">
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070" 
-            alt="Studio Background" 
+            src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=2070&auto=format&fit=crop" 
+            alt="Camera and Laptop Equipment Background" 
             className="w-full h-full object-cover opacity-30 mix-blend-overlay"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-secondary/90 via-secondary/50 to-secondary/90" />
@@ -88,7 +92,8 @@ export default function AdminLogin() {
             <p className="text-slate-300 mt-3 font-medium">Silakan masuk ke akun admin Anda.</p>
           </div>
           
-          {error && (
+          <motion.div animate={shake ? { x: [-10, 10, -10, 10, 0] } : {}} transition={{ duration: 0.4 }}>
+            {error && (
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }} 
               animate={{ opacity: 1, scale: 1 }} 
@@ -124,13 +129,20 @@ export default function AdminLogin() {
                   <Lock className="h-5 w-5 text-slate-400 group-focus-within:text-primary transition-colors" />
                 </div>
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   required
-                  className="w-full pl-11 pr-4 py-3.5 bg-white border border-slate-200 text-slate-800 placeholder-slate-400 rounded-xl focus:ring-4 focus:ring-primary/20 focus:border-primary outline-none transition-all font-medium shadow-sm"
+                  className="w-full pl-11 pr-12 py-3.5 bg-white border border-slate-200 text-slate-800 placeholder-slate-400 rounded-xl focus:ring-4 focus:ring-primary/20 focus:border-primary outline-none transition-all font-medium shadow-sm"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-primary transition-colors focus:outline-none"
+                >
+                  {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                </button>
               </div>
             </div>
 
@@ -147,6 +159,7 @@ export default function AdminLogin() {
               {loading ? 'MEMVERIFIKASI...' : 'MASUK SEKARANG'}
             </button>
           </form>
+          </motion.div>
 
         </motion.div>
       </div>
