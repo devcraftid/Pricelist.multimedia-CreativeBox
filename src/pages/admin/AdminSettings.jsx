@@ -148,7 +148,7 @@ export default function AdminSettings() {
   return (
     <div className="max-w-4xl mx-auto">
       <div className="mb-8">
-        <h2 className="text-3xl font-bold text-foreground">Pengaturan Situs</h2>
+        <h2 className="text-3xl font-bold text-slate-800">Pengaturan Situs</h2>
         <p className="text-slate-500 mt-2">Atur teks utama, gambar logo, banner, dan kontak website Anda.</p>
       </div>
 

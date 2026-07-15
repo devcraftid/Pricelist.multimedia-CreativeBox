@@ -32,7 +32,7 @@ export default function AdminLayout() {
   };
 
   if (isAuthenticated === null) {
-    return <div className="min-h-screen flex items-center justify-center bg-background"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-secondary"></div></div>;
+    return <div className="min-h-screen flex items-center justify-center bg-slate-50"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-secondary"></div></div>;
   }
 
   if (!isAuthenticated) {
@@ -57,7 +57,7 @@ export default function AdminLayout() {
   ];
 
   return (
-    <div className="min-h-screen bg-background flex font-sans">
+    <div className="min-h-screen bg-slate-50 flex font-sans" style={{ '--color-background': '#f8fafc', '--color-foreground': '#0f172a' }}>
       {/* Mobile Top Bar */}
       <div className="md:hidden fixed top-0 left-0 w-full bg-secondary text-white z-50 flex justify-between items-center px-4 py-3 shadow-md">
         <div className="flex items-center gap-3">
@@ -119,7 +119,7 @@ export default function AdminLayout() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 md:ml-64 p-4 sm:p-8 pt-20 md:pt-8 min-w-0 bg-background/50">
+      <main className="flex-1 md:ml-64 p-4 sm:p-8 pt-20 md:pt-8 min-w-0 bg-slate-50">
         <Outlet />
       </main>
     </div>

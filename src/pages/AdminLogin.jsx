@@ -68,7 +68,7 @@ export default function AdminLogin() {
       <div className="w-full lg:w-1/2 flex flex-col justify-center px-8 sm:px-16 md:px-24 xl:px-32 relative bg-background">
         
         <div className="absolute top-8 left-8 sm:top-12 sm:left-12">
-          <a href="/" className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-secondary transition-colors font-bold group">
+          <a href="/" className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors font-bold group">
             <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" /> 
             Ke Halaman Utama
           </a>
@@ -82,10 +82,10 @@ export default function AdminLogin() {
         >
           <div className="mb-10 text-center lg:text-left">
             <div className="mb-8 flex justify-center lg:justify-start">
-              <img src="/admin-logo.png" alt="Creative Box Logo" className="h-20 object-contain drop-shadow-sm" />
+              <img src="/admin-logo.png" alt="Creative Box Logo" className="h-20 object-contain drop-shadow-sm filter invert brightness-0" />
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-secondary tracking-tight">Selamat Datang</h2>
-            <p className="text-slate-500 mt-3 font-medium">Silakan masuk ke akun admin Anda.</p>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#FFFFF0] tracking-tight">Selamat Datang</h2>
+            <p className="text-slate-300 mt-3 font-medium">Silakan masuk ke akun admin Anda.</p>
           </div>
           
           {error && (
@@ -101,7 +101,7 @@ export default function AdminLogin() {
 
           <form onSubmit={handleLogin} className="space-y-6">
             <div>
-              <label className="block text-sm font-bold text-slate-700 mb-2">Alamat Email</label>
+              <label className="block text-sm font-bold text-slate-200 mb-2">Alamat Email</label>
               <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                   <Mail className="h-5 w-5 text-slate-400 group-focus-within:text-primary transition-colors" />
@@ -118,7 +118,7 @@ export default function AdminLogin() {
             </div>
             
             <div>
-              <label className="block text-sm font-bold text-slate-700 mb-2">Password</label>
+              <label className="block text-sm font-bold text-slate-200 mb-2">Password</label>
               <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                   <Lock className="h-5 w-5 text-slate-400 group-focus-within:text-primary transition-colors" />
@@ -137,7 +137,7 @@ export default function AdminLogin() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-secondary hover:bg-[#1a253e] text-white font-extrabold py-4 rounded-xl shadow-lg shadow-blue-900/20 hover:shadow-blue-900/40 transition-all mt-4 disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center gap-3 tracking-wider group"
+              className="w-full bg-primary hover:bg-yellow-400 text-secondary font-extrabold py-4 rounded-xl shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 transition-all mt-4 disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center gap-3 tracking-wider group"
             >
               {loading ? (
                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
