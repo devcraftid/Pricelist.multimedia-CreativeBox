@@ -93,9 +93,11 @@ const Navbar = () => {
               <Phone size={16} className="mr-2 text-primary" />
               {settings?.wa_number || 'Belum Diatur'}
             </div>
-            <button className="bg-gradient-to-r from-primary to-primary hover:from-yellow-400 hover:to-orange-500 text-white font-extrabold py-2 px-6 rounded-full text-sm transition-all shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 transform hover:-translate-y-0.5 tracking-wide">
-              PROMO !
-            </button>
+            {settings?.promo_active && (
+              <a href={settings.promo_link || '#'} className="bg-gradient-to-r from-primary to-primary hover:from-yellow-400 hover:to-orange-500 text-white font-extrabold py-2 px-6 rounded-full text-sm transition-all shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40 transform hover:-translate-y-0.5 tracking-wide">
+                {settings.promo_text || 'PROMO !'}
+              </a>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -138,9 +140,11 @@ const Navbar = () => {
                     <Phone size={16} className="mr-2 text-primary" />
                     <span className="font-bold">{settings?.wa_number || 'Belum Diatur'}</span>
                  </div>
-                 <button className="w-full bg-gradient-to-r from-primary to-primary text-white font-extrabold py-3.5 px-4 rounded-xl text-sm transition-shadow shadow-lg shadow-orange-500/20">
-                  PROMO !
-                </button>
+                 {settings?.promo_active && (
+                   <a href={settings.promo_link || '#'} className="w-full block text-center bg-gradient-to-r from-primary to-primary text-white font-extrabold py-3.5 px-4 rounded-xl text-sm transition-shadow shadow-lg shadow-orange-500/20">
+                    {settings.promo_text || 'PROMO !'}
+                  </a>
+                 )}
               </div>
             </div>
           </motion.div>
