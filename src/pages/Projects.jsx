@@ -125,6 +125,7 @@ const Projects = () => {
             {projects.map((item) => (
               <div key={item.id} onClick={() => setSelectedProject(item)} className="relative aspect-square overflow-hidden group cursor-pointer bg-slate-100">
                 <img 
+                  loading="lazy"
                   src={getThumbnailUrl(item)} 
                   alt={item.title || 'Project'} 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 

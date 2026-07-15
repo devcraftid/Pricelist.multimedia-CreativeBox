@@ -203,7 +203,7 @@ const Home = () => {
                 className="group bg-white rounded-3xl overflow-hidden shadow-lg shadow-slate-200/50 hover:shadow-2xl hover:shadow-blue-900/10 transition-all duration-300 border border-slate-100"
               >
                 <div className="relative overflow-hidden aspect-[4/3]">
-                  <img src={svc.icon_or_image_url || 'https://placehold.co/600x400?text=No+Image'} alt={svc.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <img loading="lazy" src={svc.icon_or_image_url || 'https://placehold.co/600x400?text=No+Image'} alt={svc.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
                     <PlayCircle className="text-white w-10 h-10 mb-2" />
                   </div>
@@ -241,7 +241,7 @@ const Home = () => {
                   transition={{ duration: 0.4, delay: (index % 4) * 0.1 }}
                   className="relative rounded-2xl overflow-hidden group aspect-[4/5] md:aspect-square bg-slate-100"
                 >
-                  <img src={item.image_url || 'https://placehold.co/500x500?text=No+Image'} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <img loading="lazy" src={item.image_url || 'https://placehold.co/500x500?text=No+Image'} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/40 to-transparent flex flex-col justify-end p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                     <h4 className="text-white font-extrabold text-lg md:text-xl mb-2">{item.title}</h4>
                     <p className="text-blue-100/70 text-xs md:text-sm font-medium line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">{item.description}</p>
@@ -270,7 +270,7 @@ const Home = () => {
             <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
               {clients.map((client) => (
                 <div key={client.id} className="w-28 md:w-36 bg-white p-4 rounded-2xl shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300 flex items-center justify-center aspect-[3/2] border border-slate-100">
-                  <img src={client.logo_url || 'https://placehold.co/200x100?text=Logo'} alt={client.name} className="max-w-full max-h-full object-contain" />
+                  <img loading="lazy" src={client.logo_url || 'https://placehold.co/200x100?text=Logo'} alt={client.name} className="max-w-full max-h-full object-contain" />
                 </div>
               ))}
             </div>

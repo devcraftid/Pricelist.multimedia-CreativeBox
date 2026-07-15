@@ -106,6 +106,7 @@ export default function PublicPriceList() {
                       >
                         <div className="overflow-hidden bg-slate-100 mb-5 aspect-video relative rounded-xl shadow-inner">
                           <img
+                            loading="lazy"
                             src={item.image_url}
                             alt={item.name}
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
