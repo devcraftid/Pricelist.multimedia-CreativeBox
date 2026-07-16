@@ -84,9 +84,41 @@ export default function AdminLogin() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="w-full max-w-md mx-auto"
         >
-          <div className="mb-10 text-center lg:text-left">
-            <div className="mb-8 flex justify-center lg:justify-start">
-              <img src="/admin-logo.png" alt="Creative Box Logo" className="h-20 object-contain drop-shadow-sm filter invert brightness-0" />
+            <div className="mb-10 text-center lg:text-left">
+            <div className="mb-8 relative inline-block mx-auto lg:mx-0">
+              {/* Base invisible image to set dimensions */}
+              <img src="/admin-logo.png" alt="Spacer" className="h-28 opacity-0 pointer-events-none" />
+              
+              {/* Static Text (Bottom 25%) */}
+              <img 
+                src="/admin-logo.png" 
+                alt="Creative Box Text" 
+                className="absolute inset-0 h-28 object-contain"
+                style={{ clipPath: 'polygon(0 75%, 100% 75%, 100% 100%, 0 100%)' }}
+              />
+              
+              {/* Animated Dice Container (Top 75%) */}
+              <div 
+                className="absolute inset-0"
+                style={{ clipPath: 'polygon(0 0, 100% 0, 100% 75%, 0 75%)' }}
+              >
+                <motion.img 
+                  src="/admin-logo.png" 
+                  alt="Creative Box Dice" 
+                  className="w-full h-full object-contain drop-shadow-2xl" 
+                  animate={{ 
+                    y: [0, -25, 0, 0, 0],
+                    rotateY: [0, 0, 0, 360, 360],
+                    scale: [1, 1.1, 1, 1, 1]
+                  }}
+                  transition={{ 
+                    duration: 4,
+                    times: [0, 0.2, 0.4, 0.8, 1],
+                    repeat: Infinity, 
+                    ease: "easeInOut"
+                  }}
+                />
+              </div>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-[#FFFFF0] tracking-tight">Selamat Datang</h2>
             <p className="text-slate-300 mt-3 font-medium">Silakan masuk ke akun admin Anda.</p>

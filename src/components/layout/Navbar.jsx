@@ -52,12 +52,37 @@ const Navbar = () => {
           
           {/* Logo Section */}
           <div className="flex items-center space-x-2 sm:space-x-4">
-            <Link to="/" className="flex-shrink-0 flex items-center group">
+            <Link to="/" className="flex-shrink-0 flex items-center group relative h-14 sm:h-16 md:h-20 w-24 sm:w-28 md:w-32">
+              {/* Static Text (Bottom 25%) */}
               <img 
-                src="/admin-logo.png" 
+                src={settings?.logo_url || "/admin-logo.png"} 
                 alt="Logo Creative Box" 
-                className="h-14 sm:h-16 md:h-20 object-contain filter invert brightness-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-105" 
+                className="absolute inset-0 w-full h-full object-contain filter invert brightness-0 drop-shadow-sm" 
+                style={{ clipPath: 'polygon(0 75%, 100% 75%, 100% 100%, 0 100%)' }}
               />
+              
+              {/* Animated Dice Container (Top 75%) */}
+              <div 
+                className="absolute inset-0"
+                style={{ clipPath: 'polygon(0 0, 100% 0, 100% 75%, 0 75%)' }}
+              >
+                <motion.img 
+                  src={settings?.logo_url || "/admin-logo.png"} 
+                  alt="Logo Creative Box" 
+                  className="w-full h-full object-contain filter invert brightness-0 drop-shadow-sm" 
+                  animate={{ 
+                    y: [0, -8, 0, 0, 0],
+                    rotateY: [0, 0, 0, 360, 360],
+                    scale: [1, 1.1, 1, 1, 1]
+                  }}
+                  transition={{ 
+                    duration: 4,
+                    times: [0, 0.2, 0.4, 0.8, 1],
+                    repeat: Infinity, 
+                    ease: "easeInOut"
+                  }}
+                />
+              </div>
             </Link>
             
             <div className="block text-white border-l border-white/20 pl-2 sm:pl-4 ml-1 sm:ml-2">
