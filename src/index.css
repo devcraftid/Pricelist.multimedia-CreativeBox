@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary: var(--color-primary, #f5a623);
+  --color-secondary: var(--color-secondary, #1b253b);
+  --color-background: var(--color-background, #f8fafc);
+  --color-foreground: var(--color-foreground, #0f172a);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+    overscroll-behavior-x: none;
+    width: 100%;
+    max-width: 100vw;
+    min-width: 320px;
+    position: relative;
+  }
+
+  #root {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+    min-height: 100vh;
+  }
+
+  /* Ergonomic mobile touch targets */
+  button, a, input, select, textarea {
+    touch-action: manipulation;
+  }
+
+  /* HD Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0f172a;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 9999px;
+    border: 2px solid #0f172a;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary, #f5a623);
+  }
+}
+
+/* HD Utility Effects */
+.glass-hd {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-hd-dark {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glow-primary {
+  box-shadow: 0 0 40px -10px rgba(245, 166, 35, 0.35);
+}
+
+.text-glow {
+  text-shadow: 0 0 20px rgba(245, 166, 35, 0.4);
+}

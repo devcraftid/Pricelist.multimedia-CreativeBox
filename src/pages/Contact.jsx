@@ -1,0 +1,306 @@
+import React, { useState, useEffect } from 'react';
+import { supabase } from '../lib/supabase';
+import { motion } from 'framer-motion';
+import { MapPin, Phone, Mail, Building2, Send } from 'lucide-react';
+
+const Contact = () => {
+  const [settings, setSettings] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  // Form State
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
+  const [formStatus, setFormStatus] = useState('');
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const { data } = await supabase.from('site_settings').select('*').limit(1);
+      if (data && data.length > 0) setSettings(data[0]);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleContactSubmit = async (e) => {
+    e.preventDefault();
+    setFormStatus('sending...');
+    try {
+      const { error } = await supabase.from('contact_messages').insert([formData]);
+      if (error) throw error;
+      setFormStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setTimeout(() => setFormStatus(''), 3000);
+    } catch (err) {
+      console.error(err);
+      setFormStatus('error');
+    }
+  };
+
+  const heroBg = settings?.hero_image_url || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600&q=80';
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-slate-50 to-slate-100 text-secondary font-bold">
+        <div className="w-10 h-10 border-4 border-secondary/20 border-t-secondary rounded-full animate-spin mr-3" />
+        Memuat Kontak...
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-full bg-slate-50 font-sans overflow-hidden">
+      
+      {/* HERO SECTION */}
+      <section className="relative w-full min-h-[250px] sm:min-h-[300px] pt-24 sm:pt-28 flex items-center justify-center bg-secondary overflow-hidden">
+        <div 
+          className="absolute inset-0 z-0 opacity-40 bg-cover bg-center mix-blend-overlay"
+          style={{ backgroundImage: `url('${heroBg}')` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-secondary/90 via-secondary/60 to-secondary z-0" />
+        
+        <motion.div 
+          initial={{ opacity: 0, y: -25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="relative z-10 text-center px-4"
+        >
+          <h1 className="text-3xl sm:text-5xl md:text-7xl font-extrabold text-white tracking-tight uppercase drop-shadow-lg">
+            CONTACT US
+          </h1>
+          <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-primary to-yellow-300 mx-auto mt-4 sm:mt-6 rounded-full" />
+        </motion.div>
+      </section>
+
+      {/* CONTACT DETAILS SECTION */}
+      <section className="py-12 sm:py-20 md:py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-20 -mt-8 sm:-mt-12 md:-mt-20 overflow-hidden">
+        
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-10 sm:mb-16"
+        >
+          <h3 className="text-amber-600 font-extrabold text-base sm:text-lg md:text-xl tracking-wide mb-2">Kunjungi Kantor Kami</h3>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight">Contact Details</h2>
+        </motion.div>
+
+        <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl shadow-blue-900/10 border border-white p-5 sm:p-8 md:p-12 lg:p-16 flex flex-col lg:flex-row gap-8 sm:gap-12 lg:gap-16 overflow-hidden">
+          
+          {/* Left Column (Info) */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className={`w-full flex flex-col text-center ${settings?.map_embed_url ? 'lg:w-1/3 items-center lg:items-start lg:text-left' : 'max-w-xl mx-auto items-center'}`}
+          >
+            {(settings?.address || settings?.email || settings?.wa_number) && (
+              <h3 className={`text-2xl md:text-3xl font-extrabold text-slate-900 mb-10 flex items-center gap-3 justify-center ${settings?.map_embed_url ? 'lg:justify-start' : ''}`}>
+                <Building2 className="w-8 h-8 text-primary hidden lg:block" />
+                Creative Box
+              </h3>
+            )}
+
+            <div className="space-y-8 w-full">
+              {settings?.address && (
+                <div className={`flex flex-col lg:flex-row items-center gap-4 ${settings?.map_embed_url ? 'lg:items-start' : ''}`}>
+                  <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center shrink-0">
+                    <MapPin className="w-6 h-6 text-secondary" />
+                  </div>
+                  <div>
+                    <h4 className="font-extrabold text-slate-800 text-lg mb-2">Address:</h4>
+                    <p className="text-slate-600 font-medium leading-relaxed max-w-xs whitespace-pre-wrap">
+                      {settings.address}
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {settings?.wa_number && (
+                <div className={`flex flex-col lg:flex-row items-center gap-4 ${settings?.map_embed_url ? 'lg:items-start' : ''}`}>
+                  <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center shrink-0">
+                    <Phone className="w-6 h-6 text-secondary" />
+                  </div>
+                  <div>
+                    <h4 className="font-extrabold text-slate-800 text-lg mb-2">Phone:</h4>
+                    <p className="text-slate-600 font-medium leading-relaxed max-w-xs">
+                      +{settings.wa_number}
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {settings?.email && (
+                <div className={`flex flex-col lg:flex-row items-center gap-4 ${settings?.map_embed_url ? 'lg:items-start' : ''}`}>
+                  <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center shrink-0">
+                    <Mail className="w-6 h-6 text-secondary" />
+                  </div>
+                  <div>
+                    <h4 className="font-extrabold text-slate-800 text-lg mb-2">Email:</h4>
+                    <p className="text-slate-600 font-medium leading-relaxed max-w-xs whitespace-pre-wrap">
+                      {settings.email}
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {settings?.instagram_url && (
+                <div className={`flex flex-col lg:flex-row items-center gap-4 ${settings?.map_embed_url ? 'lg:items-start' : ''}`}>
+                  <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center shrink-0">
+                    <svg className="w-6 h-6 text-secondary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                  </div>
+                  <div>
+                    <h4 className="font-extrabold text-slate-800 text-lg mb-2">Instagram:</h4>
+                    <a href={settings.instagram_url} target="_blank" rel="noreferrer" className="text-slate-600 font-medium leading-relaxed max-w-xs whitespace-pre-wrap hover:text-primary transition-colors">
+                      @{settings.instagram_url.split('instagram.com/')[1]?.split('?')[0] || 'Instagram Kami'}
+                    </a>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {(settings?.wa_number || settings?.instagram_url) && (
+              <div className={`mt-10 flex flex-col sm:flex-row gap-4 justify-center ${settings?.map_embed_url ? 'lg:justify-start' : ''}`}>
+                {settings?.wa_number && (
+                  <a 
+                    href={`https://wa.me/${settings.wa_number}`} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="w-full sm:w-auto bg-gradient-to-r from-primary to-amber-500 hover:from-amber-400 hover:to-orange-500 text-slate-950 font-extrabold py-4 px-8 rounded-xl shadow-lg shadow-primary/25 hover:-translate-y-1 hover:shadow-primary/40 transition-all duration-300 text-center"
+                  >
+                    HUBUNGI VIA WHATSAPP
+                  </a>
+                )}
+                {settings?.instagram_url && (
+                  <a 
+                    href={settings.instagram_url} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="w-full sm:w-auto bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white font-extrabold py-4 px-8 rounded-xl shadow-lg shadow-purple-500/30 hover:-translate-y-1 hover:shadow-purple-500/40 transition-all duration-300 text-center"
+                  >
+                    HUBUNGI VIA INSTAGRAM
+                  </a>
+                )}
+              </div>
+            )}
+          </motion.div>
+
+          {/* Right Column (Map) */}
+          {settings?.map_embed_url && (
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="w-full lg:w-2/3 h-[400px] lg:h-auto rounded-2xl overflow-hidden shadow-inner border border-slate-200 relative group"
+            >
+              <div className="absolute inset-0 bg-secondary/5 group-hover:bg-transparent transition-colors duration-500 pointer-events-none z-10" />
+              <iframe 
+                src={settings.map_embed_url} 
+                width="100%" 
+                height="100%" 
+                style={{ border: 0, minHeight: '400px' }} 
+                allowFullScreen="" 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full"
+              ></iframe>
+            </motion.div>
+          )}
+
+        </div>
+      </section>
+
+      {/* CONTACT FORM SECTION */}
+      <section className="w-full py-20 bg-secondary relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5 mix-blend-overlay" />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-12">
+            <h3 className="text-primary font-bold tracking-widest uppercase mb-2">Tinggalkan Pesan</h3>
+            <h2 className="text-4xl font-extrabold text-white tracking-tight">Kirim E-mail Kepada Kami</h2>
+            <p className="text-slate-300 mt-4 max-w-xl mx-auto">Kami Siap Bekerja sama dan berkelanjutan! Tinggalkan pesan Anda dan kami akan segera membalasnya.</p>
+          </div>
+          
+          <motion.form 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            onSubmit={handleContactSubmit}
+            className="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/10 shadow-2xl"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <input 
+                type="text" 
+                required
+                value={formData.name}
+                onChange={e => setFormData({...formData, name: e.target.value})}
+                placeholder="Nama Lengkap" 
+                className="w-full px-5 py-4 bg-white text-slate-900 placeholder:text-slate-400 rounded-xl outline-none focus:ring-2 focus:ring-primary border border-slate-200 transition-all font-medium shadow-sm"
+              />
+              <input 
+                type="email" 
+                required
+                value={formData.email}
+                onChange={e => setFormData({...formData, email: e.target.value})}
+                placeholder="Alamat Email" 
+                className="w-full px-5 py-4 bg-white text-slate-900 placeholder:text-slate-400 rounded-xl outline-none focus:ring-2 focus:ring-primary border border-slate-200 transition-all font-medium shadow-sm"
+              />
+            </div>
+            <div className="mb-6">
+              <input 
+                type="text" 
+                required
+                value={formData.subject}
+                onChange={e => setFormData({...formData, subject: e.target.value})}
+                placeholder="Subjek Pesan" 
+                className="w-full px-5 py-4 bg-white text-slate-900 placeholder:text-slate-400 rounded-xl outline-none focus:ring-2 focus:ring-primary border border-slate-200 transition-all font-medium shadow-sm"
+              />
+            </div>
+            <div className="mb-8">
+              <textarea 
+                required
+                value={formData.message}
+                onChange={e => setFormData({...formData, message: e.target.value})}
+                placeholder="Tulis pesan Anda disini..." 
+                rows="5"
+                className="w-full px-5 py-4 bg-white text-slate-900 placeholder:text-slate-400 rounded-xl outline-none focus:ring-2 focus:ring-primary border border-slate-200 transition-all font-medium resize-none shadow-sm"
+              ></textarea>
+            </div>
+            <button 
+              type="submit" 
+              disabled={formStatus === 'sending...'} 
+              className="w-full bg-gradient-to-r from-primary to-amber-500 hover:from-amber-400 hover:to-orange-500 text-slate-950 font-black py-4 px-8 rounded-xl shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+            >
+              {formStatus === 'sending...' ? (
+                <div className="flex items-center gap-2">
+                  <div className="w-5 h-5 border-2 border-slate-950/30 border-t-slate-950 rounded-full animate-spin" /> MENGIRIM...
+                </div>
+              ) : (
+                <><Send className="w-5 h-5" /> KIRIM PESAN</>
+              )}
+            </button>
+            {formStatus === 'success' && (
+              <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-green-400 font-bold text-center mt-4">
+                Pesan berhasil dikirim! Kami akan segera menghubungi Anda.
+              </motion.p>
+            )}
+            {formStatus === 'error' && (
+              <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-red-400 font-bold text-center mt-4">
+                Gagal mengirim pesan. Silakan hubungi via WhatsApp.
+              </motion.p>
+            )}
+          </motion.form>
+        </div>
+      </section>
+
+    </div>
+  );
+};
+
+export default Contact;

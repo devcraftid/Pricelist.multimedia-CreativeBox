@@ -1,0 +1,125 @@
+import React, { useState, useEffect } from 'react';
+import { supabase } from '../lib/supabase';
+import { motion } from 'framer-motion';
+
+const Services = () => {
+  const [services, setServices] = useState([]);
+  const [clients, setClients] = useState([]);
+  const [settings, setSettings] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const [
+        { data: servicesData },
+        { data: clientsData },
+        { data: settingsData }
+      ] = await Promise.all([
+        supabase.from('services').select('*').order('order_index', { ascending: true }),
+        supabase.from('clients').select('*').order('order_index', { ascending: true }),
+        supabase.from('site_settings').select('*').limit(1)
+      ]);
+
+      if (servicesData) setServices(servicesData);
+      if (clientsData) setClients(clientsData);
+      if (settingsData && settingsData.length > 0) setSettings(settingsData[0]);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return <div className="min-h-screen flex items-center justify-center bg-[#f8f9fa] text-secondary font-bold">Loading Services...</div>;
+  }
+
+  const heroBg = settings?.hero_image_url || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600&q=80';
+
+  return (
+    <div className="w-full max-w-full overflow-hidden bg-white">
+      {/* HERO BANNER */}
+      <section className="relative w-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] pt-24 sm:pt-28 md:pt-32 flex items-center justify-center overflow-hidden">
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-center"
+          style={{ backgroundImage: `url('${heroBg}')` }}
+        />
+        <div className="absolute inset-0 bg-secondary/80 z-0" />
+        
+        <motion.div 
+          initial={{ opacity: 0, y: -25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="relative z-10 text-center px-4"
+        >
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-wider uppercase">
+            SERVICES
+          </h1>
+          <div className="w-20 h-1.5 bg-gradient-to-r from-primary to-yellow-300 mx-auto mt-4 rounded-full" />
+        </motion.div>
+      </section>
+
+      {/* OUR SERVICES SECTION */}
+      <section className="py-12 sm:py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-10 sm:mb-16">
+          <h3 className="text-primary font-bold text-xs sm:text-sm md:text-base mb-2 uppercase tracking-wider">Our Services</h3>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-secondary">Layanan Kami</h2>
+        </div>
+
+        {services.length === 0 ? (
+          <div className="text-center py-12 text-gray-500 bg-gray-50 border border-dashed rounded-2xl">
+            Belum ada layanan yang ditambahkan oleh Admin.
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-12">
+            {services.map((svc) => (
+              <div key={svc.id} className="group bg-white rounded-2xl overflow-hidden p-2 sm:p-0">
+                <div className="overflow-hidden mb-4 rounded-xl shadow-sm aspect-[4/3] bg-slate-100">
+                  <img 
+                    loading="lazy"
+                    src={svc.icon_or_image_url || 'https://placehold.co/600x400?text=No+Image'} 
+                    alt={svc.title} 
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
+                  />
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-secondary mb-2 group-hover:text-primary transition-colors">{svc.title}</h3>
+                <p className="text-gray-500 text-xs sm:text-sm leading-relaxed">{svc.description}</p>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+
+      {/* OUR CLIENTS SECTION */}
+      <section className="py-12 sm:py-16 md:py-24 bg-background border-t border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 sm:mb-12">
+            <h3 className="text-primary font-bold text-xs sm:text-sm md:text-base mb-2 uppercase tracking-wider">Trust and Worth</h3>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-secondary">Our Clients</h2>
+          </div>
+
+          {clients.length === 0 ? (
+            <div className="text-center py-10 text-gray-500 bg-gray-50 border border-dashed rounded-2xl">
+              Belum ada klien yang ditambahkan oleh Admin.
+            </div>
+          ) : (
+            <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-6 md:gap-12">
+              {clients.map((client) => (
+                <div key={client.id} className="w-24 sm:w-28 md:w-36 bg-white p-3 sm:p-4 rounded-xl sm:rounded-2xl shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300 flex items-center justify-center aspect-[3/2] border border-slate-100">
+                  <img loading="lazy" src={client.logo_url || 'https://placehold.co/200x100?text=Logo'} alt={client.name} className="max-w-full max-h-full object-contain" />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Services;
