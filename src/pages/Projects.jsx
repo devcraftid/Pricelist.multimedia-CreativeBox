@@ -479,7 +479,22 @@ export default function Projects() {
                           href={video?.originalUrl || selectedProject.video_url} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className={`inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-xl transition-all shrink-0 self-start sm:self-auto active:scale-95 shadow-md ${
+                          onClick={(e) => {
+                            if (isInstagram && typeof navigator !== 'undefined') {
+                              const ua = navigator.userAgent || '';
+                              if (/Android/i.test(ua)) {
+                                e.preventDefault();
+                                const igPath = video?.id ? `${video?.postType || 'reel'}/${video.id}` : '_u/creativebox.idn';
+                                window.location.href = `intent://instagram.com/${igPath}/#Intent;package=com.instagram.android;scheme=https;end`;
+                                setTimeout(() => { window.location.href = video?.originalUrl || 'https://www.instagram.com/creativebox.idn/'; }, 1500);
+                              } else if (/iPhone|iPad|iPod/i.test(ua)) {
+                                e.preventDefault();
+                                window.location.href = `instagram://media?id=${video?.id || ''}`;
+                                setTimeout(() => { window.location.href = video?.originalUrl || 'https://www.instagram.com/creativebox.idn/'; }, 1500);
+                              }
+                            }
+                          }}
+                          className={`inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-xl transition-all shrink-0 self-start sm:self-auto active:scale-95 shadow-md cursor-pointer ${
                             isInstagram 
                               ? "bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white hover:opacity-90"
                               : isYouTube

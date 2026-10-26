@@ -86,6 +86,27 @@ const Contact = () => {
     }
   };
 
+  const handleInstagramClick = (e) => {
+    if (typeof navigator === 'undefined') return;
+    const ua = navigator.userAgent || '';
+    const isAndroid = /Android/i.test(ua);
+    const isIOS = /iPhone|iPad|iPod/i.test(ua);
+
+    if (isAndroid) {
+      e.preventDefault();
+      window.location.href = 'intent://instagram.com/_u/creativebox.idn/#Intent;package=com.instagram.android;scheme=https;end';
+      setTimeout(() => {
+        window.location.href = 'https://www.instagram.com/creativebox.idn/';
+      }, 1500);
+    } else if (isIOS) {
+      e.preventDefault();
+      window.location.href = 'instagram://user?username=creativebox.idn';
+      setTimeout(() => {
+        window.location.href = 'https://www.instagram.com/creativebox.idn/';
+      }, 1500);
+    }
+  };
+
   const heroBg = settings?.hero_image_url || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1600&q=80';
 
   if (loading) {
@@ -232,79 +253,58 @@ const Contact = () => {
               )}
 
               {/* Instagram (Click to Instagram App) */}
-              {(() => {
-                const OFFICIAL_IG = 'https://www.instagram.com/creativebox.idn?xtok=MXB1eTJlMHBvMjg3dg==';
-                const rawIg = settings?.instagram_url;
-                const igUrl = (!rawIg || rawIg.includes('multicamid') || rawIg.trim() === '' || (rawIg.includes('creativebox.idn') && !rawIg.includes('xtok=')))
-                  ? OFFICIAL_IG
-                  : (rawIg.startsWith('http') ? rawIg : `https://www.instagram.com/${rawIg.replace('@', '')}`);
-                const igHandle = (rawIg && !rawIg.includes('multicamid') && rawIg.trim() !== '')
-                  ? (rawIg.split('instagram.com/')[1]?.split('?')[0]?.replace(/\/$/, '') || rawIg.replace('@', ''))
-                  : 'creativebox.idn';
-
-                return (
-                  <a 
-                    href={igUrl}
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="group flex flex-col sm:flex-row items-center sm:items-start gap-4 p-4 rounded-2xl border border-slate-200/80 bg-white hover:bg-pink-50/50 hover:border-pink-300 transition-all duration-300 shadow-xs hover:shadow-md active:scale-[0.99] text-center sm:text-left w-full cursor-pointer"
-                    title="Klik untuk membuka di Instagram"
-                  >
-                    <div className="w-13 h-13 rounded-2xl bg-pink-50/60 border border-pink-100 flex items-center justify-center shrink-0 shadow-xs group-hover:scale-110 transition-transform p-2">
-                      <InstagramIcon size={32} />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-center sm:justify-between gap-2 mb-1">
-                        <h4 className="font-extrabold text-slate-900 text-base">Instagram:</h4>
-                        <span className="inline-flex items-center gap-1 text-[11px] font-bold text-pink-800 bg-pink-100/80 border border-pink-200/80 px-2.5 py-0.5 rounded-full group-hover:bg-pink-200 transition-colors">
-                          Buka di Instagram ↗
-                        </span>
-                      </div>
-                      <p className="text-slate-800 font-bold text-xs sm:text-sm tracking-wide break-all">
-                        @{igHandle}
-                      </p>
-                    </div>
-                  </a>
-                );
-              })()}
+              <a 
+                href="https://www.instagram.com/creativebox.idn/"
+                target="_blank" 
+                rel="noopener noreferrer"
+                onClick={handleInstagramClick}
+                className="group flex flex-col sm:flex-row items-center sm:items-start gap-4 p-4 rounded-2xl border border-slate-200/80 bg-white hover:bg-pink-50/50 hover:border-pink-300 transition-all duration-300 shadow-xs hover:shadow-md active:scale-[0.99] text-center sm:text-left w-full cursor-pointer"
+                title="Klik untuk membuka di Aplikasi Instagram"
+              >
+                <div className="w-13 h-13 rounded-2xl bg-pink-50/60 border border-pink-100 flex items-center justify-center shrink-0 shadow-xs group-hover:scale-110 transition-transform p-2">
+                  <InstagramIcon size={32} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-center sm:justify-between gap-2 mb-1">
+                    <h4 className="font-extrabold text-slate-900 text-base">Instagram:</h4>
+                    <span className="inline-flex items-center gap-1 text-[11px] font-bold text-pink-800 bg-pink-100/80 border border-pink-200/80 px-2.5 py-0.5 rounded-full group-hover:bg-pink-200 transition-colors">
+                      Buka di Instagram ↗
+                    </span>
+                  </div>
+                  <p className="text-slate-800 font-bold text-xs sm:text-sm tracking-wide break-all">
+                    @creativebox.idn
+                  </p>
+                </div>
+              </a>
             </div>
 
             {/* Quick Action CTA Buttons */}
-            {(() => {
-              const OFFICIAL_IG = 'https://www.instagram.com/creativebox.idn?xtok=MXB1eTJlMHBvMjg3dg==';
-              const rawIg = settings?.instagram_url;
-              const igUrl = (!rawIg || rawIg.includes('multicamid') || rawIg.trim() === '' || (rawIg.includes('creativebox.idn') && !rawIg.includes('xtok=')))
-                ? OFFICIAL_IG
-                : (rawIg.startsWith('http') ? rawIg : `https://www.instagram.com/${rawIg.replace('@', '')}`);
-
-              return (
-                <div className={`mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3.5 justify-center w-full ${settings?.map_embed_url ? 'lg:justify-start' : ''}`}>
-                  {settings?.wa_number && (() => {
-                    const cleanWa = settings.wa_number.replace(/\D/g, '');
-                    return (
-                      <a 
-                        href={`https://wa.me/${cleanWa}?text=${encodeURIComponent('Halo Creative Box, saya ingin menanyakan informasi layanan multimedia & event.')}`}
-                        target="_blank" 
-                        rel="noreferrer" 
-                        className="w-full sm:w-auto bg-[#25D366] hover:bg-[#20ba59] text-white font-extrabold py-3.5 px-6 rounded-2xl shadow-lg shadow-emerald-500/20 hover:-translate-y-0.5 hover:shadow-emerald-500/35 transition-all duration-300 text-center flex items-center justify-center gap-2.5 text-sm"
-                      >
-                        <WhatsAppIcon size={22} />
-                        <span>CHAT WHATSAPP</span>
-                      </a>
-                    );
-                  })()}
+            <div className={`mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3.5 justify-center w-full ${settings?.map_embed_url ? 'lg:justify-start' : ''}`}>
+              {settings?.wa_number && (() => {
+                const cleanWa = settings.wa_number.replace(/\D/g, '');
+                return (
                   <a 
-                    href={igUrl}
+                    href={`https://wa.me/${cleanWa}?text=${encodeURIComponent('Halo Creative Box, saya ingin menanyakan informasi layanan multimedia & event.')}`}
                     target="_blank" 
                     rel="noreferrer" 
-                    className="w-full sm:w-auto bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:from-pink-600 hover:via-purple-600 hover:to-indigo-600 text-white font-extrabold py-3.5 px-6 rounded-2xl shadow-lg shadow-purple-500/25 hover:-translate-y-0.5 hover:shadow-purple-500/40 transition-all duration-300 text-center flex items-center justify-center gap-2.5 text-sm"
+                    className="w-full sm:w-auto bg-[#25D366] hover:bg-[#20ba59] text-white font-extrabold py-3.5 px-6 rounded-2xl shadow-lg shadow-emerald-500/20 hover:-translate-y-0.5 hover:shadow-emerald-500/35 transition-all duration-300 text-center flex items-center justify-center gap-2.5 text-sm"
                   >
-                    <InstagramIcon size={22} />
-                    <span>BUKA INSTAGRAM</span>
+                    <WhatsAppIcon size={22} />
+                    <span>CHAT WHATSAPP</span>
                   </a>
-                </div>
-              );
-            })()}
+                );
+              })()}
+              <a 
+                href="https://www.instagram.com/creativebox.idn/"
+                target="_blank" 
+                rel="noreferrer" 
+                onClick={handleInstagramClick}
+                className="w-full sm:w-auto bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:from-pink-600 hover:via-purple-600 hover:to-indigo-600 text-white font-extrabold py-3.5 px-6 rounded-2xl shadow-lg shadow-purple-500/25 hover:-translate-y-0.5 hover:shadow-purple-500/40 transition-all duration-300 text-center flex items-center justify-center gap-2.5 text-sm cursor-pointer"
+              >
+                <InstagramIcon size={22} />
+                <span>BUKA INSTAGRAM</span>
+              </a>
+            </div>
           </motion.div>
 
           {/* Right Column (Map) */}

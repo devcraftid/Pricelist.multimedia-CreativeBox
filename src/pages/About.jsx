@@ -127,23 +127,27 @@ const About = () => {
                       HUBUNGI VIA WHATSAPP
                     </a>
                   )}
-                  {(() => {
-                    const OFFICIAL_IG = 'https://www.instagram.com/creativebox.idn?xtok=MXB1eTJlMHBvMjg3dg==';
-                    const rawIg = settings?.instagram_url;
-                    const igUrl = (!rawIg || rawIg.includes('multicamid') || rawIg.trim() === '' || (rawIg.includes('creativebox.idn') && !rawIg.includes('xtok=')))
-                      ? OFFICIAL_IG
-                      : rawIg;
-                    return (
-                      <a 
-                        href={igUrl} 
-                        target="_blank" 
-                        rel="noreferrer" 
-                        className="inline-block bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:from-pink-600 hover:via-purple-600 hover:to-indigo-600 text-white font-extrabold py-3.5 sm:py-4 px-6 sm:px-8 rounded-xl shadow-lg shadow-purple-500/25 hover:-translate-y-1 hover:shadow-purple-500/40 transition-all duration-300 text-center text-sm"
-                      >
-                        HUBUNGI VIA INSTAGRAM
-                      </a>
-                    );
-                  })()}
+                  <a 
+                    href="https://www.instagram.com/creativebox.idn/" 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    onClick={(e) => {
+                      if (typeof navigator === 'undefined') return;
+                      const ua = navigator.userAgent || '';
+                      if (/Android/i.test(ua)) {
+                        e.preventDefault();
+                        window.location.href = 'intent://instagram.com/_u/creativebox.idn/#Intent;package=com.instagram.android;scheme=https;end';
+                        setTimeout(() => { window.location.href = 'https://www.instagram.com/creativebox.idn/'; }, 1500);
+                      } else if (/iPhone|iPad|iPod/i.test(ua)) {
+                        e.preventDefault();
+                        window.location.href = 'instagram://user?username=creativebox.idn';
+                        setTimeout(() => { window.location.href = 'https://www.instagram.com/creativebox.idn/'; }, 1500);
+                      }
+                    }}
+                    className="inline-block bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:from-pink-600 hover:via-purple-600 hover:to-indigo-600 text-white font-extrabold py-3.5 sm:py-4 px-6 sm:px-8 rounded-xl shadow-lg shadow-purple-500/25 hover:-translate-y-1 hover:shadow-purple-500/40 transition-all duration-300 text-center text-sm cursor-pointer"
+                  >
+                    HUBUNGI VIA INSTAGRAM
+                  </a>
                 </div>
               )}
             </motion.div>

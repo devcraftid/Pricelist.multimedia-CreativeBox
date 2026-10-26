@@ -37,8 +37,8 @@ export default function AdminSettings() {
     const { data } = await supabase.from('site_settings').select('*').limit(1);
     if (data && data.length > 0) {
       const s = { ...data[0] };
-      if (!s.instagram_url || s.instagram_url.includes('multicamid') || (s.instagram_url.includes('creativebox.idn') && !s.instagram_url.includes('xtok='))) {
-        s.instagram_url = 'https://www.instagram.com/creativebox.idn?xtok=MXB1eTJlMHBvMjg3dg==';
+      if (!s.instagram_url || s.instagram_url.includes('multicamid') || s.instagram_url.includes('xtok=')) {
+        s.instagram_url = 'https://www.instagram.com/creativebox.idn/';
       }
       setSettings(s);
     }
@@ -256,7 +256,7 @@ export default function AdminSettings() {
 
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1">Link Instagram</label>
-              <input type="url" name="instagram_url" value={settings.instagram_url} onChange={handleChange} placeholder="https://www.instagram.com/creativebox.idn?xtok=MXB1eTJlMHBvMjg3dg==" className="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary outline-none text-sm" />
+              <input type="url" name="instagram_url" value={settings.instagram_url} onChange={handleChange} placeholder="https://www.instagram.com/creativebox.idn/" className="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary outline-none text-sm" />
             </div>
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-slate-700 mb-1">Google Maps Embed URL (Iframe src)</label>
