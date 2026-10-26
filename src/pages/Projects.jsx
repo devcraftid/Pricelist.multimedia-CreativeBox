@@ -34,8 +34,8 @@ export default function Projects() {
     if (!url) return null;
     const trimmed = url.trim();
 
-    // 1. YouTube (standard watch, shorts, youtu.be, embed)
-    const ytMatch = trimmed.match(/(?:youtube\.com\/(?:watch\?.*v=|shorts\/|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/i);
+    // 1. YouTube (standard watch, shorts, youtu.be, embed, live)
+    const ytMatch = trimmed.match(/(?:youtube\.com\/(?:watch\?.*v=|shorts\/|embed\/|live\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/i);
     if (ytMatch && ytMatch[1]) {
       const isShort = trimmed.includes('/shorts/');
       return {
@@ -43,32 +43,51 @@ export default function Projects() {
         id: ytMatch[1],
         isVertical: isShort,
         embedUrl: `https://www.youtube-nocookie.com/embed/${ytMatch[1]}?autoplay=1&rel=0&modestbranding=1&playsinline=1`,
+        originalUrl: trimmed,
         thumbnail: `https://img.youtube.com/vi/${ytMatch[1]}/hqdefault.jpg`,
         label: isShort ? 'YouTube Shorts' : 'YouTube Video'
       };
     }
 
     // 2. Instagram (Reels, Posts, TV)
-    const igMatch = trimmed.match(/instagram\.com\/(reel|p|tv)\/([a-zA-Z0-9_-]+)/i);
+    const igMatch = trimmed.match(/instagram\.com\/(reel|reels|p|tv)\/([a-zA-Z0-9_-]+)/i);
     if (igMatch && igMatch[2]) {
-      const postType = igMatch[1];
+      const rawType = igMatch[1].toLowerCase();
+      const postType = rawType === 'reels' ? 'reel' : rawType;
       const postId = igMatch[2];
       const isVertical = postType === 'reel';
       return {
         type: 'instagram',
         id: postId,
+        postType,
         isVertical: isVertical,
-        embedUrl: `https://www.instagram.com/${postType}/${postId}/embed/captioned/`,
+        embedUrl: `https://www.instagram.com/${postType}/${postId}/embed/`,
+        originalUrl: `https://www.instagram.com/${postType}/${postId}/`,
         thumbnail: null,
         label: postType === 'reel' ? 'Instagram Reel' : 'Instagram Video'
       };
     }
 
-    // 3. Direct Video Files (MP4, WebM, OGG, MOV)
+    // 3. TikTok
+    const tiktokMatch = trimmed.match(/tiktok\.com\/(?:@[a-zA-Z0-9_.]+\/video\/|v\/)?([0-9]+)/i);
+    if (tiktokMatch && tiktokMatch[1]) {
+      return {
+        type: 'tiktok',
+        id: tiktokMatch[1],
+        isVertical: true,
+        embedUrl: `https://www.tiktok.com/embed/v2/${tiktokMatch[1]}`,
+        originalUrl: trimmed,
+        thumbnail: null,
+        label: 'TikTok Video'
+      };
+    }
+
+    // 4. Direct Video Files (MP4, WebM, OGG, MOV)
     if (/\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(trimmed)) {
       return {
         type: 'direct',
         url: trimmed,
+        originalUrl: trimmed,
         isVertical: false,
         embedUrl: null,
         thumbnail: null,
@@ -76,7 +95,7 @@ export default function Projects() {
       };
     }
 
-    // 4. Vimeo
+    // 5. Vimeo
     const vimeoMatch = trimmed.match(/vimeo\.com\/([0-9]+)/i);
     if (vimeoMatch && vimeoMatch[1]) {
       return {
@@ -84,12 +103,13 @@ export default function Projects() {
         id: vimeoMatch[1],
         isVertical: false,
         embedUrl: `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=1`,
+        originalUrl: trimmed,
         thumbnail: null,
         label: 'Vimeo Video'
       };
     }
 
-    // 5. Google Drive video preview
+    // 6. Google Drive video preview
     const driveMatch = trimmed.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/i);
     if (driveMatch && driveMatch[1]) {
       return {
@@ -97,6 +117,7 @@ export default function Projects() {
         id: driveMatch[1],
         isVertical: false,
         embedUrl: `https://drive.google.com/file/d/${driveMatch[1]}/preview`,
+        originalUrl: trimmed,
         thumbnail: null,
         label: 'Google Drive Video'
       };
@@ -106,6 +127,7 @@ export default function Projects() {
     return {
       type: 'generic',
       embedUrl: trimmed,
+      originalUrl: trimmed,
       isVertical: false,
       thumbnail: null,
       label: 'Video Player'
@@ -149,6 +171,18 @@ export default function Projects() {
       setSelectedProject(projects[0]);
     }
   }, [currentIndex, projects]);
+
+  // Lock background scroll when modal is open
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedProject]);
 
   // Keyboard navigation (ESC, ArrowLeft, ArrowRight)
   useEffect(() => {
@@ -278,14 +312,14 @@ export default function Projects() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-50 flex items-center justify-center bg-black/92 backdrop-blur-md p-3 sm:p-6 overflow-y-auto"
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md p-2.5 sm:p-4 md:p-6 overflow-y-auto"
               onClick={() => setSelectedProject(null)}
             >
-              {/* Top Action Bar */}
+              {/* Top Action Bar (Close button) */}
               <div className="fixed top-3 right-3 sm:top-5 sm:right-6 z-50 flex items-center gap-2">
                 <button
                   aria-label="Tutup Project"
-                  className="text-white hover:text-amber-400 bg-white/15 hover:bg-white/25 p-2.5 rounded-full backdrop-blur-md transition-all min-h-[44px] min-w-[44px] flex items-center justify-center shadow-xl active:scale-95 border border-white/10"
+                  className="text-white hover:text-amber-400 bg-slate-900/80 hover:bg-slate-800 p-2.5 rounded-full backdrop-blur-md transition-all min-h-[44px] min-w-[44px] flex items-center justify-center shadow-2xl active:scale-95 border border-white/20 cursor-pointer"
                   onClick={(e) => {
                     e.stopPropagation();
                     setSelectedProject(null);
@@ -295,22 +329,22 @@ export default function Projects() {
                 </button>
               </div>
 
-              {/* Prev Button (Floating Left) */}
+              {/* Prev Button (Floating Left for Desktop) */}
               {projects.length > 1 && (
                 <button
                   aria-label="Project Sebelumnya"
-                  className="fixed left-2 sm:left-6 top-1/2 -translate-y-1/2 z-50 text-white/90 hover:text-white bg-white/10 hover:bg-white/25 p-3 rounded-full backdrop-blur-md transition-all min-h-[44px] min-w-[44px] hidden sm:flex items-center justify-center shadow-2xl active:scale-95 border border-white/10"
+                  className="fixed left-3 sm:left-6 top-1/2 -translate-y-1/2 z-50 text-white/90 hover:text-white bg-slate-900/80 hover:bg-slate-800 p-3 rounded-full backdrop-blur-md transition-all min-h-[44px] min-w-[44px] hidden sm:flex items-center justify-center shadow-2xl active:scale-95 border border-white/15 cursor-pointer"
                   onClick={handlePrev}
                 >
                   <ChevronLeft size={26} />
                 </button>
               )}
 
-              {/* Next Button (Floating Right) */}
+              {/* Next Button (Floating Right for Desktop) */}
               {projects.length > 1 && (
                 <button
                   aria-label="Project Selanjutnya"
-                  className="fixed right-2 sm:right-6 top-1/2 -translate-y-1/2 z-50 text-white/90 hover:text-white bg-white/10 hover:bg-white/25 p-3 rounded-full backdrop-blur-md transition-all min-h-[44px] min-w-[44px] hidden sm:flex items-center justify-center shadow-2xl active:scale-95 border border-white/10"
+                  className="fixed right-3 sm:right-6 top-1/2 -translate-y-1/2 z-50 text-white/90 hover:text-white bg-slate-900/80 hover:bg-slate-800 p-3 rounded-full backdrop-blur-md transition-all min-h-[44px] min-w-[44px] hidden sm:flex items-center justify-center shadow-2xl active:scale-95 border border-white/15 cursor-pointer"
                   onClick={handleNext}
                 >
                   <ChevronRight size={26} />
@@ -323,17 +357,17 @@ export default function Projects() {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.94, opacity: 0 }}
                 transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                className={`relative flex flex-col items-center justify-center my-auto w-full max-h-[92vh] overflow-hidden rounded-2xl sm:rounded-3xl bg-slate-950 border border-white/15 shadow-2xl ${
+                className={`relative flex flex-col my-auto w-full max-h-[92dvh] sm:max-h-[90vh] overflow-hidden rounded-2xl sm:rounded-3xl bg-slate-950 border border-white/15 shadow-2xl transition-all ${
                   selectedProject.video_url
                     ? (getVideoDetails(selectedProject.video_url)?.isVertical 
-                        ? "max-w-[420px]" 
+                        ? "max-w-[360px] sm:max-w-[400px]" 
                         : "max-w-4xl")
                     : "max-w-4xl"
                 }`}
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Media Container */}
-                <div className="relative w-full flex items-center justify-center bg-black overflow-hidden">
+                <div className="relative w-full flex-1 min-h-0 flex items-center justify-center bg-black overflow-hidden">
                   {selectedProject.video_url ? (
                     (() => {
                       const video = getVideoDetails(selectedProject.video_url);
@@ -341,14 +375,14 @@ export default function Projects() {
                       // Direct Video (MP4 / WebM / Cloud file)
                       if (video?.type === 'direct') {
                         return (
-                          <div className="w-full max-h-[70vh] flex items-center justify-center bg-black">
+                          <div className="w-full h-[48vh] sm:h-[60vh] max-h-[540px] flex items-center justify-center bg-black p-1">
                             <video 
                               controls 
                               autoPlay 
                               playsInline 
                               loop
                               src={video.url} 
-                              className="max-h-[70vh] w-auto max-w-full rounded-t-2xl shadow-2xl bg-black"
+                              className="h-full w-full object-contain rounded-t-xl bg-black"
                             >
                               Browser Anda tidak mendukung pemutar video.
                             </video>
@@ -356,10 +390,26 @@ export default function Projects() {
                         );
                       }
 
-                      // Vertical Video (Instagram Reels / YouTube Shorts)
+                      // Instagram Reel / Post
+                      if (video?.type === 'instagram') {
+                        return (
+                          <div className="w-full h-[48vh] sm:h-[58vh] max-h-[520px] flex items-center justify-center bg-black relative overflow-hidden">
+                            <iframe
+                              src={video.embedUrl}
+                              title={selectedProject.title}
+                              className="w-full h-full border-0 bg-black"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                              allowFullScreen
+                              loading="lazy"
+                            />
+                          </div>
+                        );
+                      }
+
+                      // Vertical Video (YouTube Shorts / TikTok)
                       if (video?.isVertical) {
                         return (
-                          <div className="w-full aspect-[9/16] max-h-[68vh] sm:max-h-[72vh] mx-auto bg-black flex items-center justify-center relative">
+                          <div className="w-full aspect-[9/16] h-[48vh] sm:h-[58vh] max-h-[520px] mx-auto bg-black flex items-center justify-center relative">
                             <iframe
                               src={video.embedUrl}
                               title={selectedProject.title}
@@ -374,7 +424,7 @@ export default function Projects() {
 
                       // Landscape Standard Video (YouTube 16:9, Vimeo, etc.)
                       return (
-                        <div className="w-full aspect-video max-h-[68vh] sm:max-h-[72vh] bg-black flex items-center justify-center relative">
+                        <div className="w-full aspect-video max-h-[48vh] sm:max-h-[60vh] md:max-h-[65vh] bg-black flex items-center justify-center relative">
                           <iframe
                             src={video?.embedUrl || selectedProject.video_url}
                             title={selectedProject.title}
@@ -388,20 +438,20 @@ export default function Projects() {
                     })()
                   ) : (
                     // Photo / Image Lightbox
-                    <div className="w-full max-h-[70vh] sm:max-h-[75vh] flex items-center justify-center bg-black p-2">
+                    <div className="w-full h-[48vh] sm:h-[62vh] max-h-[580px] flex items-center justify-center bg-black p-2">
                       <img
                         src={selectedProject.image_url || 'https://placehold.co/800x600?text=Creative+Box'}
                         alt={selectedProject.title}
-                        className="max-h-[68vh] sm:max-h-[72vh] w-auto max-w-full object-contain rounded-xl shadow-2xl"
+                        className="h-full w-full object-contain rounded-xl shadow-2xl"
                       />
                     </div>
                   )}
                 </div>
                 
                 {/* Information Card (Instagram Feed Style) */}
-                <div className="w-full bg-slate-900/95 backdrop-blur-md p-4 sm:p-5 border-t border-white/10 text-left">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-2">
-                    <div className="min-w-0">
+                <div className="w-full bg-slate-900/98 backdrop-blur-2xl p-3.5 sm:p-5 border-t border-white/10 text-left shrink-0 max-h-[38vh] sm:max-h-[30vh] overflow-y-auto">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3 mb-2">
+                    <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2 mb-1 flex-wrap">
                         <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
                         <span className="text-[11px] font-bold text-amber-400 uppercase tracking-wider">
@@ -413,28 +463,40 @@ export default function Projects() {
                           </span>
                         )}
                       </div>
-                      <h3 className="text-white text-base sm:text-xl font-bold leading-snug truncate">
+                      <h3 className="text-white text-sm sm:text-lg font-bold leading-snug line-clamp-2">
                         {selectedProject.title}
                       </h3>
                     </div>
 
                     {/* External Link button */}
-                    {selectedProject.video_url && (
-                      <a 
-                        href={selectedProject.video_url} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-white/20 text-white text-xs font-bold rounded-xl transition-all border border-white/15 shrink-0 self-start sm:self-auto active:scale-95"
-                        title="Buka tautan asli di tab baru"
-                      >
-                        <ExternalLink size={13} />
-                        <span>Buka Sumber Asli</span>
-                      </a>
-                    )}
+                    {selectedProject.video_url && (() => {
+                      const video = getVideoDetails(selectedProject.video_url);
+                      const isInstagram = video?.type === 'instagram';
+                      const isYouTube = video?.type === 'youtube';
+
+                      return (
+                        <a 
+                          href={video?.originalUrl || selectedProject.video_url} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className={`inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-xl transition-all shrink-0 self-start sm:self-auto active:scale-95 shadow-md ${
+                            isInstagram 
+                              ? "bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white hover:opacity-90"
+                              : isYouTube
+                              ? "bg-red-600 hover:bg-red-700 text-white"
+                              : "bg-white/10 hover:bg-white/20 text-white border border-white/15"
+                          }`}
+                          title="Buka tautan asli di tab baru / aplikasi"
+                        >
+                          <ExternalLink size={13} />
+                          <span>{isInstagram ? 'Buka di Instagram' : isYouTube ? 'Buka di YouTube' : 'Buka Sumber Asli'}</span>
+                        </a>
+                      );
+                    })()}
                   </div>
 
                   {selectedProject.description && (
-                    <p className="text-slate-300 text-xs sm:text-sm leading-relaxed max-h-20 overflow-y-auto whitespace-pre-wrap pr-1">
+                    <p className="text-slate-300 text-xs sm:text-sm leading-relaxed max-h-16 sm:max-h-24 overflow-y-auto whitespace-pre-wrap pr-1">
                       {selectedProject.description}
                     </p>
                   )}
@@ -448,10 +510,10 @@ export default function Projects() {
 
                   {/* Mobile Prev / Next Controls */}
                   {projects.length > 1 && (
-                    <div className="flex sm:hidden items-center justify-between pt-3 mt-3 border-t border-white/10">
+                    <div className="flex sm:hidden items-center justify-between pt-2.5 mt-2.5 border-t border-white/10">
                       <button
                         onClick={handlePrev}
-                        className="px-3 py-1.5 rounded-lg bg-white/10 text-white text-xs font-bold flex items-center gap-1 active:bg-white/20"
+                        className="px-3 py-1.5 rounded-lg bg-white/10 text-white text-xs font-bold flex items-center gap-1 active:bg-white/20 cursor-pointer"
                       >
                         <ChevronLeft size={14} /> Sebelumnya
                       </button>
@@ -460,7 +522,7 @@ export default function Projects() {
                       </span>
                       <button
                         onClick={handleNext}
-                        className="px-3 py-1.5 rounded-lg bg-white/10 text-white text-xs font-bold flex items-center gap-1 active:bg-white/20"
+                        className="px-3 py-1.5 rounded-lg bg-white/10 text-white text-xs font-bold flex items-center gap-1 active:bg-white/20 cursor-pointer"
                       >
                         Selanjutnya <ChevronRight size={14} />
                       </button>

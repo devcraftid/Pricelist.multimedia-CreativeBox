@@ -127,16 +127,21 @@ const About = () => {
                       HUBUNGI VIA WHATSAPP
                     </a>
                   )}
-                  {settings?.instagram_url && (
-                    <a 
-                      href={settings.instagram_url} 
-                      target="_blank" 
-                      rel="noreferrer" 
-                      className="inline-block bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white font-extrabold py-3.5 sm:py-4 px-6 sm:px-8 rounded-xl shadow-lg shadow-purple-500/30 hover:-translate-y-1 hover:shadow-purple-500/40 transition-all duration-300 text-center text-sm"
-                    >
-                      HUBUNGI VIA INSTAGRAM
-                    </a>
-                  )}
+                  {(() => {
+                    const igUrl = (settings?.instagram_url && !settings.instagram_url.includes('multicamid') && settings.instagram_url.trim() !== '')
+                      ? settings.instagram_url
+                      : 'https://www.instagram.com/creativebox.idn';
+                    return (
+                      <a 
+                        href={igUrl} 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        className="inline-block bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:from-pink-600 hover:via-purple-600 hover:to-indigo-600 text-white font-extrabold py-3.5 sm:py-4 px-6 sm:px-8 rounded-xl shadow-lg shadow-purple-500/25 hover:-translate-y-1 hover:shadow-purple-500/40 transition-all duration-300 text-center text-sm"
+                      >
+                        HUBUNGI VIA INSTAGRAM
+                      </a>
+                    );
+                  })()}
                 </div>
               )}
             </motion.div>

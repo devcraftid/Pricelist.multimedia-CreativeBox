@@ -232,12 +232,15 @@ const Contact = () => {
               )}
 
               {/* Instagram (Click to Instagram App) */}
-              {settings?.instagram_url && (() => {
-                const igUrl = settings.instagram_url.startsWith('http') 
-                  ? settings.instagram_url 
-                  : `https://instagram.com/${settings.instagram_url.replace('@', '')}`;
-                const igHandle = settings.instagram_url.split('instagram.com/')[1]?.split('?')[0]?.replace(/\/$/, '') 
-                  || settings.instagram_url.replace('@', '');
+              {(() => {
+                const rawIg = settings?.instagram_url;
+                const igUrl = (rawIg && !rawIg.includes('multicamid') && rawIg.trim() !== '')
+                  ? (rawIg.startsWith('http') ? rawIg : `https://www.instagram.com/${rawIg.replace('@', '')}`)
+                  : 'https://www.instagram.com/creativebox.idn';
+                const igHandle = (rawIg && !rawIg.includes('multicamid') && rawIg.trim() !== '')
+                  ? (rawIg.split('instagram.com/')[1]?.split('?')[0]?.replace(/\/$/, '') || rawIg.replace('@', ''))
+                  : 'creativebox.idn';
+
                 return (
                   <a 
                     href={igUrl}
@@ -266,25 +269,30 @@ const Contact = () => {
             </div>
 
             {/* Quick Action CTA Buttons */}
-            {(settings?.wa_number || settings?.instagram_url) && (
-              <div className={`mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3.5 justify-center w-full ${settings?.map_embed_url ? 'lg:justify-start' : ''}`}>
-                {settings?.wa_number && (() => {
-                  const cleanWa = settings.wa_number.replace(/\D/g, '');
-                  return (
-                    <a 
-                      href={`https://wa.me/${cleanWa}?text=${encodeURIComponent('Halo Creative Box, saya ingin menanyakan informasi layanan multimedia & event.')}`}
-                      target="_blank" 
-                      rel="noreferrer" 
-                      className="w-full sm:w-auto bg-[#25D366] hover:bg-[#20ba59] text-white font-extrabold py-3.5 px-6 rounded-2xl shadow-lg shadow-emerald-500/20 hover:-translate-y-0.5 hover:shadow-emerald-500/35 transition-all duration-300 text-center flex items-center justify-center gap-2.5 text-sm"
-                    >
-                      <WhatsAppIcon size={22} />
-                      <span>CHAT WHATSAPP</span>
-                    </a>
-                  );
-                })()}
-                {settings?.instagram_url && (
+            {(() => {
+              const rawIg = settings?.instagram_url;
+              const igUrl = (rawIg && !rawIg.includes('multicamid') && rawIg.trim() !== '')
+                ? (rawIg.startsWith('http') ? rawIg : `https://www.instagram.com/${rawIg.replace('@', '')}`)
+                : 'https://www.instagram.com/creativebox.idn';
+
+              return (
+                <div className={`mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3.5 justify-center w-full ${settings?.map_embed_url ? 'lg:justify-start' : ''}`}>
+                  {settings?.wa_number && (() => {
+                    const cleanWa = settings.wa_number.replace(/\D/g, '');
+                    return (
+                      <a 
+                        href={`https://wa.me/${cleanWa}?text=${encodeURIComponent('Halo Creative Box, saya ingin menanyakan informasi layanan multimedia & event.')}`}
+                        target="_blank" 
+                        rel="noreferrer" 
+                        className="w-full sm:w-auto bg-[#25D366] hover:bg-[#20ba59] text-white font-extrabold py-3.5 px-6 rounded-2xl shadow-lg shadow-emerald-500/20 hover:-translate-y-0.5 hover:shadow-emerald-500/35 transition-all duration-300 text-center flex items-center justify-center gap-2.5 text-sm"
+                      >
+                        <WhatsAppIcon size={22} />
+                        <span>CHAT WHATSAPP</span>
+                      </a>
+                    );
+                  })()}
                   <a 
-                    href={settings.instagram_url.startsWith('http') ? settings.instagram_url : `https://instagram.com/${settings.instagram_url.replace('@', '')}`}
+                    href={igUrl}
                     target="_blank" 
                     rel="noreferrer" 
                     className="w-full sm:w-auto bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:from-pink-600 hover:via-purple-600 hover:to-indigo-600 text-white font-extrabold py-3.5 px-6 rounded-2xl shadow-lg shadow-purple-500/25 hover:-translate-y-0.5 hover:shadow-purple-500/40 transition-all duration-300 text-center flex items-center justify-center gap-2.5 text-sm"
@@ -292,9 +300,9 @@ const Contact = () => {
                     <InstagramIcon size={22} />
                     <span>BUKA INSTAGRAM</span>
                   </a>
-                )}
-              </div>
-            )}
+                </div>
+              );
+            })()}
           </motion.div>
 
           {/* Right Column (Map) */}
