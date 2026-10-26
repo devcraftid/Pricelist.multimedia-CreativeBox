@@ -128,9 +128,11 @@ const About = () => {
                     </a>
                   )}
                   {(() => {
-                    const igUrl = (settings?.instagram_url && !settings.instagram_url.includes('multicamid') && settings.instagram_url.trim() !== '')
-                      ? settings.instagram_url
-                      : 'https://www.instagram.com/creativebox.idn';
+                    const OFFICIAL_IG = 'https://www.instagram.com/creativebox.idn?xtok=MXB1eTJlMHBvMjg3dg==';
+                    const rawIg = settings?.instagram_url;
+                    const igUrl = (!rawIg || rawIg.includes('multicamid') || rawIg.trim() === '' || (rawIg.includes('creativebox.idn') && !rawIg.includes('xtok=')))
+                      ? OFFICIAL_IG
+                      : rawIg;
                     return (
                       <a 
                         href={igUrl} 

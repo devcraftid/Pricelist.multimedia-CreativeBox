@@ -233,10 +233,11 @@ const Contact = () => {
 
               {/* Instagram (Click to Instagram App) */}
               {(() => {
+                const OFFICIAL_IG = 'https://www.instagram.com/creativebox.idn?xtok=MXB1eTJlMHBvMjg3dg==';
                 const rawIg = settings?.instagram_url;
-                const igUrl = (rawIg && !rawIg.includes('multicamid') && rawIg.trim() !== '')
-                  ? (rawIg.startsWith('http') ? rawIg : `https://www.instagram.com/${rawIg.replace('@', '')}`)
-                  : 'https://www.instagram.com/creativebox.idn';
+                const igUrl = (!rawIg || rawIg.includes('multicamid') || rawIg.trim() === '' || (rawIg.includes('creativebox.idn') && !rawIg.includes('xtok=')))
+                  ? OFFICIAL_IG
+                  : (rawIg.startsWith('http') ? rawIg : `https://www.instagram.com/${rawIg.replace('@', '')}`);
                 const igHandle = (rawIg && !rawIg.includes('multicamid') && rawIg.trim() !== '')
                   ? (rawIg.split('instagram.com/')[1]?.split('?')[0]?.replace(/\/$/, '') || rawIg.replace('@', ''))
                   : 'creativebox.idn';
@@ -270,10 +271,11 @@ const Contact = () => {
 
             {/* Quick Action CTA Buttons */}
             {(() => {
+              const OFFICIAL_IG = 'https://www.instagram.com/creativebox.idn?xtok=MXB1eTJlMHBvMjg3dg==';
               const rawIg = settings?.instagram_url;
-              const igUrl = (rawIg && !rawIg.includes('multicamid') && rawIg.trim() !== '')
-                ? (rawIg.startsWith('http') ? rawIg : `https://www.instagram.com/${rawIg.replace('@', '')}`)
-                : 'https://www.instagram.com/creativebox.idn';
+              const igUrl = (!rawIg || rawIg.includes('multicamid') || rawIg.trim() === '' || (rawIg.includes('creativebox.idn') && !rawIg.includes('xtok=')))
+                ? OFFICIAL_IG
+                : (rawIg.startsWith('http') ? rawIg : `https://www.instagram.com/${rawIg.replace('@', '')}`);
 
               return (
                 <div className={`mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3.5 justify-center w-full ${settings?.map_embed_url ? 'lg:justify-start' : ''}`}>
